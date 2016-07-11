@@ -28,10 +28,10 @@ class proj1 extends Component {
         this.setState({comein:true});
     }
     render() {
-        var comp=<WelCome onPress={this.handleComeinBtn}></WelCome>;
-        if (this.state.comein)
-            comp = <Main></Main>
-        //var comp=<Main></Main>;
+        //var comp=<WelCome onPress={this.handleComeinBtn}></WelCome>;
+        //if (this.state.comein)
+            //comp = <Main></Main>
+        var comp=<Main></Main>;
         return (
             <View style={mainStyle.wrapper}>{comp}</View>
         );
