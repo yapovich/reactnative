@@ -8,19 +8,48 @@ module.exports= {
         wrapper: {
             flex: 1
         },
+        wrapper_gray: {
+            flex: 1,
+            backgroundColor:'#d5d5d5'
+        },
         content:{
             flex:1,
             paddingLeft:20,
             paddingRight:20
         },
-        backToolbar:{
+        toolbar:{
            height:48,
-           borderColor: '#ccc',
-           borderStyle: 'solid',
-           borderBottomWidth:1,
            flexDirection:'row',
            alignItems:'center',
-           justifyContent:'flex-start'
+           justifyContent:'space-between',
+           backgroundColor:'#109d59'
+        },
+        toolbarNav:{
+            height:48,
+            flexDirection:'row',
+            alignItems:'center',
+            justifyContent:'flex-start'
+        },
+        toolbarNavIcon:{
+            width:48,
+            height:48,
+            padding:12
+        },
+        toolbarNavFont:{
+            color:'#fff',
+            textAlign:'center',
+            fontFamily: 'fontawesome',
+            fontSize:24
+        },
+        toolbarTitle:{
+            flex:1,
+            alignItems:'center',
+            justifyContent:'center'
+        },
+        toolbarTitleText:{
+            fontSize:18,
+            color:'#fff',
+            marginLeft:14
         },
         bottomBar:{
             height:48,
@@ -35,6 +64,24 @@ module.exports= {
             height:48,
             alignItems:'center',
             justifyContent:'center'
+        },
+        bottomBarBtnIcon:{
+            fontFamily: 'fontawesome',
+            fontSize:20
+        },
+        bottomBarBtnText:{
+            fontSize:12,
+            marginTop:1
+        },
+        bottomBarBtnIconSelected:{
+            fontFamily: 'fontawesome',
+            fontSize:20,
+            color:'#109d59'
+        },
+        bottomBarBtnTextSelected:{
+            fontSize:12,
+            marginTop:1,
+            color:'#109d59'
         },
         textInputWrapper:{
             height: 40,
@@ -59,18 +106,43 @@ module.exports= {
             paddingTop:10
         },
         saveBtn:{
-            flex:1,
-            borderWidth: 1,
-            borderColor: '#fff',
-            borderStyle: 'solid',
-            borderRadius: 5,
-            padding:13,
-            backgroundColor:'#01bfa5',
+            borderRadius: 2,
+            padding:5,
+            paddingLeft:13,
+            paddingRight:13,
+            marginRight:14,
+            backgroundColor:'#45c01a',
             alignItems:'center'
         },
         saveText:{
             color:'#fff',
-            fontSize:14
+            fontSize:12
+        },
+        blockListItemFirst:{
+            backgroundColor:'#fff',
+            marginTop:10,
+            marginBottom:10,
+            flexDirection:'row',
+            justifyContent:'flex-start',
+            alignItems:'center',
+            padding:10,
+            paddingLeft:14
+        },
+        blockListItem:{
+            backgroundColor:'#fff',
+            marginBottom:10,
+            flexDirection:'row',
+            justifyContent:'flex-start',
+            alignItems:'center',
+            padding:12,
+            paddingLeft:14
+        },
+        blockListItemFont:{
+            marginRight:14,
+            color:'#ddd',
+            textAlign:'center',
+            fontFamily: 'fontawesome',
+            fontSize:24
         }
     }),
     welcomeStyle: StyleSheet.create({

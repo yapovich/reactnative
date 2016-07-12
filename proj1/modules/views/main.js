@@ -16,17 +16,24 @@ import {
     TouchableOpacity,
     ScrollView,
     ListView,
-    RecyclerViewBackedScrollView
+    RecyclerViewBackedScrollView,
+    ViewPagerAndroid,
+    NativeModules
 } from 'react-native';
 import {mainStyle} from '../stylesheets/main';
 import MainUpdate from './main_update';
+var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 class main extends Component {
     constructor(props) {
         super(props);
         //绑定上下文
         this.handleNewBtn = this.handleNewBtn.bind(this);
         this.handleBack = this.handleBack.bind(this);
+        this.handleViewPageSelected=this.handleViewPageSelected.bind(this);
+        this.handlePageSelect=this.handlePageSelect.bind(this);
         this._renderSeperator=this._renderSeperator.bind(this);
+        this._renderRow=this._renderRow.bind(this);
+        this.componentDidMount=this.componentDidMount.bind(this);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         var arry=[]
         for(var i=0;i<50;i++){
@@ -34,6 +41,7 @@ class main extends Component {
         }
         this.state = {
             modalVisible: false,
+            viewPage:0,
             dataSource:ds.cloneWithRows(arry)
         };
     }
@@ -42,6 +50,13 @@ class main extends Component {
     }
     handleBack(){
         this.setState({modalVisible: false});
+    }
+    handleViewPageSelected(e){
+        this.setState({viewPage: e.nativeEvent.position});
+    }
+    handlePageSelect(page){
+        this.viewPager.setPage(page);
+        this.setState({viewPage: page});
     }
     _renderSeperator(sectionID, rowID, adjacentRowHighlighted) {
     return (
@@ -54,42 +69,67 @@ class main extends Component {
         />
     );
    }
+    _renderRow(rowData, sectionID, rowID) {
+        return (
+            <View style={rowID==0?mainStyle.blockListItemFirst:mainStyle.blockListItem}>
+                <Text style={mainStyle.blockListItemFont}>&#xf067;</Text>
+                <Text>{rowData}</Text>
+            </View>
+        );
+    }
     render() {
         return (
             <View style={mainStyle.wrapper}>
+                <View style={mainStyle.toolbar}>
+                    <Text style={mainStyle.toolbarTitleText}>采集录入系统</Text>
+                    <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon}  onPress={this.handleNewBtn}>
+                        <Text style={mainStyle.toolbarNavFont}>&#xf067;</Text>
+                    </TouchableOpacity>
+                </View>
                 <Modal
-                    animationType={"slide"}
+                    animationType={"fade"}
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {alert("Modal has been closed.")}}>
                     <MainUpdate backAction={this.handleBack}/>
                 </Modal>
-                <ListView
-                    style={mainStyle.content}
-                    dataSource={this.state.dataSource}
-                    renderRow={(rowData) =>
-                    <Text>{rowData}</Text>
-                    }
-                    renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
-                    renderSeparator={this._renderSeperator}
-
-                />
+                <ViewPagerAndroid
+                    ref={viewPager => this.viewPager = viewPager}
+                    style={mainStyle.wrapper}
+                    onPageSelected={this.handleViewPageSelected}
+                    initialPage={this.state.viewPage}>
+                    <View style={mainStyle.wrapper}>
+                        <ListView
+                            style={mainStyle.wrapper}
+                            dataSource={this.state.dataSource}
+                            renderRow={this._renderRow}
+                            renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}/>
+                    </View>
+                    <View style={mainStyle.wrapper}>
+                        <Text>波波维奇</Text>
+                    </View>
+                </ViewPagerAndroid>
                 <View style={mainStyle.bottomBar}>
-                    <TouchableOpacity onPress={this.handleNewBtn}>
+                    <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(0)}>
                         <View style={mainStyle.bottomBarBtn}>
-                         <Text style={{fontFamily: 'fontawesome',fontSize:20}}>&#xf0f6;</Text>
-                         <Text style={{fontSize:12,marginTop:1}}>新建</Text>
+                         <Text style={this.state.viewPage==0?mainStyle.bottomBarBtnIconSelected:mainStyle.bottomBarBtnIcon}>&#xf0f6;</Text>
+                         <Text style={this.state.viewPage==0?mainStyle.bottomBarBtnTextSelected:mainStyle.bottomBarBtnText}>首页</Text>
                        </View>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(1)}>
                         <View style={mainStyle.bottomBarBtn}>
-                          <Text style={{fontFamily: 'fontawesome',fontSize:20}}>&#xf013;</Text>
-                          <Text style={{fontSize:12,marginTop:1}}>设置</Text>
+                          <Text style={this.state.viewPage==1?mainStyle.bottomBarBtnIconSelected:mainStyle.bottomBarBtnIcon}>&#xf013;</Text>
+                          <Text style={this.state.viewPage==1?mainStyle.bottomBarBtnTextSelected:mainStyle.bottomBarBtnText}>配置</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
             </View>
         );
+    }
+
+    componentDidMount() {
+
+        //ToastCustomAndroid.show("样品号不能为空", ToastCustomAndroid.SHORT);
     }
 }
 module.exports=main;

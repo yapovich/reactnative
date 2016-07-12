@@ -6,7 +6,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-import React,{ Component } from 'react';
+import React,{ Component} from 'react';
 import {
     Text,
     View,
@@ -15,10 +15,11 @@ import {
     TouchableOpacity,
     TouchableHighlight,
     ScrollView,
-    ToastAndroid
+    ToastAndroid,
+    NativeModules
 } from 'react-native';
 import {mainStyle} from '../stylesheets/main';
-import CustomToast from '../components/native/CustomToast'
+var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 class main extends Component {
     constructor(props) {
         super(props);
@@ -30,16 +31,24 @@ class main extends Component {
     handleSaveBtn(){
         //CustomToast.text="boboweiqi";
         //ToastAndroid.show(this.state.YPH,ToastAndroid.SHORT);
-        CustomToast.show("boboweiqi",ToastAndroid.SHORT);
+        if(!this.state.YPH) {
+            ToastCustomAndroid.show("样品号不能为空", ToastCustomAndroid.SHORT);
+            return;
+        }
     }
     render() {
         return (
             <View style={mainStyle.wrapper}>
-                <View style={mainStyle.backToolbar}>
-                    <TouchableOpacity onPress={this.props.backAction}>
-                      <Image source={{uri: 'backicon'}} style={{width:48,height:48}}/>
+                <View style={mainStyle.toolbar}>
+                    <View style={mainStyle.toolbarNav}>
+                        <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon} onPress={this.props.backAction}>
+                            <Text style={mainStyle.toolbarNavFont}>&#xf053;</Text>
+                        </TouchableOpacity>
+                        <Text style={mainStyle.toolbarTitleText}>新建</Text>
+                    </View>
+                    <TouchableOpacity  style={mainStyle.toolbarNavIcon} onPress={this.handleSaveBtn}>
+                        <Text style={mainStyle.toolbarNavFont}>&#xf0c7;</Text>
                     </TouchableOpacity>
-                    <Text style={{fontSize:18,color:'#000'}}>新建</Text>
                 </View>
                 <ScrollView style={mainStyle.content}>
                     <View style={mainStyle.textInputWrapper}>
@@ -112,12 +121,7 @@ class main extends Component {
                         <Text>采样时间：</Text>
                         <TextInput style={mainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
                     </View>
-                </ScrollView >
-                <View style={mainStyle.bar}>
-                    <TouchableOpacity  style={mainStyle.saveBtn} onPress={this.handleSaveBtn}>
-                        <Text style={mainStyle.saveText}>保  存</Text>
-                    </TouchableOpacity>
-                </View>
+                </ScrollView>
             </View>
         );
     }
