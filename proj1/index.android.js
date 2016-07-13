@@ -14,28 +14,25 @@ import {
 import {mainStyle} from './modules/stylesheets/main';
 import WelCome from "./modules/views/welcome";
 import Main from "./modules/views/main";
-
-class proj1 extends Component {
-    constructor(props) {
-        super(props);
-        //绑定上下文
-        this.handleComeinBtn = this.handleComeinBtn.bind(this);
-        this.state = {
+import Index from "./modules/views/index";
+var proj1=React.createClass({
+    getInitialState() {
+        return {
             comein: false
         };
-    }
+    },
     handleComeinBtn(){
         this.setState({comein:true});
-    }
+    },
     render() {
         //var comp=<WelCome onPress={this.handleComeinBtn}></WelCome>;
         //if (this.state.comein)
             //comp = <Main></Main>
-        var comp=<Main></Main>;
+        var comp=<Index></Index>;
         return (
             <View style={mainStyle.wrapper}>{comp}</View>
         );
     }
-}
+});
 
 AppRegistry.registerComponent('proj1', () => proj1);

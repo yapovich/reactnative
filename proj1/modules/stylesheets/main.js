@@ -15,7 +15,8 @@ module.exports= {
         content:{
             flex:1,
             paddingLeft:14,
-            paddingRight:14
+            paddingRight:14,
+            backgroundColor:'#fff'
         },
         toolbar:{
            height:48,
@@ -57,7 +58,8 @@ module.exports= {
             borderStyle: 'solid',
             borderTopWidth:1,
             flexDirection:'row',
-            justifyContent:'space-around'
+            justifyContent:'space-around',
+            backgroundColor:'#fff'
         },
         bottomBarBtn:{
             width:48,
@@ -170,7 +172,8 @@ module.exports= {
             borderBottomWidth:1,
             justifyContent:'flex-start',
             alignItems:'center',
-            flexDirection:'row'
+            flexDirection:'row',
+            backgroundColor:'#fff'
         },
         detailTitleFont:{
             color:'#109d59',

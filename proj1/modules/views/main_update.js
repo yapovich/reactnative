@@ -34,12 +34,16 @@ var main=React.createClass({
             return;
         }
     },
+    handleBack(){
+        ToastCustomAndroid.show("后退", ToastCustomAndroid.SHORT);
+        this.props.navigator.pop()
+    },
     render() {
         return (
             <View style={mainStyle.wrapper}>
                 <View style={mainStyle.toolbar}>
                     <View style={mainStyle.toolbarNav}>
-                        <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon} onPress={this.props.backAction}>
+                        <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon} onPress={()=>{this.handleBack()}}>
                             <Text style={mainStyle.toolbarNavFont}>&#xf104;</Text>
                         </TouchableOpacity>
                         <Text style={mainStyle.toolbarTitleText}>新建</Text>
@@ -50,13 +54,13 @@ var main=React.createClass({
                 </View>
                 <View style={mainStyle.detailTitle}>
                     <Text style={mainStyle.detailTitleFont}>&#xf0f6;</Text>
-                    <Text style={mainStyle.detailTitleText}>{this.props.rowTitle}</Text>
+                    <Text style={mainStyle.detailTitleText}>{this.props.detail}</Text>
                 </View>
                 <ScrollView style={mainStyle.content}>
                     <View style={mainStyle.textInputWrapper}>
                         <Text>样品号：</Text>
                         <TextInput value={this.state.YPH}
-                                   onChange={(event) => this.setState({YPH:event.nativeEvent.text})}
+                                   onChangeText={(YPH) => this.setState({YPH})}
                                    style={mainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
                     </View>
                     <View style={mainStyle.textInputWrapper}>

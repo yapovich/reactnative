@@ -19,22 +19,13 @@ import {
     ListView,
     RecyclerViewBackedScrollView,
     ViewPagerAndroid,
-    NativeModules
+    NativeModules,
+    Navigator
 } from 'react-native';
 import {mainStyle} from '../stylesheets/main';
-import MainUpdate from './main_update';
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var main=React.createClass({
     getInitialState(){
-        //super(props);
-        //绑定上下文
-        /*this.handleNewBtn = this.handleNewBtn.bind(this);
-        this.handleBack = this.handleBack.bind(this);
-        this.handleViewPageSelected=this.handleViewPageSelected.bind(this);
-        this.handlePageSelect=this.handlePageSelect.bind(this);
-        this._renderSeperator=this._renderSeperator.bind(this);
-        this._renderRow=this._renderRow.bind(this);
-        this.componentDidMount=this.componentDidMount.bind(this);*/
         return {
             rowID:-1,
             modalVisible: false,
@@ -55,6 +46,7 @@ var main=React.createClass({
     handlePageSelect(page){
         this.viewPager.setPage(page);
         this.setState({viewPage: page});
+        ToastCustomAndroid.show("handlePageSelect("+page+")", ToastCustomAndroid.SHORT);
     },
     _renderSeperator(sectionID, rowID, adjacentRowHighlighted) {
     return (
@@ -82,11 +74,13 @@ var main=React.createClass({
     },
     _pressRow: function(rowID) {
         var data=this._pressData[rowID];
+        this.props.navigator.push({name:'update',detail:data.label});
+        /*
         this.setState({
             rowID:rowID,
             rowTitle:data.label,
             modalVisible: true
-        })
+        })*/
         //ToastCustomAndroid.show(data.label, ToastCustomAndroid.SHORT);
     },
     render() {
@@ -100,18 +94,10 @@ var main=React.createClass({
         return (
             <View style={mainStyle.wrapper}>
                 <View style={mainStyle.toolbar}>
-                    <Text style={mainStyle.toolbarTitleText}>采集录入系统</Text>
-                    <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon}>
-                        <Text style={mainStyle.toolbarNavFont}></Text>
-                    </TouchableOpacity>
+                    <View style={mainStyle.toolbarNav}>
+                        <Text style={mainStyle.toolbarTitleText}>采集录入系统</Text>
+                    </View>
                 </View>
-                <Modal
-                    animationType={"slide"}
-                    transparent={false}
-                    visible={this.state.rowID<=-1?false:this.state.modalVisible}
-                    onRequestClose={this.handleBack}>
-                    <MainUpdate backAction={this.handleBack} rowID={this.state.rowID} rowTitle={this.state.rowTitle}/>
-                </Modal>
                 <ViewPagerAndroid
                     ref={viewPager => this.viewPager = viewPager}
                     style={mainStyle.wrapper}
@@ -133,8 +119,8 @@ var main=React.createClass({
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(1)}>
                         <View style={mainStyle.bottomBarBtn}>
-                          <Text style={this.state.viewPage==1?mainStyle.bottomBarBtnIconSelected:mainStyle.bottomBarBtnIcon}>&#xf013;</Text>
-                          <Text style={this.state.viewPage==1?mainStyle.bottomBarBtnTextSelected:mainStyle.bottomBarBtnText}>配置</Text>
+                          <Text style={this.state.viewPage==1?mainStyle.bottomBarBtnIconSelected:mainStyle.bottomBarBtnIcon}>&#xf0ad;</Text>
+                          <Text style={this.state.viewPage==1?mainStyle.bottomBarBtnTextSelected:mainStyle.bottomBarBtnText}>工具</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -151,7 +137,6 @@ var main=React.createClass({
         this.setState({
             dataSource:ds.cloneWithRows(arry)
         });
-        //ToastCustomAndroid.show("样品号不能为空", ToastCustomAndroid.SHORT);
     }
 });
 module.exports=main;
