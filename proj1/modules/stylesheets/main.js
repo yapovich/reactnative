@@ -123,7 +123,7 @@ module.exports= {
             marginTop:10,
             marginBottom:10,
             flexDirection:'row',
-            justifyContent:'flex-start',
+            justifyContent:'space-between',
             alignItems:'center',
             padding:10,
             paddingLeft:14
@@ -132,14 +132,30 @@ module.exports= {
             backgroundColor:'#fff',
             marginBottom:10,
             flexDirection:'row',
-            justifyContent:'flex-start',
+            justifyContent:'space-between',
             alignItems:'center',
             padding:12,
-            paddingLeft:14
+            paddingLeft:14,
+            paddingRight:14
         },
-        blockListItemFont:{
+        blockListItemLeft:{
+            alignItems:'center',
+            justifyContent:'flex-start',
+            flexDirection:'row'
+        },
+        blockListItemLeftFont:{
             marginRight:14,
             color:'#ddd',
+            textAlign:'center',
+            fontFamily: 'fontawesome',
+            fontSize:24
+        },
+        blockListItemLeftText:{
+            fontSize:18,
+            color:'#000'
+        },
+        blockListItemRightFont:{
+            color:'#000',
             textAlign:'center',
             fontFamily: 'fontawesome',
             fontSize:24
