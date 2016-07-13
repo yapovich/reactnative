@@ -14,8 +14,8 @@ module.exports= {
         },
         content:{
             flex:1,
-            paddingLeft:20,
-            paddingRight:20
+            paddingLeft:14,
+            paddingRight:14
         },
         toolbar:{
            height:48,
@@ -118,19 +118,8 @@ module.exports= {
             color:'#fff',
             fontSize:12
         },
-        blockListItemFirst:{
-            backgroundColor:'#fff',
-            marginTop:10,
-            marginBottom:10,
-            flexDirection:'row',
-            justifyContent:'space-between',
-            alignItems:'center',
-            padding:10,
-            paddingLeft:14
-        },
         blockListItem:{
             backgroundColor:'#fff',
-            marginBottom:10,
             flexDirection:'row',
             justifyContent:'space-between',
             alignItems:'center',
@@ -138,27 +127,59 @@ module.exports= {
             paddingLeft:14,
             paddingRight:14
         },
+        blockListItemOver:{
+            backgroundColor:'#f1f1f1'
+        },
         blockListItemLeft:{
             alignItems:'center',
             justifyContent:'flex-start',
             flexDirection:'row'
         },
+        blockListItemLeftIcon:{
+            width:32,
+            height:32,
+            marginRight:14,
+            borderRadius:16
+        },
         blockListItemLeftFont:{
             marginRight:14,
-            color:'#ddd',
+            color:'#6e6e6e',
             textAlign:'center',
             fontFamily: 'fontawesome',
             fontSize:24
         },
         blockListItemLeftText:{
             fontSize:18,
-            color:'#000'
+            color:'#6e6e6e'
         },
         blockListItemRightFont:{
-            color:'#000',
+            color:'#d0d0d0',
             textAlign:'center',
             fontFamily: 'fontawesome',
             fontSize:24
+        },
+        detailTitle:{
+            height:48,
+            padding:12,
+            paddingLeft:14,
+            paddingRight:14,
+            borderColor: '#ccc',
+            borderStyle: 'solid',
+            borderBottomWidth:1,
+            justifyContent:'flex-start',
+            alignItems:'center',
+            flexDirection:'row'
+        },
+        detailTitleFont:{
+            color:'#109d59',
+            textAlign:'center',
+            fontFamily: 'fontawesome',
+            fontSize:24,
+            marginRight:14
+        },
+        detailTitleText:{
+            fontSize:18,
+            color:'#109d59'
         }
     }),
     welcomeStyle: StyleSheet.create({

@@ -14,6 +14,7 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
+    TouchableHighlight,
     ScrollView,
     ListView,
     RecyclerViewBackedScrollView,
@@ -35,16 +36,18 @@ var main=React.createClass({
         this._renderRow=this._renderRow.bind(this);
         this.componentDidMount=this.componentDidMount.bind(this);*/
         return {
+            rowID:-1,
             modalVisible: false,
             viewPage:0,
             dataSource:null
         };
     },
-    handleNewBtn(){
-        this.setState({modalVisible: true});
-    },
     handleBack(){
-        this.setState({modalVisible: false});
+        this.setState({
+            rowID:-1,
+            rowTitle:'',
+            modalVisible: false
+        });
     },
     handleViewPageSelected(e){
         this.setState({viewPage: e.nativeEvent.position});
@@ -66,14 +69,25 @@ var main=React.createClass({
    },
     _renderRow(rowData, sectionID, rowID) {
         return (
-            <View style={rowID==0?mainStyle.blockListItemFirst:mainStyle.blockListItem}>
+            <TouchableHighlight underlayColor="#333" onPress={()=>this._pressRow(rowID)} style={rowID==0?{marginTop:10,marginBottom:10}:{marginBottom:10}}>
+              <View style={mainStyle.blockListItem}>
                 <View style={mainStyle.blockListItemLeft}>
-                  <View style={{width:32,height:32,backgroundColor:'#ff0000',marginRight:14}}></View>
+                  <Text style={mainStyle.blockListItemLeftFont}>&#xf0f6;</Text>
                   <Text style={mainStyle.blockListItemLeftText}>{rowData.label}</Text>
                 </View>
                 <Text style={mainStyle.blockListItemRightFont}>&#xf105;</Text>
-            </View>
+              </View>
+            </TouchableHighlight>
         );
+    },
+    _pressRow: function(rowID) {
+        var data=this._pressData[rowID];
+        this.setState({
+            rowID:rowID,
+            rowTitle:data.label,
+            modalVisible: true
+        })
+        //ToastCustomAndroid.show(data.label, ToastCustomAndroid.SHORT);
     },
     render() {
         var listView=<View></View>
@@ -87,16 +101,16 @@ var main=React.createClass({
             <View style={mainStyle.wrapper}>
                 <View style={mainStyle.toolbar}>
                     <Text style={mainStyle.toolbarTitleText}>采集录入系统</Text>
-                    <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon}  onPress={this.handleNewBtn}>
-                        <Text style={mainStyle.toolbarNavFont}>&#xf067;</Text>
+                    <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon}>
+                        <Text style={mainStyle.toolbarNavFont}></Text>
                     </TouchableOpacity>
                 </View>
                 <Modal
-                    animationType={"fade"}
+                    animationType={"slide"}
                     transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {alert("Modal has been closed.")}}>
-                    <MainUpdate backAction={this.handleBack}/>
+                    visible={this.state.rowID<=-1?false:this.state.modalVisible}
+                    onRequestClose={this.handleBack}>
+                    <MainUpdate backAction={this.handleBack} rowID={this.state.rowID} rowTitle={this.state.rowTitle}/>
                 </Modal>
                 <ViewPagerAndroid
                     ref={viewPager => this.viewPager = viewPager}
@@ -130,9 +144,10 @@ var main=React.createClass({
     componentDidMount() {
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         var arry=[]
-        for(var i=0;i<50;i++){
-            arry.push({label:'土壤地球化学调查采样'});
+        for(var i=0;i<10;i++){
+            arry.push({label:'土壤地球化学调查采样记录卡'});
         }
+        this._pressData=arry;
         this.setState({
             dataSource:ds.cloneWithRows(arry)
         });

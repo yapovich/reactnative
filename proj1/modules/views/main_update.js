@@ -20,14 +20,12 @@ import {
 } from 'react-native';
 import {mainStyle} from '../stylesheets/main';
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
-class main extends Component {
-    constructor(props) {
-        super(props);
-        this.handleSaveBtn=this.handleSaveBtn.bind(this);
-        this.state={
+var main=React.createClass({
+    getInitialState() {
+        return {
             YPH:''
         }
-    }
+    },
     handleSaveBtn(){
         //CustomToast.text="boboweiqi";
         //ToastAndroid.show(this.state.YPH,ToastAndroid.SHORT);
@@ -35,20 +33,24 @@ class main extends Component {
             ToastCustomAndroid.show("样品号不能为空", ToastCustomAndroid.SHORT);
             return;
         }
-    }
+    },
     render() {
         return (
             <View style={mainStyle.wrapper}>
                 <View style={mainStyle.toolbar}>
                     <View style={mainStyle.toolbarNav}>
                         <TouchableOpacity activeOpacity={1} style={mainStyle.toolbarNavIcon} onPress={this.props.backAction}>
-                            <Text style={mainStyle.toolbarNavFont}>&#xf053;</Text>
+                            <Text style={mainStyle.toolbarNavFont}>&#xf104;</Text>
                         </TouchableOpacity>
                         <Text style={mainStyle.toolbarTitleText}>新建</Text>
                     </View>
-                    <TouchableOpacity  style={mainStyle.toolbarNavIcon} onPress={this.handleSaveBtn}>
-                        <Text style={mainStyle.toolbarNavFont}>&#xf0c7;</Text>
+                    <TouchableOpacity activeOpacity={0.5}  style={mainStyle.toolbarNavIcon} onPress={this.handleSaveBtn}>
+                        <Text style={mainStyle.toolbarNavFont}>&#xf00c;</Text>
                     </TouchableOpacity>
+                </View>
+                <View style={mainStyle.detailTitle}>
+                    <Text style={mainStyle.detailTitleFont}>&#xf0f6;</Text>
+                    <Text style={mainStyle.detailTitleText}>{this.props.rowTitle}</Text>
                 </View>
                 <ScrollView style={mainStyle.content}>
                     <View style={mainStyle.textInputWrapper}>
@@ -125,5 +127,5 @@ class main extends Component {
             </View>
         );
     }
-}
+});
 module.exports=main;
