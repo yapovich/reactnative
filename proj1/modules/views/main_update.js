@@ -35,7 +35,6 @@ var main=React.createClass({
         }
     },
     handleBack(){
-        ToastCustomAndroid.show("后退", ToastCustomAndroid.SHORT);
         this.props.navigator.pop()
     },
     render() {

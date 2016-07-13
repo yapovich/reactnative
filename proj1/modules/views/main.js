@@ -46,7 +46,6 @@ var main=React.createClass({
     handlePageSelect(page){
         this.viewPager.setPage(page);
         this.setState({viewPage: page});
-        ToastCustomAndroid.show("handlePageSelect("+page+")", ToastCustomAndroid.SHORT);
     },
     _renderSeperator(sectionID, rowID, adjacentRowHighlighted) {
     return (
