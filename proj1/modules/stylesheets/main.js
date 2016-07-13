@@ -86,7 +86,7 @@ module.exports= {
         textInputWrapper:{
             height: 40,
             borderRadius: 5,
-            borderColor: '#ccc',
+            borderColor: '#109d59',
             borderStyle: 'solid',
             borderWidth: 1,
             marginTop:10,
@@ -99,7 +99,9 @@ module.exports= {
         textInput:{
             flex:1,
             height:38,
-            borderWidth: 0
+            borderWidth: 0,
+            textAlign:'right',
+            color:'#109d59'
         },
         bar:{
             padding:20,
@@ -123,9 +125,9 @@ module.exports= {
             flexDirection:'row',
             justifyContent:'space-between',
             alignItems:'center',
-            padding:12,
             paddingLeft:14,
-            paddingRight:14
+            paddingRight:14,
+            height:48
         },
         blockListItemOver:{
             backgroundColor:'#f1f1f1'
@@ -146,7 +148,7 @@ module.exports= {
             color:'#6e6e6e',
             textAlign:'center',
             fontFamily: 'fontawesome',
-            fontSize:24
+            fontSize:18
         },
         blockListItemLeftText:{
             fontSize:18,
