@@ -40,6 +40,6 @@ module.exports= StyleSheet.create({
     //欢迎页进入按钮
     comeinText: {
         color: '#fff',
-        fontSize: 18
+        fontSize: 14
     }
 })

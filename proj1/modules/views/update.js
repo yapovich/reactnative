@@ -44,7 +44,7 @@ var update=React.createClass({
             <View style={MainStyle.wrapper}>
                 <Components.NavigatorBar
                    title="新建"
-                   leftBtn={{text:<Text>&#xf104;</Text>,action:this.handleBack()}}
+                   leftBtn={{text:<Text>&#xf060;</Text>,action:this.handleBack}}
                    rightBtn={[
                        {text:<Text>&#xf00c;</Text>,action:this.handleSaveBtn}
                    ]}

@@ -74,7 +74,8 @@ var main=React.createClass({
     },
     _pressRow: function(rowID) {
         var data=this._pressData[rowID];
-        this.props.navigator.push({name:'update',detail:data.label});
+        if(this.props.navigator)
+          this.props.navigator.push({name:'archive',detail:data.label});
         /*
         this.setState({
             rowID:rowID,

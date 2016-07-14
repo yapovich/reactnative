@@ -19,24 +19,24 @@ import Views from "./views";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'update',
-            detail:'土壤地球化学调查采样记录卡'
+            name:'index'
+        }
+        var initialRouteComp={
+            index:Views.Index,
+            update:Views.Update,
+            archive:Views.Archive,
+            archive_add:Views.Archive_Add
         };
         return (
             <Navigator
                 initialRoute={initialRoute}
+                configureScene={(route, routeStack) =>
+                    Navigator.SceneConfigs.PushFromRight}
                 renderScene={(route, navigator) => {
                     var Component;
                     this._navigator = navigator;
-                    switch (route.name) {
-                        case "index":
-                            Component = Views.Index;
-                            break;
-                        case "update":
-                            Component = Views.Update;
-                            break;
-                        default: //default view
-                            Component = View;
+                    if(route.name&&initialRouteComp[route.name]){
+                        Component=initialRouteComp[route.name];
                     }
                     return (<Component {...route} navigator={navigator}></Component>);
                 }

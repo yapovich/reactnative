@@ -23,7 +23,7 @@ class welcome extends Component {
                     <Text style={WelcomeStyle.subTitle}>野外采集录入系统 v1.0</Text>
                     <View style={WelcomeStyle.btns}>
                         <TouchableHighlight  style={WelcomeStyle.comeinBtn} onPress={this.props.onPress}>
-                            <Text style={WelcomeStyle.comeinText}>进入系统3</Text>
+                            <Text style={WelcomeStyle.comeinText}>进入系统</Text>
                         </TouchableHighlight>
                     </View>
                 </Image>

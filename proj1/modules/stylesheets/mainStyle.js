@@ -11,10 +11,17 @@ module.exports= StyleSheet.create({
             flex: 1,
             backgroundColor:'#d5d5d5'
         },
+        tipinfo:{
+            padding:12,
+            margin:12,
+            backgroundColor:'#f1f1f1',
+            alignItems:'center',
+            borderRadius:5
+        },
         content:{
             flex:1,
-            paddingLeft:14,
-            paddingRight:14,
+            paddingLeft:20,
+            paddingRight:20,
             backgroundColor:'#fff'
         },
         toolbar:{
@@ -54,7 +61,12 @@ module.exports= StyleSheet.create({
         toolbarTitleText:{
             fontSize:18,
             color:'#fff',
-            marginLeft:14
+            marginLeft: 12
+        },
+        toolbarTitleTextBorder:{
+            borderColor: '#0a7441',
+            borderStyle: 'solid',
+            borderLeftWidth:1
         },
         bottomBar:{
             height:48,
@@ -90,24 +102,41 @@ module.exports= StyleSheet.create({
             color:'#109d59'
         },
         textInputWrapper:{
+            marginTop:10,
+            marginBottom:10,
+            flexDirection:'row',
+            justifyContent:'flex-start',
+            alignItems:'center',
+        },
+        textInputBorder:{
             height: 40,
             borderRadius: 5,
             borderColor: '#109d59',
             borderStyle: 'solid',
             borderWidth: 1,
-            marginTop:10,
-            marginBottom:10,
+            flex:1,
             flexDirection:'row',
-            justifyContent:'center',
+            justifyContent:'flex-start',
             alignItems:'center',
             padding:5
+        },
+        textInputLabel:{
+            fontSize:14
         },
         textInput:{
             flex:1,
             height:38,
             borderWidth: 0,
             textAlign:'right',
-            color:'#109d59'
+            color:'#109d59',
+            fontSize:14
+        },
+        textInputRequiredText:{
+             position:'absolute',
+             color:'#ff0000',
+             fontSize:12,
+             margin:12,
+             marginLeft:10
         },
         bar:{
             padding:20,
@@ -146,11 +175,11 @@ module.exports= StyleSheet.create({
         blockListItemLeftIcon:{
             width:32,
             height:32,
-            marginRight:14,
+            marginRight:12,
             borderRadius:16
         },
         blockListItemLeftFont:{
-            marginRight:14,
+            marginRight:12,
             color:'#6e6e6e',
             textAlign:'center',
             fontFamily: 'fontawesome',
@@ -169,8 +198,6 @@ module.exports= StyleSheet.create({
         detailTitle:{
             height:48,
             padding:12,
-            paddingLeft:14,
-            paddingRight:14,
             borderColor: '#ccc',
             borderStyle: 'solid',
             borderBottomWidth:1,
@@ -184,7 +211,7 @@ module.exports= StyleSheet.create({
             textAlign:'center',
             fontFamily: 'fontawesome',
             fontSize:24,
-            marginRight:14
+            marginRight:12
         },
         detailTitleText:{
             fontSize:18,
