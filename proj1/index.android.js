@@ -11,10 +11,8 @@ import {
   Text,
   View
 } from 'react-native';
-import {mainStyle} from './modules/stylesheets/main';
-import WelCome from "./modules/views/welcome";
-import Main from "./modules/views/main";
-import Index from "./modules/views/index";
+import Views from "./modules/views";
+import Scenes from "./modules/scenes";
 var proj1=React.createClass({
     getInitialState() {
         return {
@@ -28,10 +26,8 @@ var proj1=React.createClass({
         //var comp=<WelCome onPress={this.handleComeinBtn}></WelCome>;
         //if (this.state.comein)
             //comp = <Main></Main>
-        var comp=<Index></Index>;
-        return (
-            <View style={mainStyle.wrapper}>{comp}</View>
-        );
+        var comp=<Scenes></Scenes>;
+        return (<View style={{flex:1}}>{comp}</View>);
     }
 });
 

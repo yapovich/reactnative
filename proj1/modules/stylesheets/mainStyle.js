@@ -2,8 +2,7 @@
  * Created by yebo on 2016/7/8.
  */
 import {StyleSheet} from 'react-native';
-module.exports= {
-    mainStyle: StyleSheet.create({
+module.exports= StyleSheet.create({
         //包装
         wrapper: {
             flex: 1
@@ -24,6 +23,11 @@ module.exports= {
            alignItems:'center',
            justifyContent:'space-between',
            backgroundColor:'#109d59'
+        },
+        toolbarRight: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start'
         },
         toolbarNav:{
             height:48,
@@ -186,46 +190,4 @@ module.exports= {
             fontSize:18,
             color:'#109d59'
         }
-    }),
-    welcomeStyle: StyleSheet.create({
-        //欢迎页容器
-        welcome_container: {
-            flex: 1,
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            backgroundColor: '#F5FCFF'
-        },
-        //欢迎页主标题
-        welcome_mainTitle: {
-            fontSize: 40,
-            marginTop: 100,
-            color: '#fff'
-        },
-        //欢迎页副标题
-        welcome_subTitle: {
-            fontSize: 20,
-            marginBottom: 10,
-            color: '#fff'
-        },
-        //欢迎页按钮容器
-        welcome_btns: {
-            flex: 1,
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            marginBottom: 60
-        },
-        //欢迎页进入按钮
-        welcome_comeinBtn:{
-            borderWidth: 1,
-            borderColor: '#fff',
-            borderStyle: 'solid',
-            borderRadius: 5,
-            padding:10
-        },
-        //欢迎页进入按钮
-        welcome_comeinText:{
-            color:'#fff',
-            fontSize:18
-        }
     })
-}

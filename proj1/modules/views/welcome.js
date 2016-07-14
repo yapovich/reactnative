@@ -14,16 +14,16 @@ import {
     Image,
     TouchableHighlight
 } from 'react-native';
-import {welcomeStyle} from '../stylesheets/main';
+import {WelcomeStyle} from '../styles';
 class welcome extends Component {
     render() {
         return (
-                <Image style={welcomeStyle.welcome_container} source={{uri: 'bg'}}>
-                    <Text style={welcomeStyle.welcome_mainTitle}>浙江省地质调查院</Text>
-                    <Text style={welcomeStyle.welcome_subTitle}>野外采集录入系统 v1.0</Text>
-                    <View style={welcomeStyle.welcome_btns}>
-                        <TouchableHighlight  style={welcomeStyle.welcome_comeinBtn} onPress={this.props.onPress}>
-                            <Text style={welcomeStyle.welcome_comeinText}>进入系统3</Text>
+                <Image style={WelcomeStyle.container} source={{uri: 'bg'}}>
+                    <Text style={WelcomeStyle.mainTitle}>浙江省地质调查院</Text>
+                    <Text style={WelcomeStyle.subTitle}>野外采集录入系统 v1.0</Text>
+                    <View style={WelcomeStyle.btns}>
+                        <TouchableHighlight  style={WelcomeStyle.comeinBtn} onPress={this.props.onPress}>
+                            <Text style={WelcomeStyle.comeinText}>进入系统3</Text>
                         </TouchableHighlight>
                     </View>
                 </Image>
