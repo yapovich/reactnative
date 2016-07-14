@@ -23,10 +23,10 @@ var proj1=React.createClass({
         this.setState({comein:true});
     },
     render() {
-        //var comp=<Views.WelCome onPress={this.handleComeinBtn}></Views.WelCome>;
-        //if (this.state.comein)
-            //comp = <Scenes></Scenes>
-        var comp = <Scenes></Scenes>
+        var comp=<Views.Welcome onPress={this.handleComeinBtn}></Views.Welcome>;
+        if (this.state.comein)
+            comp = <Scenes></Scenes>;
+        //var comp = <Scenes></Scenes>
         return (<View style={{flex:1}}>{comp}</View>);
     }
 });
