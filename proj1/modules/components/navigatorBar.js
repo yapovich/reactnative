@@ -23,7 +23,9 @@ class navigatorBar extends Component {
                     }
                     {
                         this.props.leftBtn?
-                        <View style={[MainStyle.toolbarTitleTextBorder,this.props.alignCenter?{alignItems:'center'}:null]}><Text style={MainStyle.toolbarTitleText}>{this.props.title?this.props.title:''}</Text></View>:
+                        <View style={[MainStyle.toolbarTitleTextBorder,this.props.alignCenter?{alignItems:'center'}:null]}>
+                            <Text style={MainStyle.toolbarTitleText}>{this.props.title?this.props.title:''}</Text>
+                        </View>:
                         <Text style={[MainStyle.toolbarTitleText]}>{this.props.title?this.props.title:''}</Text>
                     }
                 </View>

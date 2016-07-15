@@ -19,7 +19,7 @@ import Views from "./views";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'index'
+            name:'archive'
         }
         var initialRouteComp={
             index:Views.Index,
