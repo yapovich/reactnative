@@ -8,6 +8,7 @@
  */
 import React,{ Component} from 'react';
 import {
+    Modal,
     Text,
     View,
     Image,
@@ -16,17 +17,20 @@ import {
     TouchableHighlight,
     ScrollView,
     ToastAndroid,
-    NativeModules
+    NativeModules,
+    ActivityIndicator
 } from 'react-native';
 import {MainStyle} from '../styles';
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 import Components from '../components';
+import MainStorage from '../storages/mainStorage';
 var archive=React.createClass({
     getInitialState() {
         return {
             edit:false,
             selectedCount:0,
-            folders:[
+            isloading:true,
+            folders:[]/*[
                 {name:'测试文件夹11',createdTime:new Date().toDateString(),count:20},
                 {name:'测试文件夹12',createdTime:new Date().toDateString(),count:20},
                 {name:'测试文件夹3',createdTime:new Date().toDateString(),count:20},
@@ -39,19 +43,18 @@ var archive=React.createClass({
                 {name:'测试文件夹10',createdTime:new Date().toDateString(),count:20},
                 {name:'测试文件夹11',createdTime:new Date().toDateString(),count:20},
                 {name:'测试文件夹12',createdTime:new Date().toDateString(),count:20}
-                ]
+                ]*/,
+            addfolderVisible:false
         };
-    },
-    handleNewBtn(){
-        if(this.props.navigator)
-            this.props.navigator.push({name:'archive_add'});
-
     },
     handleLongPress(){
         this.setState({edit:true,selectedCount:1})
     },
-    handlePress(index){
-
+    handlePress(name,index){
+        if(!this.state.edit){
+            if(this.props.navigator)
+                this.props.navigator.push({name:'archive_file',detail:this.props.detail,folderName:name});
+        }
     },
     handleBack(){
         if(this.props.navigator)
@@ -60,79 +63,89 @@ var archive=React.createClass({
     handleClose(){
         this.setState({edit:false,selectedCount:0})
     },
+    //新建文件夹
+    handleAddFolder(){
+        this.setState({addfolderVisible:true});
+    },
     render() {
         return (
             <View style={MainStyle.wrapper}>
                 {
-                    this.state.edit?
-                    <Components.NavigatorBar
-                        title={"已选择("+this.state.selectedCount+")"}
-                        alignCenter={true}
-                        leftBtn={{text: <Text>&#xf00d;</Text>, action: this.handleClose}}
-                    />:<Components.NavigatorBar
+                    this.state.edit ?
+                        <Components.NavigatorBar
+                            title={"已选择(" + this.state.selectedCount + ")"}
+                            alignCenter={true}
+                            leftBtn={{text: <Text>&#xf00d;</Text>, action: this.handleClose}}
+                        /> : <Components.NavigatorBar
                         title={this.props.detail}
                         alignCenter={false}
                         leftBtn={{text: <Text>&#xf060;</Text>, action: this.handleBack}}
-                        rightBtn={[
-                            {text: <Text>&#xf067;</Text>, action: this.handleNewBtn}
-                        ]}
                     />
                 }
-                    <ScrollView
-                        contentContainerStyle={[MainStyle.folderWrapper]}
-                    >
-                    {
-                        (this.state.folders&&this.state.folders.length>0)?
-                        this.state.folders.map(function(g,index){
-                            return <TouchableHighlight key={"folder_"+index} underlayColor="#eee"
-                                                       onLongPress={this.handleLongPress}
-                                                       onPress={()=>this.handlePress(index)}
-                                                       style={{flex:1,flexDirection: 'row'}}>
-                              <View style={MainStyle.folderContainer}>
-                                <View style={MainStyle.folderIcon}><Text style={MainStyle.folderIconFont}>&#xf07b;</Text></View>
-                                <View style={MainStyle.folderTitle}>
-                                    <Text style={MainStyle.folderTitleText1}>{g.name}</Text>
-                                    <Text style={MainStyle.folderTitleText2}>
-                                        创建时间：{g.createdTime}&nbsp;&nbsp;&nbsp;数量：{g.count}
-                                        </Text>
-                                </View>
-                                  <View style={{position:'absolute',right:10}}><Text>1</Text></View>
-                              </View>
-                            </TouchableHighlight>;
-                        }.bind(this)):
-                       <View style={MainStyle.tipinfo}><Text>请至少创建一个归档文件夹</Text></View>
-                    }
-                    </ScrollView>
+
                 {
-                    !this.state.edit?
+                    (!this.state.isloading) ?
+                        <ScrollView
+                            contentContainerStyle={[MainStyle.folderWrapper]}
+                        >{
+                            this.state.folders.map(function (g, index) {
+                                return <TouchableHighlight key={"folder_" + index} underlayColor="#eee"
+                                                           onLongPress={this.handleLongPress}
+                                                           onPress={()=>this.handlePress(g.name, index)}
+                                                           style={{flex: 1, flexDirection: 'row'}}>
+                                    <View style={MainStyle.folderContainer}>
+                                        <View style={MainStyle.folderIcon}><Text
+                                            style={MainStyle.folderIconFont}>&#xf07b;</Text></View>
+                                        <View style={MainStyle.folderTitle}>
+                                            <Text style={MainStyle.folderTitleText1}>{g.name}</Text>
+                                            <Text style={MainStyle.folderTitleText2}>
+                                                创建时间：{g.createdTime}&nbsp;&nbsp;&nbsp;数量：{g.count}
+                                            </Text>
+                                        </View>
+                                        <View style={{position: 'absolute', right: 10}}><Text>1</Text></View>
+                                    </View>
+                                </TouchableHighlight>;
+                            }.bind(this))}
+                        </ScrollView>:
+                        <View style={{flex:1}}>
+                            <ActivityIndicator
+                                animating={true}
+                                style={[{height: 100}]}
+                                size="large"
+                            />
+                        </View>
+                }
+
+                {
+                    !this.state.edit ?
                         <View style={MainStyle.bottomBar}>
-                            <TouchableOpacity activeOpacity={1}>
+                            <TouchableOpacity activeOpacity={1} onPress={this.handleAddFolder}>
                                 <View style={MainStyle.bottomBarBtn}>
                                     <Text style={MainStyle.bottomBarBtnIcon}>&#xf0f6;</Text>
                                     <Text style={MainStyle.bottomBarBtnText}>新建文件夹</Text>
                                 </View>
                             </TouchableOpacity>
-                        </View>:
+                        </View> :
                         <View style={MainStyle.bottomBar}>
-                            <TouchableOpacity activeOpacity={1}>
+                            <TouchableOpacity activeOpacity={0.8}>
                                 <View style={MainStyle.bottomBarBtn}>
                                     <Text style={MainStyle.bottomBarBtnIcon}>&#xf00d;</Text>
                                     <Text style={MainStyle.bottomBarBtnText}>删除</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={1}>
+                            <TouchableOpacity activeOpacity={0.8}>
                                 <View style={MainStyle.bottomBarBtn}>
                                     <Text style={MainStyle.bottomBarBtnIcon}>&#xf044;</Text>
                                     <Text style={MainStyle.bottomBarBtnText}>重命名</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={1}>
+                            <TouchableOpacity activeOpacity={0.8}>
                                 <View style={MainStyle.bottomBarBtn}>
                                     <Text style={MainStyle.bottomBarBtnIcon}>&#xf05d;</Text>
                                     <Text style={MainStyle.bottomBarBtnText}>全选</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={1}>
+                            <TouchableOpacity activeOpacity={0.8}>
                                 <View style={MainStyle.bottomBarBtn}>
                                     <Text style={MainStyle.bottomBarBtnIcon}>&#xf0ee;</Text>
                                     <Text style={MainStyle.bottomBarBtnText}>导出</Text>
@@ -140,9 +153,29 @@ var archive=React.createClass({
                             </TouchableOpacity>
                         </View>
                 }
+                <Modal
+                    animationType={"fade"}
+                    transparent={true}
+                    visible={this.state.addfolderVisible}
+                    onRequestClose={()=> {
+                        this.setState({addfolderVisible: false})
+                    }}
+                >
+                    <View style={{flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                        <View style={{margin: 20, borderRadius: 5, backgroundColor: '#fff', height: 150}}>
+                            <Text style={{textAlign: 'center'}}>波波维奇</Text>
+                        </View>
+                    </View>
 
+                </Modal>
             </View>
         );
+    },
+    componentDidMount(){
+        //ToastCustomAndroid.show("数据不存在222",ToastCustomAndroid.SHORT);
+        MainStorage.getFolders(function(data){
+            this.setState({folders:data?data:[],isloading:false});
+        }.bind(this));
     }
 });
 module.exports=archive;

@@ -19,13 +19,14 @@ import Views from "./views";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'archive'
+            name:'archive',
+            detail:'土壤地球化学调查采样记录卡'
         }
         var initialRouteComp={
             index:Views.Index,
             update:Views.Update,
             archive:Views.Archive,
-            archive_add:Views.Archive_Add
+            archive_file:Views.Archive_File
         };
         return (
             <Navigator

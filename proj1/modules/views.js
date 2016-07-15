@@ -6,6 +6,6 @@ var views={
     get Index(){return require('./views/index')},//主页
     get Update(){return require('./views/update')},//更新
     get Archive(){return require('./views/archive')},//归档
-    get Archive_Add(){return require('./views/archive_add')},//创建归档文件夹
+    get Archive_File(){return require('./views/archive_file')},//创建归档文件夹
 }
 module.exports=views;

@@ -1,4 +1,7 @@
 /**
+ * Created by yebo on 2016/7/15.
+ */
+/**
  * Created by yebo on 2016/7/8.
  */
 /**
@@ -32,28 +35,20 @@ var update=React.createClass({
     },
     handleBack(){
         if(this.props.navigator)
-          this.props.navigator.pop()
+            this.props.navigator.pop()
     },
     render() {
         return (
             <View style={MainStyle.wrapper}>
-                <Components.NavigatorBar
-                   title="创建归档文件夹"
-                   leftBtn={{text:<Text>&#xf060;</Text>,action:this.handleBack}}
-                   rightBtn={[
-                       {text:<Text>&#xf00c;</Text>,action:this.handleSaveBtn}
-                   ]}
-                />
                 <View style={MainStyle.content}>
                     <View  style={MainStyle.textInputWrapper}>
-                          <View style={MainStyle.textInputBorder}>
+                        <View style={MainStyle.textInputBorder}>
                             <Text style={MainStyle.textInputLabel}>归档名称：</Text>
                             <TextInput value={this.state.archiveName}
-                                   style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                          </View>
-                          <Text style={MainStyle.textInputRequiredText}>*</Text>
-                    </View>
+                                       style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
+                        </View>
 
+                    </View>
                 </View>
             </View>
         );

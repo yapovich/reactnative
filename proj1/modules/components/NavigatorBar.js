@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {MainStyle} from '../styles';
-class navigatorBar extends Component {
+class NavigatorBar extends Component {
     render() {
         return (
             <View style={MainStyle.toolbar}>
@@ -16,7 +16,7 @@ class navigatorBar extends Component {
                     {
                         this.props.leftBtn?
                         <TouchableOpacity activeOpacity={1} style={MainStyle.toolbarNavIcon}
-                              onPress={this.props.leftBtn ? this.props.leftBtn.action : null}>
+                              onPress={this.props.leftBtn.action}>
                             <Text
                                 style={MainStyle.toolbarNavFont}>{this.props.leftBtn.text}</Text>
                         </TouchableOpacity>:null
@@ -42,4 +42,4 @@ class navigatorBar extends Component {
         );
     }
 }
-module.exports=navigatorBar;
+module.exports=NavigatorBar;

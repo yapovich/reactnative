@@ -5,7 +5,8 @@ import {StyleSheet} from 'react-native';
 module.exports= StyleSheet.create({
     //包装
     wrapper: {
-        flex: 1
+        flex: 1,
+        justifyContent:'space-between'
     },
     wrapper_gray: {
         flex: 1,
@@ -14,14 +15,12 @@ module.exports= StyleSheet.create({
     tipinfo: {
         padding: 12,
         margin: 12,
-        backgroundColor: '#f1f1f1',
+        backgroundColor: '#ddd',
         alignItems: 'center',
         borderRadius: 5
     },
     content: {
-        flex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
+        flex:1,
         backgroundColor: '#fff'
     },
     toolbar: {
@@ -101,11 +100,13 @@ module.exports= StyleSheet.create({
         color: '#109d59'
     },
     textInputWrapper: {
+        margin:20,
         marginTop: 10,
         marginBottom: 10,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        flex:1
     },
     textInputBorder: {
         height: 40,
@@ -134,8 +135,9 @@ module.exports= StyleSheet.create({
         position: 'absolute',
         color: '#ff0000',
         fontSize: 12,
-        margin: 12,
-        marginLeft: 10
+        margin:10,
+        top:0,
+        right:-10
     },
     bar: {
         padding: 20,
@@ -209,11 +211,11 @@ module.exports= StyleSheet.create({
         color: '#109d59',
         textAlign: 'center',
         fontFamily: 'fontawesome',
-        fontSize: 24,
+        fontSize: 20,
         marginRight: 12
     },
     detailTitleText: {
-        fontSize: 18,
+        fontSize: 14,
         color: '#109d59'
     },
     folderWrapper: {

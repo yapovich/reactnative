@@ -118,8 +118,14 @@ var main=React.createClass({
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(1)}>
                         <View style={MainStyle.bottomBarBtn}>
-                          <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnIconSelected:MainStyle.bottomBarBtnIcon}>&#xf0ad;</Text>
-                          <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnTextSelected:MainStyle.bottomBarBtnText}>工具</Text>
+                          <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnIconSelected:MainStyle.bottomBarBtnIcon}>&#xf05b;</Text>
+                          <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnTextSelected:MainStyle.bottomBarBtnText}>导航</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(2)}>
+                        <View style={MainStyle.bottomBarBtn}>
+                            <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnIconSelected:MainStyle.bottomBarBtnIcon}>&#xf013;</Text>
+                            <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnTextSelected:MainStyle.bottomBarBtnText}>配置</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
