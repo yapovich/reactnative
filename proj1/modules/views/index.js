@@ -67,7 +67,6 @@ var main=React.createClass({
         var listView=<View></View>
         if(this.state.dataSource){
             listView=<ListView
-                contentContainerStyle={MainStyle.wrapper}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}/>
         }
@@ -84,15 +83,9 @@ var main=React.createClass({
                         {text:<Text>&#xf013;</Text>,label:'配置'}
                     ]}
                 >
-                    <View style={MainStyle.wrapper}>
-                        {listView}
-                    </View>
-                    <View style={MainStyle.wrapper}>
-                        <Text>导航页面</Text>
-                    </View>
-                    <View style={MainStyle.wrapper}>
-                        <Text>配置页面</Text>
-                    </View>
+                    <View>{listView}</View>
+                    <View><Text>导航页面</Text></View>
+                    <View><Text>配置页面</Text></View>
                 </Components.BottomNavigator>
             </View>
         );

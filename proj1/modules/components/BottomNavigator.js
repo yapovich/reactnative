@@ -11,6 +11,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import Icon from './Icon';
+import {BottomNavigatorStyle} from '../stylesheets/componentStyle';
 class BottomNavigator extends Component {
     constructor(props){
         super(props);
@@ -50,14 +51,14 @@ class BottomNavigator extends Component {
                    var label;
                    if(this.state.viewPage==index){
                       btn=g.text ?
-                          <Icon size={20} color="#109d59" text={g.activeText?g.activeText:g.text}/> :
+                          <Icon size={20} color={BottomNavigatorStyle.hoverColor} text={g.activeText?g.activeText:g.text}/> :
                           <Icon size={20} source={g.activeSource?g.activeSource:g.source}/>
-                       label=<Text style={{marginTop:3,fontSize:10,color:'#109d59'}}>{g.label}</Text>
+                       label=<Text style={{marginTop:3,fontSize:10,color:BottomNavigatorStyle.hoverColor}}>{g.label}</Text>
                    }else{
                       btn=g.text ?
-                          <Icon size={20} text={g.text}/> :
+                          <Icon size={20} color={BottomNavigatorStyle.color} text={g.text}/> :
                           <Icon size={20} source={g.source}/>
-                       label=<Text style={{marginTop:3,fontSize:10}}>{g.label}</Text>
+                       label=<Text style={{marginTop:3,fontSize:10,color: color=BottomNavigatorStyle.color}}>{g.label}</Text>
                     }
                     return (<TouchableOpacity style={{alignItems: 'center'}}  key={"bnto_"+index} activeOpacity={1} onPress={() => this.handlePageSelect(index)}>
                         {btn}{label}
