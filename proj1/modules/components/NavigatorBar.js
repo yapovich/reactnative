@@ -1,5 +1,6 @@
 /**
  * Created by yebo on 2016/7/14.
+ * 自定义导航条
  */
 import React,{ Component } from 'react';
 import {

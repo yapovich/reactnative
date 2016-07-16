@@ -34,20 +34,6 @@ var main=React.createClass({
             dataSource:null
         };
     },
-    handleBack(){
-        this.setState({
-            rowID:-1,
-            rowTitle:'',
-            modalVisible: false
-        });
-    },
-    handleViewPageSelected(e){
-        this.setState({viewPage: e.nativeEvent.position});
-    },
-    handlePageSelect(page){
-        this.viewPager.setPage(page);
-        this.setState({viewPage: page});
-    },
     _renderSeperator(sectionID, rowID, adjacentRowHighlighted) {
     return (
         <View
@@ -76,19 +62,12 @@ var main=React.createClass({
         var data=this._pressData[rowID];
         if(this.props.navigator)
           this.props.navigator.push({name:'archive',detail:data.label});
-        /*
-        this.setState({
-            rowID:rowID,
-            rowTitle:data.label,
-            modalVisible: true
-        })*/
-        //ToastCustomAndroid.show(data.label, ToastCustomAndroid.SHORT);
     },
     render() {
         var listView=<View></View>
         if(this.state.dataSource){
             listView=<ListView
-                style={MainStyle.wrapper}
+                contentContainerStyle={MainStyle.wrapper}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}/>
         }
@@ -97,38 +76,24 @@ var main=React.createClass({
                 <Components.NavigatorBar
                     title="采集录入系统"
                 />
-                <ViewPagerAndroid
-                    ref={viewPager => this.viewPager = viewPager}
-                    style={MainStyle.wrapper}
-                    onPageSelected={this.handleViewPageSelected}
-                    initialPage={this.state.viewPage}>
+                <Components.BottomNavigator
+                    icons={[
+                        {text:<Text>&#xf015;</Text>,label:'首页'},
+                        {text:<Text>&#xf279;</Text>,label:'地图'},
+                        {text:<Text>&#xf24a;</Text>,activeText:<Text>&#xf249;</Text>,label:'便签'},
+                        {text:<Text>&#xf013;</Text>,label:'配置'}
+                    ]}
+                >
                     <View style={MainStyle.wrapper}>
                         {listView}
                     </View>
                     <View style={MainStyle.wrapper}>
-                        <Text>波波维奇</Text>
+                        <Text>导航页面</Text>
                     </View>
-                </ViewPagerAndroid>
-                <View style={MainStyle.bottomBar}>
-                    <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(0)}>
-                        <View style={MainStyle.bottomBarBtn}>
-                         <Text style={this.state.viewPage==0?MainStyle.bottomBarBtnIconSelected:MainStyle.bottomBarBtnIcon}>&#xf0f6;</Text>
-                         <Text style={this.state.viewPage==0?MainStyle.bottomBarBtnTextSelected:MainStyle.bottomBarBtnText}>首页</Text>
-                       </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(1)}>
-                        <View style={MainStyle.bottomBarBtn}>
-                          <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnIconSelected:MainStyle.bottomBarBtnIcon}>&#xf05b;</Text>
-                          <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnTextSelected:MainStyle.bottomBarBtnText}>导航</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1} onPress={() => this.handlePageSelect(2)}>
-                        <View style={MainStyle.bottomBarBtn}>
-                            <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnIconSelected:MainStyle.bottomBarBtnIcon}>&#xf013;</Text>
-                            <Text style={this.state.viewPage==1?MainStyle.bottomBarBtnTextSelected:MainStyle.bottomBarBtnText}>配置</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                    <View style={MainStyle.wrapper}>
+                        <Text>配置页面</Text>
+                    </View>
+                </Components.BottomNavigator>
             </View>
         );
     },
