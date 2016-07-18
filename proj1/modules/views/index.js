@@ -71,7 +71,7 @@ var main=React.createClass({
                 renderRow={this._renderRow}/>
         }
         return (
-            <View style={MainStyle.wrapper}>
+            <Components.FlexLayout>
                 <Components.NavigatorBar
                     title="采集录入系统"
                 />
@@ -85,9 +85,10 @@ var main=React.createClass({
                 >
                     <View>{listView}</View>
                     <View><Text>导航页面</Text></View>
+                    <View><Text>便签页面</Text></View>
                     <View><Text>配置页面</Text></View>
                 </Components.BottomNavigator>
-            </View>
+            </Components.FlexLayout>
         );
     },
     componentDidMount() {

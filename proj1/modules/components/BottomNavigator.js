@@ -58,10 +58,10 @@ class BottomNavigator extends Component {
                       btn=g.text ?
                           <Icon size={20} color={BottomNavigatorStyle.color} text={g.text}/> :
                           <Icon size={20} source={g.source}/>
-                       label=<Text style={{marginTop:3,fontSize:10,color: color=BottomNavigatorStyle.color}}>{g.label}</Text>
+                       label=<Text style={{marginTop:3,fontSize:10,color:BottomNavigatorStyle.color}}>{g.label}</Text>
                     }
                     return (<TouchableOpacity style={{alignItems: 'center'}}  key={"bnto_"+index} activeOpacity={1} onPress={() => this.handlePageSelect(index)}>
-                        {btn}{label}
+                        <View>{btn}{label}</View>
                         </TouchableOpacity>);
                   }.bind(this))
                  }</View>

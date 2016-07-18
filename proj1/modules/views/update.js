@@ -20,19 +20,17 @@ import {
 } from 'react-native';
 import {MainStyle} from '../styles';
 import Components from '../components';
-var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var update=React.createClass({
     getInitialState() {
         return {
-            MC:'',
-            YPH:''
+            MC:'体育他几个人他依然体育',
+            YPH:'',
+            DM:'地貌信息'
         }
     },
     handleSaveBtn(){
-        //CustomToast.text="boboweiqi";
-        //ToastAndroid.show(this.state.YPH,ToastAndroid.SHORT);
         if(!this.state.YPH) {
-            ToastCustomAndroid.show("样品号不能为空", ToastCustomAndroid.SHORT);
+            Components.ToastCustomAndroidNative.show("样品号不能为空哦！", Components.ToastCustomAndroidNative.SHORT);
             return;
         }
         if(this.props.navigator)
@@ -42,127 +40,144 @@ var update=React.createClass({
         if(this.props.navigator)
           this.props.navigator.pop()
     },
+    testHandle(){
+
+    },
     render() {
         return (
-            <View style={MainStyle.wrapper}>
+            <Components.FlexLayout>
                 <Components.NavigatorBar
                    title="新建"
+                   alignCenter={true}
                    leftBtn={{text:<Text>&#xf060;</Text>,action:this.handleBack}}
                    rightBtn={[
                        {text:<Text>&#xf00c;</Text>,action:this.handleSaveBtn}
                    ]}
                 />
                 <ScrollView style={MainStyle.content}>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                            <Text>名称：</Text>
-                            <TextInput value={this.state.MC}
-                                onChangeText={(MC) => this.setState({MC})}
-                                style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
-                        <Text style={MainStyle.textInputRequiredText}>*</Text>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="地貌"
+                            value={this.state.DM}
+                            onChangeText={(DM) => this.setState({DM})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                          <Text style={MainStyle.textInputLabel}>样品号：</Text>
-                           <TextInput value={this.state.YPH}
-                                   onChangeText={(YPH) => this.setState({YPH})}
-                                   style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
-                        <Text style={MainStyle.textInputRequiredText}>*</Text>
+                    <View style={{margin:14}}>
+                      <Components.TextInput
+                         label="名称"
+                         unitLabel="米"
+                         value={this.state.MC}
+                         onPress={this.testHandle}
+                         onChangeText={(MC) => this.setState({MC})}
+                      />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                            <Text>原始样号：</Text>
-                            <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="样品号"
+                            value={this.state.YPH}
+                            onChangeText={(YPH) => this.setState({YPH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>EW坐标：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="原始样号"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>SN坐标：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="EW坐标"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>取样深度：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="SN坐标"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>颜色：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="取样深度"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>成因：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="颜色"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>地貌：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="成因"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>坡度：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="坡度"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>质地：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                         </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="质地"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>污染：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="污染"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>土地利用：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="土地利用"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>作物种类：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="作物种类"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>备注：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="备注"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>采样人：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="采样人"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
-                    <View style={MainStyle.textInputWrapper}>
-                        <View style={MainStyle.textInputBorder}>
-                        <Text>采样时间：</Text>
-                        <TextInput style={MainStyle.textInput} multiline={true} numberOfLines={4} underlineColorAndroid={'transparent'}/>
-                        </View>
+                    <View style={{margin:14}}>
+                        <Components.TextInput
+                            label="采用时间"
+                            value={this.state.YSYH}
+                            onChangeText={(YSYH) => this.setState({YSYH})}
+                        />
                     </View>
                 </ScrollView>
-            </View>
+            </Components.FlexLayout>
         );
     }
 });

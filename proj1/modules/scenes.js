@@ -19,7 +19,7 @@ import Views from "./views";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'archive',
+            name:'update',
             detail:'土壤地球化学调查采样记录卡'
         }
         var initialRouteComp={

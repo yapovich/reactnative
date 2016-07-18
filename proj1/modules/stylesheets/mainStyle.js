@@ -5,8 +5,7 @@ import {StyleSheet} from 'react-native';
 module.exports= StyleSheet.create({
     //包装
     wrapper: {
-        flex: 1,
-        justifyContent:'space-between'
+        flex: 1
     },
     wrapper_gray: {
         flex: 1,
@@ -23,50 +22,6 @@ module.exports= StyleSheet.create({
         flex:1,
         backgroundColor: '#fff'
     },
-    toolbar: {
-        height: 48,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: '#109d59'
-    },
-    toolbarRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-    },
-    toolbarNav: {
-        flex:1,
-        height: 48,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-    },
-    toolbarNavIcon: {
-        width: 48,
-        height: 48,
-        padding: 12
-    },
-    toolbarNavFont: {
-        color: '#fff',
-        textAlign: 'center',
-        fontFamily: 'fontawesome',
-        fontSize: 24
-    },
-    toolbarTitle: {
-        flex: 1
-    },
-    toolbarTitleText: {
-        fontSize: 18,
-        color: '#fff',
-        marginLeft: 12
-    },
-    toolbarTitleTextBorder: {
-        flex:1,
-        borderColor: '#0a7441',
-        borderStyle: 'solid',
-        borderLeftWidth: 1
-    },
     bottomBar: {
         height: 48,
         borderColor: '#ccc',
@@ -75,69 +30,6 @@ module.exports= StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: '#fff'
-    },
-    bottomBarBtn: {
-        height: 48,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    bottomBarBtnIcon: {
-        fontFamily: 'fontawesome',
-        fontSize: 20
-    },
-    bottomBarBtnText: {
-        fontSize: 12,
-        marginTop: 1
-    },
-    bottomBarBtnIconSelected: {
-        fontFamily: 'fontawesome',
-        fontSize: 20,
-        color: '#109d59'
-    },
-    bottomBarBtnTextSelected: {
-        fontSize: 12,
-        marginTop: 1,
-        color: '#109d59'
-    },
-    textInputWrapper: {
-        margin:20,
-        marginTop: 10,
-        marginBottom: 10,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flex:1
-    },
-    textInputBorder: {
-        height: 40,
-        borderRadius: 5,
-        borderColor: '#109d59',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        padding: 5
-    },
-    textInputLabel: {
-        fontSize: 14
-    },
-    textInput: {
-        flex: 1,
-        height: 38,
-        borderWidth: 0,
-        textAlign: 'right',
-        color: '#109d59',
-        fontSize: 14
-    },
-    textInputRequiredText: {
-        position: 'absolute',
-        color: '#ff0000',
-        fontSize: 12,
-        margin:10,
-        top:0,
-        right:-10
     },
     bar: {
         padding: 20,

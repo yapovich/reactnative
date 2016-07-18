@@ -82,7 +82,6 @@ var archive=React.createClass({
                         leftBtn={{text: <Text>&#xf060;</Text>, action: this.handleBack}}
                     />
                 }
-
                 {
                     (!this.state.isloading) ?
                         <ScrollView
@@ -115,43 +114,21 @@ var archive=React.createClass({
                             />
                         </View>
                 }
-
                 {
                     !this.state.edit ?
-                        <View style={MainStyle.bottomBar}>
-                            <TouchableOpacity activeOpacity={1} onPress={this.handleAddFolder}>
-                                <View style={MainStyle.bottomBarBtn}>
-                                    <Text style={MainStyle.bottomBarBtnIcon}>&#xf0f6;</Text>
-                                    <Text style={MainStyle.bottomBarBtnText}>新建文件夹</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View> :
-                        <View style={MainStyle.bottomBar}>
-                            <TouchableOpacity activeOpacity={0.8}>
-                                <View style={MainStyle.bottomBarBtn}>
-                                    <Text style={MainStyle.bottomBarBtnIcon}>&#xf00d;</Text>
-                                    <Text style={MainStyle.bottomBarBtnText}>删除</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={0.8}>
-                                <View style={MainStyle.bottomBarBtn}>
-                                    <Text style={MainStyle.bottomBarBtnIcon}>&#xf044;</Text>
-                                    <Text style={MainStyle.bottomBarBtnText}>重命名</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={0.8}>
-                                <View style={MainStyle.bottomBarBtn}>
-                                    <Text style={MainStyle.bottomBarBtnIcon}>&#xf05d;</Text>
-                                    <Text style={MainStyle.bottomBarBtnText}>全选</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={0.8}>
-                                <View style={MainStyle.bottomBarBtn}>
-                                    <Text style={MainStyle.bottomBarBtnIcon}>&#xf0ee;</Text>
-                                    <Text style={MainStyle.bottomBarBtnText}>导出</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <Components.IconBar
+                            icons={[
+                                {text:<Text>&#xf0f6;</Text>,label:'新建文件夹',action:this.handleAddFolder}
+                            ]}
+                        /> :
+                    <Components.IconBar
+                        icons={[
+                            {text:<Text>&#xf00d;</Text>,label:'删除',enabled:false},
+                            {text:<Text>&#xf044;</Text>,label:'重命名',enabled:false},
+                            {text:<Text>&#xf05d;</Text>,label:'全选',enabled:false},
+                            {text:<Text>&#xf0ee;</Text>,label:'导出'},
+                        ]}
+                    />
                 }
                 <Modal
                     animationType={"fade"}
