@@ -18,10 +18,10 @@ import java.util.Map;
 /**
  * Created by yebo on 2016/7/12.
  */
-public class ToastCustomModule extends ReactContextBaseJavaModule {
+public class ToastCustom extends ReactContextBaseJavaModule {
     private static final String DURATION_SHORT="SHORT";
     private static final String DURATION_LONG="LONG";
-    public ToastCustomModule(ReactApplicationContext reactContext) {
+    public ToastCustom(ReactApplicationContext reactContext) {
         super(reactContext);
     }
     @Override

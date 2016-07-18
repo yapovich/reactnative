@@ -20,6 +20,7 @@ import {
 } from 'react-native';
 import {MainStyle} from '../styles';
 import Components from '../components';
+var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var update=React.createClass({
     getInitialState() {
         return {
@@ -30,7 +31,7 @@ var update=React.createClass({
     },
     handleSaveBtn(){
         if(!this.state.YPH) {
-            Components.ToastCustomAndroidNative.show("样品号不能为空哦！", Components.ToastCustomAndroidNative.SHORT);
+            ToastCustomAndroid.show("样品号不能为空哦！",ToastCustomAndroid.SHORT);
             return;
         }
         if(this.props.navigator)
@@ -58,6 +59,7 @@ var update=React.createClass({
                     <View style={{margin:14}}>
                         <Components.TextInput
                             label="地貌"
+                            keyboardType="default"
                             value={this.state.DM}
                             onChangeText={(DM) => this.setState({DM})}
                         />

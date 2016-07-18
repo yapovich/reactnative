@@ -11,7 +11,8 @@ var components={
     get IconBar(){return require('./components/IconBar')},//图标操作栏
     get FlexLayout(){return require('./components/FlexLayout')},//flex布局视图
     get TextInput(){return require('./components/TextInput')},//文本输入框
-    //获取本地模块
-    get ToastCustomAndroidNative(){return NativeModules.ToastCustomAndroid}
+    get TagSelectInput(){return require('./components/TagSelectInput')},//文本输入框
+    //android本地组件
+    get TagSelectInputAndroid(){return require('./components/native/android/TagSelectInputAndroid')},//便签单选输入框
 }
 module.exports=components;
