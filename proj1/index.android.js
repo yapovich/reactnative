@@ -11,8 +11,8 @@ import {
   Text,
   View
 } from 'react-native';
-import Views from "./modules/views";
-import Scenes from "./modules/scenes";
+import Views from "./js/views";
+import Scenes from "./js/scenes";
 var proj1=React.createClass({
     getInitialState() {
         return {
