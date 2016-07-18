@@ -8,6 +8,7 @@
  */
 import React,{ Component} from 'react';
 import {
+    Picker,
     Text,
     View,
     Image,
@@ -56,6 +57,22 @@ var update=React.createClass({
                    ]}
                 />
                 <ScrollView style={MainStyle.content}>
+                    <Picker
+                        selectedValue={this.state.language}
+                        onValueChange={(lang) => this.setState({language: lang})}>
+                        <Picker.Item label="Java" value="java" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="JavaScript" value="js" />
+                    </Picker>
                     <View style={{margin:14}}>
                         <Components.TextInput
                             label="地貌"
