@@ -8,7 +8,7 @@ import {
     View,
     Image
 } from 'react-native';
-class Icon extends Component {
+class MyIcon extends Component {
     render() {
         var style = {};
         if (this.props.text) {
@@ -43,4 +43,4 @@ class Icon extends Component {
         }
     }
 }
-module.exports=Icon;
+module.exports=MyIcon;

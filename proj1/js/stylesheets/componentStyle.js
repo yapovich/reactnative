@@ -23,10 +23,35 @@ module.exports= {
         backgroundColor:'#109d59',
         splitColor:'#0a7441'
     },
+    /*顶部导航栏样式*/
+    ToolBarStyle:{
+        color:'#fff',
+        backgroundColor:'#109d59',
+        splitColor:'#0a7441'
+    },
     /*文本输入框样式*/
-    TextInputStyle:{
+    FormTextInputStyle:{
+        fontSize:16,
+        labelFontSize:12,
+        color:'#109d59',
+        labelColor:'#494949',
+        borderColor:'#cdcdcd',
+        placeholderTextColor:'#b4b4b4'
+    },
+    /*下拉框样式*/
+    FormPickerStyle:{
+        placeholderTextColor:'#b4b4b4',
+        color:'#109d59',
+        labelColor:'#494949',
+        borderColor:'#cdcdcd'
+    },
+    /*多选框或单项框样式*/
+    FormCheckboxOrRadioStyle:{
+        fontSize:14,
+        labelColor:'#494949',
         color:'#000',
-        labelColor:'#999',
-        borderColor:'#999'
+        selectedColor:'#109d59',
+        disabledColor:"#ccc"
     }
+
 }

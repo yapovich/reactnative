@@ -10,9 +10,12 @@ var components={
     get Icon(){return require('./components/Icon')},//导航条
     get IconBar(){return require('./components/IconBar')},//图标操作栏
     get FlexLayout(){return require('./components/FlexLayout')},//flex布局视图
-    get TextInput(){return require('./components/TextInput')},//文本输入框
-    get TagSelectInput(){return require('./components/TagSelectInput')},//文本输入框
-    //android本地组件
-    get TagSelectInputAndroid(){return require('./components/native/android/TagSelectInputAndroid')},//便签单选输入框
+    /*表单组件*/
+    get FormTextInput(){return require('./components/FormTextInput')},//文本输入框
+    get FormCheckbox(){return require('./components/FormCheckbox')},//多选框
+    get FormRadio(){return require('./components/FormRadio')},//单选框
+    get FormPicker(){return require('./components/FormPicker')},//下拉框
+    get FormDatePicker(){return require('./components/FormDatePicker')},//日期输入框
+    get FormTimePicker(){return require('./components/FormTimePicker')}//时间输入框
 }
 module.exports=components;
