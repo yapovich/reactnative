@@ -6,6 +6,7 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.proj1.module.ToastCustom;
+import com.proj1.viewmanager.WheelViewManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,8 @@ public class CustomPackage implements ReactPackage {
     }
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        List<ViewManager> vms=new ArrayList<>();
+        vms.add(new WheelViewManager());
+        return vms;
     }
 }

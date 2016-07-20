@@ -8,6 +8,13 @@ module.exports= {
         color:'#999',
         hoverColor:'#109d59',
     },
+    /*网格导航样式*/
+    GridNavigatorStyle:{
+        color:'#333',
+        hoverColor:'#eee',
+        solidColor:'#ddd',
+        backgroundColor:'#ffffff'
+    },
     /*图标工具栏样式*/
     IconBarStyle:{
         color:'#999',
