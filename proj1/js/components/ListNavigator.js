@@ -56,8 +56,10 @@ class ListNavigator extends Component {
                 justifyContent: 'flex-start',
             }
             var _borderStyle={
-                padding:5,
-                minHeight:40,
+                padding:8,
+                paddingLeft:5,
+                paddingRight:5,
+                minHeight:48,
                 flex:1,
                 flexDirection:'row',
                 alignItems: 'center',

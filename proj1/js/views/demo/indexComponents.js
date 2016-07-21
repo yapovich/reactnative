@@ -26,7 +26,7 @@ module.exports=React.createClass({
                         <Components.ListNavigator
                         icons={[
                             {
-                                iconSize:50,
+                                iconSize:64,
                                 source:{uri:'icon1'},
                                 label: '叶波',
                                 sublabel:'海康威视研究院/大数据技术部'
