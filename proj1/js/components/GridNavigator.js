@@ -34,11 +34,6 @@ class GridNavigator extends Component {
         this.setState({viewPage: page});*/
     }
     render() {
-        var style={
-            flex:1,
-            backgroundColor: GridNavigatorStyle.backgroundColor?GridNavigatorStyle.backgroundColor:'#fff'
-        }
-
         var groupBtns;
         if(this.props.icons&&this.props.icons.length>0){
             var c=this.props.column?this.props.column:4;
@@ -51,12 +46,12 @@ class GridNavigator extends Component {
                 rows.push(i);
             var total=this.props.icons.length;
             var count=0;
-            groupBtns=rows.map(function(g,index){
+            groupBtns=rows.map(function(g,index1){
                             return <View style={{flexDirection:'row',flex:1}} key={"bnto_" + count}>
                                 {
-                                    columns.map(function (g, index) {
+                                    columns.map(function (g, index2) {
                                         count++;
-                                        var brw=((index+1)%c==0)?0:1;
+                                        var brw=((index2+1)%c==0)?0:1;
                                         var _style={
                                             alignItems: 'center',
                                             justifyContent:'center',
@@ -66,23 +61,27 @@ class GridNavigator extends Component {
                                         }
                                         var _borderStyle={
                                             flex:1,
-                                            borderColor: GridNavigatorStyle.solidColor?GridNavigatorStyle.solidColor:'#eee',
+                                            backgroundColor: this.props.backgroundColor?this.props.backgroundColor:(GridNavigatorStyle.backgroundColor?GridNavigatorStyle.backgroundColor:'#fff'),
+                                            borderColor: this.props.borderColor?this.props.borderColor:(GridNavigatorStyle.borderColor?GridNavigatorStyle.borderColor:'#eee'),
                                             borderStyle: 'solid',
                                             borderRightWidth: brw,
-                                            borderBottomWidth: 1
+                                            borderBottomWidth: 1,
+                                            borderTopWidth:index1==0?1:0
                                         }
                                         if (count > total)
                                             return <View key={"bnto_" + count} style={_borderStyle}></View>;
                                         var value=this.props.icons[count-1];
                                         var color = GridNavigatorStyle.color ? GridNavigatorStyle.color : null;
-                                        var size=value.size?value.size:24;
+                                        var labelColor=value.labelColor?value.labelColor:(this.props.labelColor?this.props.labelColor:color);
+                                        var iconColor=value.iconColor?value.iconColor:(this.props.iconColor?this.props.iconColor:color);
+                                        var size=value.size?value.size:(this.props.size?this.props.size:24);
                                         var btn = value.text ?
-                                            <Icon size={size} color={color} text={value.text}/> :
+                                            <Icon size={size} color={iconColor} text={value.text}/> :
                                             <Icon size={size} source={value.source}/>
                                         var label = <Text style={{
-                                            marginTop: 3,
+                                            marginTop: 5,
                                             fontSize: 10,
-                                            color: color
+                                            color: labelColor
                                         }}>{value.label}</Text>
                                         return <View style={_borderStyle} key={"bnto_" + count}>
                                           <TouchableHighlight

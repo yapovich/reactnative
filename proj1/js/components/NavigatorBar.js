@@ -6,7 +6,8 @@ import React,{ Component } from 'react';
 import {
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    TouchableHighlight
 } from 'react-native';
 import {NavigatorBarStyle} from '../stylesheets/componentStyle';
 //样式
@@ -64,11 +65,11 @@ class NavigatorBar extends Component {
                 <View style={_style.toolbarNav}>
                     {
                         this.props.leftBtn?
-                        <TouchableOpacity activeOpacity={1} style={_style.toolbarNavIcon}
+                        <TouchableHighlight underlayColor={NavigatorBarStyle.hoverColor?NavigatorBarStyle.hoverColor:'#000'} style={_style.toolbarNavIcon}
                               onPress={this.props.leftBtn.action}>
                             <Text
                                 style={_style.toolbarNavFont}>{this.props.leftBtn.text}</Text>
-                        </TouchableOpacity>:null
+                        </TouchableHighlight>:null
                     }
                     {
                         this.props.leftBtn?

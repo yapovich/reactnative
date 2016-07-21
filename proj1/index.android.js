@@ -5,14 +5,10 @@
  */
 import React, { Component } from 'react';
 import {
-  Alert,
   AppRegistry,
-  StyleSheet,
-  Text,
   View
 } from 'react-native';
-import Views from "./js/views";
-import Scenes from "./js/scenes";
+import Scenes from "./js/views/demo/scenes";
 var proj1=React.createClass({
     getInitialState() {
         return {

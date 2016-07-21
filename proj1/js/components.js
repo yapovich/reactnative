@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 var components={
     get GridNavigator(){return require('./components/GridNavigator')},//网格导航复合组件
+    get ListNavigator(){return require('./components/ListNavigator')},//列表导航复合组件
     get BottomNavigator(){return require('./components/BottomNavigator')},//底部导航复合组件
     get NavigatorBar(){return require('./components/NavigatorBar')},//导航条
     get Icon(){return require('./components/Icon')},//导航条

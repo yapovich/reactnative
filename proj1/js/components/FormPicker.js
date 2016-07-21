@@ -10,19 +10,20 @@ import {
     Image,
     Picker
 } from 'react-native';
-import {FormPickerStyle} from '../stylesheets/componentStyle';
+import {FormTextInputStyle} from '../stylesheets/componentStyle';
 class FormPicker extends Component {
     render() {
-        var color=FormPickerStyle.color?FormPickerStyle.color:'#000'
-        var borderColor=FormPickerStyle.borderColor?FormPickerStyle.borderColor:'#000'
-        var labelColor=FormPickerStyle.labelColor?FormPickerStyle.labelColor:'#000'
-        var placeholderTextColor=FormPickerStyle.placeholderTextColor?FormPickerStyle.placeholderTextColor:"#ccc";
+        var color=FormTextInputStyle.color?FormTextInputStyle.color:'#000'
+        var borderColor=FormTextInputStyle.borderColor?FormTextInputStyle.borderColor:'#000'
+        var labelColor=FormTextInputStyle.labelColor?FormTextInputStyle.labelColor:'#000'
+        var placeholderTextColor=FormTextInputStyle.placeholderTextColor?FormTextInputStyle.placeholderTextColor:"#ccc";
         var style = {
             textInputBorder: {
                 borderRadius: 2,
                 borderColor: borderColor,
                 borderStyle: 'solid',
                 borderWidth: 1,
+                backgroundColor: FormTextInputStyle.backgroundColor?FormTextInputStyle.backgroundColor:'#fff',
                 flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
@@ -43,7 +44,10 @@ class FormPicker extends Component {
         };
         return (
             <View style={style.textInputBorder}>
-                <Text style={[style.textInputLabel,{width:57}]}>{this.props.label}</Text>
+                <Text style={[style.textInputLabel,{minWidth:57}]}>
+                    {this.props.label}
+                    {this.props.required?<Text style={{color:'#ff0000'}}>*</Text>:null}
+                </Text>
                 <Picker
                     style={style.picker}
                     prompt={this.props.prompt}

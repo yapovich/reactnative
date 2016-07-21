@@ -11,18 +11,18 @@ import {
 class MyIcon extends Component {
     render() {
         var style = {};
+        var size=this.props.size?this.props.size:16
         if (this.props.text) {
             style.fontFamily = 'fontawesome';
-            if(this.props.color);
-               style.color = this.props.color;
-            if(this.props.size)
-              style.fontSize = this.props.size;
+            if (this.props.color);
+            style.color = this.props.color;
+            style.fontSize = size;
+            style.width = size;
+            style.textAlign = "center";
         }
         else if (this.props.source) {
-            if(this.props.size) {
-                style.width = this.props.size;
-                style.height = this.props.size;
-            }
+            style.width = size;
+            style.height = size;
         }
         if (this.props.margin)
             style.margin = this.props.margin;

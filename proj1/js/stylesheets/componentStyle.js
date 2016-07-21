@@ -12,7 +12,15 @@ module.exports= {
     GridNavigatorStyle:{
         color:'#333',
         hoverColor:'#eee',
-        solidColor:'#ddd',
+        borderColor:'#ddd',
+        backgroundColor:'#ffffff'
+    },
+    /*列表导航样式*/
+    ListNavigatorStyle:{
+        color:'#333',
+        subColor:'#bbb',
+        hoverColor:'#ddd',
+        borderColor:'#ddd',
         backgroundColor:'#ffffff'
     },
     /*图标工具栏样式*/
@@ -28,7 +36,8 @@ module.exports= {
     NavigatorBarStyle:{
         color:'#fff',
         backgroundColor:'#109d59',
-        splitColor:'#0a7441'
+        splitColor:'#0a7441',
+        hoverColor:'#078f4e'
     },
     /*顶部导航栏样式*/
     ToolBarStyle:{
@@ -41,21 +50,15 @@ module.exports= {
         fontSize:16,
         labelFontSize:12,
         color:'#109d59',
-        labelColor:'#494949',
+        labelColor:'#333',
         borderColor:'#cdcdcd',
-        placeholderTextColor:'#b4b4b4'
-    },
-    /*下拉框样式*/
-    FormPickerStyle:{
         placeholderTextColor:'#b4b4b4',
-        color:'#109d59',
-        labelColor:'#494949',
-        borderColor:'#cdcdcd'
+        backgroundColor:'#fff'
     },
     /*多选框或单项框样式*/
     FormCheckboxOrRadioStyle:{
         fontSize:14,
-        labelColor:'#494949',
+        labelColor:'#333',
         color:'#000',
         selectedColor:'#109d59',
         disabledColor:"#ccc"

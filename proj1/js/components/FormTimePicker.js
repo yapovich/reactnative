@@ -52,6 +52,7 @@ class FormTimePicker extends Component {
                 borderColor: borderColor,
                 borderStyle: 'solid',
                 borderWidth: 1,
+                backgroundColor: FormTextInputStyle.backgroundColor?FormTextInputStyle.backgroundColor:'#fff',
                 flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
@@ -79,7 +80,10 @@ class FormTimePicker extends Component {
         return (
             <TouchableOpacity activeOpacity={1} onPress={this.handleSelectDate}>
               <View style={style.textInputBorder}>
-                <Text style={[style.textInputLabel,{width:60}]}>{this.props.label}</Text>
+                  <Text style={[style.textInputLabel,{minWidth:60}]}>
+                      {this.props.label}
+                      {this.props.required?<Text style={{color:'#ff0000'}}>*</Text>:null}
+                  </Text>
                 <View style={style.textInput}><Text style={[style.textInputText,{color:color}]}>{this.props.value?this.props.value:this.props.placeholder}</Text></View>
                 <Icon
                     color={labelColor}

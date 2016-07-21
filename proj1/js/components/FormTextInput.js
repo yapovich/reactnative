@@ -18,6 +18,7 @@ class FormTextInput extends Component {
                 borderColor: FormTextInputStyle.borderColor?FormTextInputStyle.borderColor:'#000',
                 borderStyle: 'solid',
                 borderWidth: 1,
+                backgroundColor: FormTextInputStyle.backgroundColor?FormTextInputStyle.backgroundColor:'#fff',
                 flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
@@ -41,7 +42,10 @@ class FormTextInput extends Component {
         };
         return (
             <View style={style.textInputBorder}>
-                <Text style={[style.textInputLabel,{width:60}]}>{this.props.label}</Text>
+                <Text style={[style.textInputLabel,{minWidth:60}]}>
+                    {this.props.label}
+                    {this.props.required?<Text style={{color:'#ff0000'}}>*</Text>:null}
+                    </Text>
                 <TextInput multiline={true}
                            underlineColorAndroid={'transparent'}
                            style={style.textInput}

@@ -66,9 +66,34 @@ var update=React.createClass({
                         {text:<Text>&#xf00c;</Text>,action:this.handleSaveBtn}
                     ]}
                 />
-                <ScrollView style={MainStyle.content}>
+                <ScrollView>
+                    <View style={{height:500}}>
+                    <Components.ListNavigator
+                        icons={[
+                            {
+                                iconSize:80,
+                                source:{uri:'icon1'},
+                                label: '首页',
+                                sublabel:'微信号：yeboweiqi',
+                                action: ()=>alert("boboweiqi"),
+                                rightComponent:<Components.Icon source={{uri:'icon1'}} size={16}/>
+                        },
+                            [
+                             {text:<Text>&#xf002;</Text>,label:'地图'},
+                             {text:<Text>&#xf003;</Text>,label:'首页'}
+                            ],
+                            {text:<Text>&#xf004;</Text>,label:'地图'},
+                            {text:<Text>&#xf105;</Text>,label:'首页'},
+                            [
+                                {text:<Text>&#xf002;</Text>,label:'地图'},
+                                {text:<Text>&#xf003;</Text>,label:'首页'}
+                            ]
+                        ]}
+                    />
+                    </View>
                     <Components.GridNavigator
                         column={4}
+                        size={24}
                         icons={[
                             {text:<Text>&#xf001;</Text>,label:'首页'},
                             {text:<Text>&#xf002;</Text>,label:'地图'},
@@ -100,16 +125,18 @@ var update=React.createClass({
                     />
                     <View style={{margin:14}}>
                         <Components.FormDatePicker
+                            required={true}
                             placeholder="请输入采样日期"
-                            label={<Text>采样日期<Text style={{color:'#ff0000'}}>*</Text></Text>}
+                            label="采样日期"
                             value={this.state.CYRQ}
                             onValueChange={(CYRQ) => this.setState({CYRQ})}
                         />
                     </View>
                     <View style={{margin:14}}>
                         <Components.FormTimePicker
+                            required={true}
                             placeholder="请输入采样时间"
-                            label={<Text>采样时间<Text style={{color:'#ff0000'}}>*</Text></Text>}
+                            label="采样时间"
                             value={this.state.CYSJ}
                             onValueChange={(CYSJ) => this.setState({CYSJ})}
                         />
@@ -156,7 +183,8 @@ var update=React.createClass({
                     </View>
                     <View style={{margin:14}}>
                         <Components.FormPicker
-                            label={<Text>地貌<Text style={{color:'#ff0000'}}>*</Text></Text>}
+                            required={true}
+                            label="地貌"
                             selectedValue={this.state.DM}
                             onValueChange={(DM) => this.setState({DM})}
                             options={[
@@ -168,7 +196,8 @@ var update=React.createClass({
                     </View>
                     <View style={{margin:14}}>
                         <Components.FormTextInput
-                            label={<Text>地貌<Text style={{color:'#ff0000'}}>*</Text></Text>}
+                            required={true}
+                            label={<Text>地貌</Text>}
                             keyboardType="default"
                             value={this.state.DM}
                             onChangeText={(DM) => this.setState({DM})}
@@ -176,7 +205,8 @@ var update=React.createClass({
                     </View>
                     <View style={{margin:14}}>
                       <Components.FormTextInput
-                         label={<Text>名称<Text style={{color:'#ff0000'}}>*</Text></Text>}
+                          required={true}
+                         label={<Text>名称</Text>}
                          placeholder="请输入名称"
                          value={this.state.MC}
                          onPress={this.testHandle}
@@ -193,6 +223,7 @@ var update=React.createClass({
                     </View>
                     <View style={{margin:14}}>
                         <Components.FormTextInput
+                            required={true}
                             label="原始样号"
                             value={this.state.YSYH}
                             onChangeText={(YSYH) => this.setState({YSYH})}

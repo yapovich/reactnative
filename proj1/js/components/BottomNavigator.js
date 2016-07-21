@@ -60,8 +60,8 @@ class BottomNavigator extends Component {
                           <Icon size={20} source={g.source}/>
                        label=<Text style={{marginTop:3,fontSize:10,color:BottomNavigatorStyle.color}}>{g.label}</Text>
                     }
-                    return (<TouchableOpacity style={{alignItems: 'center'}}  key={"bnto_"+index} activeOpacity={1} onPress={() => this.handlePageSelect(index)}>
-                        <View>{btn}{label}</View>
+                    return (<TouchableOpacity style={{flex:1}} key={"bnto_"+index} activeOpacity={1} onPress={() => this.handlePageSelect(index)}>
+                        <View style={{flex:1,alignItems: 'center',justifyContent: 'center'}}>{btn}{label}</View>
                         </TouchableOpacity>);
                   }.bind(this))
                  }</View>
