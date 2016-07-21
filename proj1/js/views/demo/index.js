@@ -31,12 +31,12 @@ module.exports=React.createClass({
         return (
             <Components.FlexLayout>
                 <Components.NavigatorBar
-                    title="ReactNative封装组件演示"
+                    title="采集录入系统"
                 />
                 <Components.BottomNavigator
                     icons={[
-                        {text:<Text>&#xf015;</Text>,label:'常用组件'},
-                        {text:<Text>&#xf013;</Text>,label:'配置'},
+                        {text:<Text>&#xf015;</Text>,label:'示例'},
+                        {text:<Text>&#xf013;</Text>,label:'表格'},
                         {text:<Text>&#xf279;</Text>,label:'地图'}
                     ]}
                 >

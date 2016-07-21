@@ -18,7 +18,8 @@ var scenes=React.createClass({
         }
         var initialRouteComp={
             index:require("./index"),
-            examples_gridNavigator:require("./examples/gridNavigator")
+            examples_gridNavigator:require("./examples/gridNavigator"),
+            examples_form:require("./examples/form")
         };
         return (
             <Navigator

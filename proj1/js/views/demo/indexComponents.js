@@ -31,17 +31,14 @@ module.exports=React.createClass({
                                 label: '叶波',
                                 sublabel:'海康威视研究院/大数据技术部'
                             },
+                            {text:<Text>&#xf004;</Text>,label:'字体图标'},
                             [
-                                {text:<Text>&#xf002;</Text>,label:'文本输入框'},
-                                {text:<Text>&#xf003;</Text>,label:'普通选择框'},
-                                {text:<Text>&#xf003;</Text>,label:'时间选择框'},
-                                {text:<Text>&#xf003;</Text>,label:'日期选择框'},
-                                {text:<Text>&#xf003;</Text>,label:'单选框'},
-                                {text:<Text>&#xf003;</Text>,label:'多选框'}
+                                {text:<Text>&#xf002;</Text>,label:'表单控件',action:()=>this.jump('examples_form')}
                             ],
                             {text:<Text>&#xf004;</Text>,label:'网格导航器',action:()=>this.jump('examples_gridNavigator')},
-                            {text:<Text>&#xf004;</Text>,label:'图标'},
-                            {text:<Text>&#xf004;</Text>,label:'图标工具栏'}
+                            {text:<Text>&#xf004;</Text>,label:'图标工具栏'},
+                            {text:<Text>&#xf004;</Text>,label:'滚动广告板'},
+                            {text:<Text>&#xf004;</Text>,label:'标签栏'}
                         ]}
                        />
               </ScrollView>

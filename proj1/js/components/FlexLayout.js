@@ -16,7 +16,7 @@ class FlexLayout extends Component {
             alignItems:this.props.alignItems?this.props.alignItems:null,
             justifyContent:this.props.justifyContent?this.props.justifyContent:null
         };
-        return (<View style={style}>{this.props.children}</View>)
+        return (<View style={style} {...this.props}>{this.props.children}</View>)
     }
 }
 module.exports=FlexLayout;
