@@ -28,7 +28,8 @@ module.exports=React.createClass({
                         action:()=>(this.props.navigator?this.props.navigator.pop():null)}}
                 />
                 <Components.AutoPlayBanner
-                      style={{marginTop:8,marginBottom:8}}
+                      style={{marginBottom:8}}
+                      delay={5000}
                       scale={3.6}
                       icons={[
                           {source:{uri:'banner1'}},

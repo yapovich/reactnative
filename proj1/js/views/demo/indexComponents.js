@@ -37,7 +37,7 @@ module.exports=React.createClass({
                             ],
                             {text:<Text>&#xf004;</Text>,label:'网格导航器',iconColor:'#330066',action:()=>this.jump('examples_gridNavigator')},
                             {text:<Text>&#xf004;</Text>,label:'图标工具栏',iconColor:'#0000ff'},
-                            {text:<Text>&#xf004;</Text>,label:'滚动广告板',iconColor:'#00ff00'},
+                            {text:<Text>&#xf004;</Text>,label:'滚动广告板',iconColor:'#00ff00',action:()=>this.jump('examples_autoPlayBanner')},
                             {text:<Text>&#xf004;</Text>,label:'标签栏',iconColor:'#550000'}
                         ]}
                        />
