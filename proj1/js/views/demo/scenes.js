@@ -14,7 +14,7 @@ import {
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'examples_autoPlayBanner',
+            name:'examples_gridNavigator',
         }
         var initialRouteComp={
             index:require("./index"),

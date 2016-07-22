@@ -12,7 +12,7 @@ module.exports= {
     GridNavigatorStyle:{
         color:'#333',
         hoverColor:'#eee',
-        borderColor:'#ddd',
+        borderColor:'#ff0000',
         backgroundColor:'#ffffff'
     },
     /*列表导航样式*/

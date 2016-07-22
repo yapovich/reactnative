@@ -51,13 +51,24 @@ class GridNavigator extends Component {
                                 {
                                     columns.map(function (g, index2) {
                                         count++;
-                                        var brw=((index2+1)%c==0)?0:1;
+                                        var defaultW=!isNaN(this.props.border)?this.props.border:1
+                                        var bbw=defaultW;
+                                        var blw=0;//defaultW;
+                                        var brw=((index2+1)%c==0)?0:defaultW;
+                                        /*if(this.props.border||this.props.border==0){
+                                            brw=0;
+                                            bbw=0;
+                                        }*/
+
+
                                         var borderColor=this.props.borderColor?this.props.borderColor:(GridNavigatorStyle.borderColor?GridNavigatorStyle.borderColor:'#eee')
                                         var paddingAndMargin={
-                                            paddingTop: 18,
-                                            paddingBottom: 18,
+                                            paddingTop: 13,
+                                            paddingBottom: 13,
+                                            marginTop: 5,
+                                            marginBottom: 5,
                                         }
-                                        if(this.props.space&&!isNaN(this.props.space)){
+                                        if(!isNaN(this.props.space)){
                                             paddingAndMargin={
                                                 paddingTop: 18-this.props.space,
                                                 paddingBottom: 18-this.props.space,
@@ -71,16 +82,16 @@ class GridNavigator extends Component {
                                             flex: 1,
                                             borderColor:borderColor,
                                             borderStyle: 'solid',
-                                            borderRightWidth: brw
+                                            borderLeftWidth: blw
                                         }
                                         var _borderStyle={
                                             flex:1,
                                             backgroundColor: this.props.backgroundColor?this.props.backgroundColor:(GridNavigatorStyle.backgroundColor?GridNavigatorStyle.backgroundColor:'#fff'),
                                             borderColor: this.props.borderColor?this.props.borderColor:(GridNavigatorStyle.borderColor?GridNavigatorStyle.borderColor:'#eee'),
                                             borderStyle: 'solid',
-                                            borderRightWidth: 0,//brw,
-                                            borderBottomWidth: 1,
-                                            borderTopWidth:index1==0?1:0
+                                            borderRightWidth: brw,
+                                            borderBottomWidth: bbw,
+                                            borderTopWidth:index1==0?defaultW:0
                                         }
                                         if (count > total)
                                             return <View key={"bnto_" + count} style={_borderStyle}></View>;

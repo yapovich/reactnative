@@ -28,36 +28,20 @@ module.exports=React.createClass({
                 />
                 <ScrollView>
                     <Components.GridNavigator
-                        space={8}
+                        border={0}
+                        space={0}
                         column={4}
-                        size={24}
+                        rows={4}
+                        size={50}
                         icons={[
-                            {text:<Text>&#xf001;</Text>,label:'首页'},
-                            {text:<Text>&#xf002;</Text>,label:'地图'},
-                            {text:<Text>&#xf003;</Text>,label:'首页'},
-                            {text:<Text>&#xf004;</Text>,label:'地图'},
-                            {text:<Text>&#xf105;</Text>,label:'首页'},
-                            {text:<Text>&#xf006;</Text>,label:'地图'},
-                            {text:<Text>&#xf107;</Text>,label:'首页'},
-                            {text:<Text>&#xf008;</Text>,label:'地图'},
-                            {text:<Text>&#xf209;</Text>,label:'首页'},
-                            {text:<Text>&#xf017;</Text>,label:'地图'},
-                            {text:<Text>&#xf011;</Text>,label:'首页'},
-                            {text:<Text>&#xf112;</Text>,label:'地图'},
-                            {text:<Text>&#xf013;</Text>,label:'首页'},
-                            {text:<Text>&#xf014;</Text>,label:'地图'},
-                            {text:<Text>&#xf015;</Text>,label:'首页'},
-                            {text:<Text>&#xf016;</Text>,label:'地图'},
-                            {text:<Text>&#xf217;</Text>,label:'首页'},
-                            {text:<Text>&#xf018;</Text>,label:'地图'},
-                            {text:<Text>&#xf019;</Text>,label:'首页'},
-                            {text:<Text>&#xf020;</Text>,label:'地图'},
-                            {text:<Text>&#xf021;</Text>,label:'首页'},
-                            {text:<Text>&#xf022;</Text>,label:'地图'},
-                            {text:<Text>&#xf023;</Text>,label:'首页'},
-                            {text:<Text>&#xf024;</Text>,label:'地图'},
-                            {text:<Text>&#xf24a;</Text>,activeText:<Text>&#xf249;</Text>,label:'便签'},
-                            {text:<Text>&#xf013;</Text>,label:'配置'}
+                            {text:<Text>&#xf111;</Text>,label:'首页'},
+                            {text:<Text>&#xf111;</Text>,label:'地图'},
+                            {text:<Text>&#xf111;</Text>,label:'首页'},
+                            {text:<Text>&#xf111;</Text>,label:'地图'},
+                            {text:<Text>&#xf111;</Text>,label:'首页'},
+                            {text:<Text>&#xf111;</Text>,label:'地图'},
+                            {text:<Text>&#xf111;</Text>,activeText:<Text>&#xf249;</Text>,label:'便签'},
+                            {text:<Text>&#xf111;</Text>,label:'配置'}
                         ]}
                     />
                 </ScrollView>
