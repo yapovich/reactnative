@@ -27,17 +27,15 @@ module.exports=React.createClass({
                         text:<Text>&#xf060;</Text>,
                         action:()=>(this.props.navigator?this.props.navigator.pop():null)}}
                 />
-                <Components.AutoPlayBanner style={{height:100}}>
-                    <View style={{backgroundColor:'#eeeeee'}}>
-                        <Image source={{uri:'icon1'}}/>
-                    </View>
-                    <View style={{backgroundColor:'#cccccc'}}>
-                        <Image source={{uri:'icon1'}}/>
-                    </View>
-                    <View style={{backgroundColor:'#999999'}}>
-                        <Image source={{uri:'icon1'}}/>
-                    </View>
-                </Components.AutoPlayBanner>
+                <Components.AutoPlayBanner
+                      style={{marginTop:8,marginBottom:8}}
+                      scale={3.6}
+                      icons={[
+                          {source:{uri:'banner1'}},
+                          {source:{uri:'banner2'}},
+                          {source:{uri:'banner3'}},
+                          {source:{uri:'banner4'}}
+                      ]}/>
 
             </Components.FlexLayout>
         );
