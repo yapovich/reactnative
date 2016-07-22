@@ -80,7 +80,7 @@ class ListNavigator extends Component {
                 <Icon size={size} source={value.source}/>
             var label = <Text style={{
                 marginLeft: 14,
-                fontSize: value.titleSize?value.titleSize:16,
+                fontSize: value.labelSize?value.labelSize:14,
                 color: labelColor
             }}>{value.label}</Text>
             var sublabel = value.sublabel?<Text style={{

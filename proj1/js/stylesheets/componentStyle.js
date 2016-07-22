@@ -57,9 +57,9 @@ module.exports= {
     },
     /*多选框或单项框样式*/
     FormCheckboxOrRadioStyle:{
-        fontSize:14,
+        fontSize:16,
         labelColor:'#333',
-        color:'#000',
+        color:'#333',
         selectedColor:'#109d59',
         disabledColor:"#ccc"
     }

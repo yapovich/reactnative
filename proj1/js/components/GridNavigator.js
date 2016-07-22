@@ -52,19 +52,33 @@ class GridNavigator extends Component {
                                     columns.map(function (g, index2) {
                                         count++;
                                         var brw=((index2+1)%c==0)?0:1;
+                                        var borderColor=this.props.borderColor?this.props.borderColor:(GridNavigatorStyle.borderColor?GridNavigatorStyle.borderColor:'#eee')
+                                        var paddingAndMargin={
+                                            paddingTop: 18,
+                                            paddingBottom: 18,
+                                        }
+                                        if(this.props.space&&!isNaN(this.props.space)){
+                                            paddingAndMargin={
+                                                paddingTop: 18-this.props.space,
+                                                paddingBottom: 18-this.props.space,
+                                                marginTop: this.props.space,
+                                                marginBottom: this.props.space,
+                                            }
+                                        }
                                         var _style={
                                             alignItems: 'center',
                                             justifyContent:'center',
                                             flex: 1,
-                                            paddingTop: 20,
-                                            paddingBottom: 20
+                                            borderColor:borderColor,
+                                            borderStyle: 'solid',
+                                            borderRightWidth: brw
                                         }
                                         var _borderStyle={
                                             flex:1,
                                             backgroundColor: this.props.backgroundColor?this.props.backgroundColor:(GridNavigatorStyle.backgroundColor?GridNavigatorStyle.backgroundColor:'#fff'),
                                             borderColor: this.props.borderColor?this.props.borderColor:(GridNavigatorStyle.borderColor?GridNavigatorStyle.borderColor:'#eee'),
                                             borderStyle: 'solid',
-                                            borderRightWidth: brw,
+                                            borderRightWidth: 0,//brw,
                                             borderBottomWidth: 1,
                                             borderTopWidth:index1==0?1:0
                                         }
@@ -77,7 +91,7 @@ class GridNavigator extends Component {
                                         var size=value.size?value.size:(this.props.size?this.props.size:24);
                                         var btn = value.text ?
                                             <Icon size={size} color={iconColor} text={value.text}/> :
-                                            <Icon size={size} source={value.source}/>
+                                            (value.source?<Icon size={size} source={value.source}/>:null)
                                         var label = <Text style={{
                                             marginTop: 5,
                                             fontSize: 10,
@@ -85,9 +99,10 @@ class GridNavigator extends Component {
                                         }}>{value.label}</Text>
                                         return <View style={_borderStyle} key={"bnto_" + count}>
                                           <TouchableHighlight
+                                              style={{flex:1}}
                                             underlayColor={GridNavigatorStyle.hoverColor?GridNavigatorStyle.hoverColor:'#333'}
                                             onPress={()=>value.action?value.action():null}>
-                                            <View style={_style}>{btn}{label}</View>
+                                            <View style={[_style,paddingAndMargin]}>{btn}{label}</View>
                                           </TouchableHighlight>
                                         </View>
                                     }.bind(this))

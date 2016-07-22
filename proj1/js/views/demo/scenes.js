@@ -14,12 +14,13 @@ import {
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'index',
+            name:'examples_autoPlayBanner',
         }
         var initialRouteComp={
             index:require("./index"),
             examples_gridNavigator:require("./examples/gridNavigator"),
-            examples_form:require("./examples/form")
+            examples_form:require("./examples/form"),
+            examples_autoPlayBanner:require("./examples/autoPlayBanner")
         };
         return (
             <Navigator

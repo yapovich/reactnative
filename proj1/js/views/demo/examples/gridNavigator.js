@@ -28,6 +28,7 @@ module.exports=React.createClass({
                 />
                 <ScrollView>
                     <Components.GridNavigator
+                        space={8}
                         column={4}
                         size={24}
                         icons={[
