@@ -8,7 +8,7 @@ import {
   AppRegistry,
   View
 } from 'react-native';
-import Scenes from "./js/views/demo/scenes";
+import Scenes from "./js/views/system/scenes";
 var proj1=React.createClass({
     getInitialState() {
         return {

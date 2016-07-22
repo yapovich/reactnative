@@ -30,18 +30,18 @@ module.exports=React.createClass({
                     <Components.GridNavigator
                         border={0}
                         space={0}
-                        column={4}
+                        column={5}
                         rows={4}
-                        size={50}
+                        size={40}
                         icons={[
-                            {text:<Text>&#xf111;</Text>,label:'首页'},
-                            {text:<Text>&#xf111;</Text>,label:'地图'},
-                            {text:<Text>&#xf111;</Text>,label:'首页'},
-                            {text:<Text>&#xf111;</Text>,label:'地图'},
-                            {text:<Text>&#xf111;</Text>,label:'首页'},
-                            {text:<Text>&#xf111;</Text>,label:'地图'},
-                            {text:<Text>&#xf111;</Text>,activeText:<Text>&#xf249;</Text>,label:'便签'},
-                            {text:<Text>&#xf111;</Text>,label:'配置'}
+                            {text:<Text>&#xf001;</Text>,label:'首页'},
+                            {text:<Text>&#xf002;</Text>,label:'地图'},
+                            {text:<Text>&#xf001;</Text>,label:'首页'},
+                            {text:<Text>&#xf002;</Text>,label:'地图'},
+                            {text:<Text>&#xf001;</Text>,label:'首页'},
+                            {text:<Text>&#xf002;</Text>,label:'地图'},
+                            {text:<Text>&#xf24a;</Text>,activeText:<Text>&#xf249;</Text>,label:'便签'},
+                            {text:<Text>&#xf013;</Text>,label:'配置'}
                         ]}
                     />
                 </ScrollView>
