@@ -24,6 +24,8 @@ class MyIcon extends Component {
             style.width = size;
             style.height = size;
         }
+        if(this.props.borderRadius)
+            style.borderRadius=this.props.borderRadius;
         if (this.props.margin)
             style.margin = this.props.margin;
         if (this.props.marginLeft)

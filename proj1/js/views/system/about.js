@@ -47,6 +47,7 @@ module.exports=React.createClass({
                             <Components.Icon
                                source={{uri:'icon1'}}
                                size={64}
+                               borderRadius={15}
                             />
                         </View>
                         <View style={{alignItems:'center',marginTop:14}}>
