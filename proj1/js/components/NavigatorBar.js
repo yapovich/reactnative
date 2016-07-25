@@ -7,13 +7,17 @@ import {
     Text,
     View,
     TouchableOpacity,
-    TouchableHighlight
+    TouchableHighlight,
+    NativeModules
 } from 'react-native';
 import {NavigatorBarStyle} from '../stylesheets/componentStyle';
+import systeminfo from '../systeminfo';
 //样式
+var topValue=systeminfo.VERSION>=19?25:0;
 var _style= {
-    toolbar: {
-        height: 48,
+        toolbar: {
+        paddingTop:topValue,
+        height: 48+topValue,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

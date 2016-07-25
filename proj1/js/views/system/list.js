@@ -22,6 +22,11 @@ module.exports=React.createClass({
             viewPage:0,
         };
     },
+    pop(){
+        if(this.props.navigator){
+            this.props.navigator.pop();
+        }
+    },
     jump(name){
         if(this.props.navigator){
             this.props.navigator.push({name:name});
@@ -33,7 +38,7 @@ module.exports=React.createClass({
                 <Components.NavigatorBar
                     title={this.props.title}
                     alignCenter={false}
-                    leftBtn={{text:<Text>&#xf104;</Text>}}
+                    leftBtn={{text:<Text>&#xf104;</Text>,action:()=>this.pop()}}
                     rightBtn={
                         [
                             {text:<Text>&#xf14c;</Text>},

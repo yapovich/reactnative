@@ -5,6 +5,7 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
+import com.proj1.module.SystemInfo;
 import com.proj1.module.ToastCustom;
 import com.proj1.viewmanager.WheelViewManager;
 
@@ -21,6 +22,7 @@ public class CustomPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules=new ArrayList<>();
         modules.add(new ToastCustom(reactContext));
+        modules.add(new SystemInfo(reactContext));
         return modules;
     }
     @Override
