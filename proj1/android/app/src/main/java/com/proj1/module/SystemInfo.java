@@ -87,7 +87,8 @@ public class SystemInfo extends ReactContextBaseJavaModule {
                         try {
                             JSONObject json = new JSONObject(response.body().string());
                             int versionCode=json.getInt("versionCode");
-                            successCallback.invoke(versionCode>localVersionCode);
+                            String versionName=json.getString("versionName");
+                            successCallback.invoke(versionCode>localVersionCode?versionName:null);
                         }catch (Exception ex){
 
                         }

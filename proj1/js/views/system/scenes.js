@@ -18,7 +18,8 @@ var scenes=React.createClass({
         }
         var initialRouteComp={
             index:require("./index"),
-            list:require("./list")
+            list:require("./list"),
+            about:require("./about")
         };
         return (
             <Navigator

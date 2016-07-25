@@ -9,7 +9,9 @@
 import React,{ Component } from 'react';
 import {
     Text,
+    View,
     ScrollView,
+    Alert,
     NativeModules
 } from 'react-native';
 import Components from '../../components';
@@ -17,7 +19,10 @@ import systeminfo from "../../systeminfo";
 var SystemInfo=NativeModules.SystemInfoAndroid
 module.exports=React.createClass({
     getInitialState(){
-        return null;
+        return {
+            isNeedUpdate:false,
+            newVersionName:''
+        };
     },
     jump(name){
         if(this.props.navigator){
@@ -25,9 +30,21 @@ module.exports=React.createClass({
         }
     },
     getIsNeedUpdate(){
-        SystemInfo.getIsNeedUpdate(function(need){
-            alert(need);
-        })
+        SystemInfo.getIsNeedUpdate(function(newVersionName){
+            this.setState({isNeedUpdate:newVersionName?true:false,newVersionName:newVersionName});
+        }.bind(this));
+    },
+    handleUpdate(){
+        if(this.state.isNeedUpdate){
+            Alert.alert(
+                '',
+                '确定要升级到最新版本('+this.state.newVersionName+')吗？',
+                [
+                    {text: '取消', onPress: () => console.log('Cancel Pressed')},
+                    {text: '确定', onPress: () => console.log('OK Pressed')}
+                ]
+            );
+        };
     },
     render() {
         return (
@@ -48,11 +65,19 @@ module.exports=React.createClass({
                             [
                                 {
                                     text:<Text>&#xf019;</Text>,
-                                    label:'软件更新',
-                                    rightComponent:<Text>{systeminfo.APP_VERSION_NAME}</Text>,
-                                    action:this.getIsNeedUpdate
+                                    label:'软件升级',
+                                    rightComponent:<View style={{flexDirection:'row',alignItems:'center'}}>
+                                        {this.state.isNeedUpdate? <Components.Icon
+                                            text={<Text>&#xf111;</Text>}
+                                            size={8}
+                                            color="#ff0000"
+                                            margin={5}
+                                          />:null}
+                                        <Text>{systeminfo.APP_VERSION_NAME}</Text>
+                                    </View>,
+                                    action:this.handleUpdate
                                 },
-                                {text:<Text>&#xf1b2;</Text>,label:'关于系统'}
+                                {text:<Text>&#xf1b2;</Text>,label:'关于采集录入系统',action:()=>this.jump("about")}
                             ]
                         ]}
                        />
@@ -61,6 +86,6 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-
+        this.getIsNeedUpdate();
     }
 });
