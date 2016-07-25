@@ -85,8 +85,9 @@ var AutoPlayBanner= React.createClass({
     },
     componentWillMount(){
         this.size=Dimensions.get('window');
-        if(this.props.icons.length>1)
-            this.props.icons.push(this.props.icons[0]);
+    },
+    shouldComponentUpdate(){
+        return true;
     }
 });
 module.exports=AutoPlayBanner;

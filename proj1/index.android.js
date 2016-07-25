@@ -7,7 +7,8 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   View,
-  NativeModules
+  NativeModules,
+  Alert
 } from 'react-native';
 import Scenes from "./js/views/system/scenes";
 import systeminfo from "./js/systeminfo";
@@ -33,10 +34,22 @@ var proj1=React.createClass({
         );
     },
     componentDidMount(){
-        SystemInfo.getVersion((version)=>{
-            systeminfo.VERSION=version;
+        /*Alert.alert(
+            '提示',
+            '确定要保存吗？',
+            [
+                {text: '取消', onPress: () => console.log('Cancel Pressed')},
+                {text: '确定', onPress: () => console.log('OK Pressed')}
+            ]
+        );*/
+
+        SystemInfo.getInfo((info)=>{
+            var json=JSON.parse(info);
+            systeminfo.ANDROID_VERSION_CODE=json.androidVersionCode;
+            systeminfo.APP_VERSION_CODE=json.appVersionCode;
+            systeminfo.APP_VERSION_NAME=json.appVersionName;
             this.setState({inited:true});
-            //alert("systeminfo.VERSION:"+systeminfo.VERSION);
+            //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
         });
     }
 });

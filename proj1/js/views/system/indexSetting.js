@@ -10,8 +10,11 @@ import React,{ Component } from 'react';
 import {
     Text,
     ScrollView,
+    NativeModules
 } from 'react-native';
 import Components from '../../components';
+import systeminfo from "../../systeminfo";
+var SystemInfo=NativeModules.SystemInfoAndroid
 module.exports=React.createClass({
     getInitialState(){
         return null;
@@ -20,6 +23,11 @@ module.exports=React.createClass({
         if(this.props.navigator){
             this.props.navigator.push({name:name});
         }
+    },
+    getIsNeedUpdate(){
+        SystemInfo.getIsNeedUpdate(function(need){
+            alert(need);
+        })
     },
     render() {
         return (
@@ -36,9 +44,14 @@ module.exports=React.createClass({
             <ScrollView style={{flex:1}}>
                         <Components.ListNavigator
                         icons={[
-                            {text:<Text>&#xf004;</Text>,label:'个人资料'},
+                            {text:<Text>&#xf004;</Text>,label:'首选项'},
                             [
-                                {text:<Text>&#xf019;</Text>,label:'系统更新'},
+                                {
+                                    text:<Text>&#xf019;</Text>,
+                                    label:'软件更新',
+                                    rightComponent:<Text>{systeminfo.APP_VERSION_NAME}</Text>,
+                                    action:this.getIsNeedUpdate()
+                                },
                                 {text:<Text>&#xf1b2;</Text>,label:'关于系统'}
                             ]
                         ]}

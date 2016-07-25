@@ -13,6 +13,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.proj1.R;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +30,39 @@ public class SystemInfo extends ReactContextBaseJavaModule {
         return "SystemInfoAndroid";
     }
     /**
-     * 获取当前Android版本
+     * 获取系统信息
      */
     @ReactMethod
-    public void getVersion(Callback successCallback) {
+    public void getInfo(Callback successCallback) {
         if(successCallback!=null)
-            successCallback.invoke(Build.VERSION.SDK_INT);
+            try {
+                JSONObject json = new JSONObject();
+                //安卓版本代码
+                json.put("androidVersionCode",Build.VERSION.SDK_INT);
+                //应用程序版本代码
+                int versionCode = getReactApplicationContext().getPackageManager().getPackageInfo("com.proj1", 0).versionCode;
+                json.put("appVersionCode",versionCode);
+                //应用程序版本名称
+                String versionName = getReactApplicationContext().getPackageManager().getPackageInfo("com.proj1", 0).versionName;
+                json.put("appVersionName",versionName);
+                successCallback.invoke(json.toString());
+            }catch(Exception ex){
+
+            }
     }
+    /**
+     * 是否需要更新
+     */
+    @ReactMethod
+    public void getIsNeedUpdate(Callback successCallback) {
+        if(successCallback!=null) {
+            try {
+                int versionCode = getReactApplicationContext().getPackageManager().getPackageInfo("com.proj1", 0).versionCode;
+
+            }catch(Exception ex){
+
+            }
+        }
+    }
+
 }

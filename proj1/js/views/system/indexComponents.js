@@ -31,7 +31,8 @@ module.exports=React.createClass({
                         {source:{uri:'banner1'}},
                         {source:{uri:'banner2'}},
                         {source:{uri:'banner3'}},
-                        {source:{uri:'banner4'}}
+                        {source:{uri:'banner4'}},
+                        {source:{uri:'banner1'}}
                     ]}/>
                 <Components.GridNavigator
                     border={1}
