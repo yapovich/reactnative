@@ -31,6 +31,17 @@ var _style= {
         alignItems: 'center',
         justifyContent: 'flex-start'
     },
+    toolbarNavLabel: {
+        height: 48,
+        paddingRight:14,
+        paddingLeft:14,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    toolbarNavLabelText: {
+        fontSize:14,
+        color: NavigatorBarStyle.color?NavigatorBarStyle.color:'#fff',
+    },
     toolbarNavIcon: {
         width: 48,
         height: 48,
@@ -56,7 +67,10 @@ var _style= {
         borderColor: NavigatorBarStyle.splitColor?NavigatorBarStyle.splitColor:'#333',
         borderStyle: 'solid',
         borderLeftWidth: 1
-    }
+    },
+    toolbarTitleTextNoBorder: {
+        flex: 1
+    },
 }
 class NavigatorBar extends Component {
     render() {
@@ -76,7 +90,9 @@ class NavigatorBar extends Component {
                         <View style={[_style.toolbarTitleTextBorder,this.props.alignCenter?{alignItems:'center'}:null]}>
                             <Text style={_style.toolbarTitleText}>{this.props.title?this.props.title:''}</Text>
                         </View>:
-                        <Text style={[_style.toolbarTitleText]}>{this.props.title?this.props.title:''}</Text>
+                         <View style={[_style.toolbarTitleTextNoBorder,this.props.alignCenter?{alignItems:'center'}:null]}>
+                                <Text style={_style.toolbarTitleText}>{this.props.title?this.props.title:''}</Text>
+                         </View>
                     }
                 </View>
                 <View style={_style.toolbarRight}>
@@ -84,13 +100,17 @@ class NavigatorBar extends Component {
                     this.props.rightBtn?this.props.rightBtn.map(function(g,index){
                         var btn;
                         if(g.text){
-                            btn=<Text style={_style.toolbarNavFont}>{g.text}</Text>;
+                                btn=<View  style={_style.toolbarNavIcon}><Text style={_style.toolbarNavFont}>{g.text}</Text></View>;
                         }else if(g.source){
                             btn=<View  style={_style.toolbarNavIcon}><Image source={g.source}/></View>
                         }
-                        return <TouchableOpacity key={"nv"+index} activeOpacity={0.5} style={_style.toolbarNavIcon} onPress={g.action}>
-                            {btn}
-                        </TouchableOpacity>
+                        var label
+                        if(g.label){
+                            label=<View style={_style.toolbarNavLabel}><Text style={_style.toolbarNavLabelText}>{g.label}</Text></View>
+                        }
+                        return <TouchableHighlight underlayColor={NavigatorBarStyle.hoverColor?NavigatorBarStyle.hoverColor:'#000'} key={"nv"+index} onPress={()=>g.action?g.action():null}>
+                            <View style={_style.toolbarRight}>{btn}{label}</View>
+                        </TouchableHighlight>
                     }):null
                 }
                 </View>

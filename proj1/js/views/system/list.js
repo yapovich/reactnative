@@ -30,16 +30,20 @@ module.exports=React.createClass({
     render() {
         return (
             <Components.FlexLayout>
-                <Components.BottomNavigator
-                    scrollEnabled={false}
-                    icons={[
-                        {text:<Text>&#xf015;</Text>,label:'首页'},
-                        {text:<Text>&#xf013;</Text>,label:'配置'}
-                    ]}
-                >
-                    <View><IndexComponents  navigator={this.props.navigator}/></View>
-                    <View><IndexSetting navigator={this.props.navigator}/></View>
-                </Components.BottomNavigator>
+                <Components.NavigatorBar
+                    title={this.props.title}
+                    alignCenter={false}
+                    leftBtn={{text:<Text>&#xf104;</Text>}}
+                    rightBtn={
+                        [
+                            {text:<Text>&#xf14c;</Text>},
+                            {text:<Text>&#xf067;</Text>}
+                        ]
+                    }
+                />
+                <ScrollView contentContainerStyle={{flex:1,backgroundColor:'#fff'}}>
+                    <Text>this is list</Text>
+                </ScrollView>
             </Components.FlexLayout>
         );
     },

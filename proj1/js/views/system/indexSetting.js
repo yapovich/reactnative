@@ -22,7 +22,18 @@ module.exports=React.createClass({
         }
     },
     render() {
-        return (<ScrollView style={{flex:1}}>
+        return (
+            <Components.FlexLayout>
+                <Components.NavigatorBar
+                    title="配置"
+                    alignCenter={true}
+                    rightBtn={
+                        [
+                            {text:<Text>&#xf1b2;</Text>}
+                            ]
+                    }
+                />
+            <ScrollView style={{flex:1}}>
                         <Components.ListNavigator
                         icons={[
                             {text:<Text>&#xf004;</Text>,label:'个人资料'},
@@ -33,6 +44,7 @@ module.exports=React.createClass({
                         ]}
                        />
               </ScrollView>
+          </Components.FlexLayout>
         );
     },
     componentDidMount() {
