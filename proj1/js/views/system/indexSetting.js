@@ -50,7 +50,7 @@ module.exports=React.createClass({
                                     text:<Text>&#xf019;</Text>,
                                     label:'软件更新',
                                     rightComponent:<Text>{systeminfo.APP_VERSION_NAME}</Text>,
-                                    action:this.getIsNeedUpdate()
+                                    action:this.getIsNeedUpdate
                                 },
                                 {text:<Text>&#xf1b2;</Text>,label:'关于系统'}
                             ]
