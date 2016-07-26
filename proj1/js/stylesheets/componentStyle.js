@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 module.exports= {
     /*布局容器样式*/
     FlexLayoutStyle:{
-      backgroundColor:'#ddd'
+      backgroundColor:'#eee'
     },
     /*底部导航样式*/
     BottomNavigatorStyle:{

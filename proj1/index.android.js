@@ -19,7 +19,7 @@ var SystemInfo=NativeModules.SystemInfoAndroid;
 var proj1=React.createClass({
     getInitialState() {
         return {
-            modalVisible:true,
+            modalVisible:false,
             modalView:null,
             inited: false,
             comein: false
