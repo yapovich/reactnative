@@ -20,7 +20,7 @@ var AutoPlayBanner= React.createClass({
     handleViewPageSelected(e){
         var page=e.nativeEvent.position;
         if(page==this.props.icons.length-1)
-            page=0
+            this.handlePageSelect(0, true);
         this.setState({viewPage: page});
     },
     handlePageSelect(page, noAnimate) {

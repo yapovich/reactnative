@@ -25,7 +25,7 @@ module.exports=React.createClass({
         return (<ScrollView style={{flex:1}}>
                 <Components.AutoPlayBanner
                     style={{marginBottom:8}}
-                    delay={5000}
+                    delay={10000}
                     scale={2}
                     icons={[
                         {source:{uri:'banner1'}},

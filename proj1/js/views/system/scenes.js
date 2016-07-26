@@ -15,7 +15,7 @@ import Components from "../../components";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'welcome',
+            name:'index',
         }
         var initialRouteComp={
             welcome:require("./welcome"),
