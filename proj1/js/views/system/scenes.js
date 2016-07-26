@@ -34,7 +34,7 @@ var scenes=React.createClass({
                     if(route.name&&initialRouteComp[route.name]){
                         Component=initialRouteComp[route.name];
                     }
-                    return (<Component {...route} navigator={navigator}></Component>);
+                    return (<Component {...route} navigator={navigator} delay={route.name=="welcome"?2000:0}></Component>);
                 }
                 }
             />

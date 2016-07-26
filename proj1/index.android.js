@@ -35,7 +35,7 @@ var proj1=React.createClass({
         this.setState({modalView:null,modalVisible: false});
     },
     render() {
-        // var comp=<Views.Welcome onPress={this.handleComeinBtn}></Views.Welcome>;
+        var WelCome=require("./js/views/system/welcome");
         // if (this.state.comein)
         //     comp = <Scenes></Scenes>;
         var comp = <Scenes></Scenes>
@@ -51,7 +51,7 @@ var proj1=React.createClass({
                     </Modal>
                     {comp}
                 </View> :
-                <View style={{flex: 1, backgroundColor: '#000'}}></View>
+                <WelCome statusText="正在初始化..."/>
         );
     },
     componentDidMount(){
@@ -71,7 +71,7 @@ var proj1=React.createClass({
             Environment.APP_VERSION_NAME=json.appVersionName;
             if(Environment.ANDROID_VERSION_CODE>=19)
                 Environment.IMMERSE_OFFSET=25
-            this.setState({inited:true});
+                this.setState({inited:true});
             //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
         });
     }
