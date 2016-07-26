@@ -15,7 +15,8 @@ import Components from "../../components";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'index',
+            name:'welcome',
+            delay:2000
         }
         var initialRouteComp={
             welcome:require("./welcome"),
@@ -34,7 +35,7 @@ var scenes=React.createClass({
                     if(route.name&&initialRouteComp[route.name]){
                         Component=initialRouteComp[route.name];
                     }
-                    return (<Component {...route} navigator={navigator} delay={route.name=="welcome"?2000:0}></Component>);
+                    return (<Component {...route} navigator={navigator}></Component>);
                 }
                 }
             />

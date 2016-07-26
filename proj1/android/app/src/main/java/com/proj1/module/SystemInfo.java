@@ -1,9 +1,14 @@
 package com.proj1.module;
 
+import android.app.Activity;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,5 +104,30 @@ public class SystemInfo extends ReactContextBaseJavaModule {
             }
         }
     }
+    /**
+     *设置全屏
+     * */
+    /*
+    @ReactMethod
+    public void setFullScreen(boolean isFullScreen) {
+        final Window window=this.getCurrentActivity().getWindow();
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what==0) {
+                    activity.getWindow().setFlags(
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                    activity.getWindow().setFlags(
+                            WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                }else if(msg.what==1){
 
+                }
+            }
+        };
+        if (isFullScreen)
+        else
+
+    }*/
 }

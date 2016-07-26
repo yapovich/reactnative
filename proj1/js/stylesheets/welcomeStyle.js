@@ -18,9 +18,10 @@ module.exports= StyleSheet.create({
     },
     //欢迎页副标题
     subTitle: {
-        fontSize: 20,
+        fontSize: 16,
+        marginTop:20,
         marginBottom: 10,
-        color: '#fff'
+        color: '#aaa'
     },
     //欢迎页按钮容器
     btns: {

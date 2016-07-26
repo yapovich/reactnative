@@ -12,9 +12,12 @@ import {
     Text,
     View,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    NativeModules
 } from 'react-native';
+import Components from '../../components'
 import WelcomeStyle from '../../stylesheets/welcomeStyle';
+var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     jump(name){
         if(this.props.navigator){
@@ -22,19 +25,22 @@ module.exports=React.createClass({
         }
     },
     render() {
-        return (<Image style={WelcomeStyle.container} source={{uri: 'bg'}}>
-                     <View style={{flex:1,alignItems:'center'}}>
-                        <Text style={WelcomeStyle.mainTitle}>浙江省地质调查院</Text>
-                        <Text style={WelcomeStyle.subTitle}>野外采集录入系统 v1.0</Text>
+        return (<Image style={WelcomeStyle.container} source={{uri: 'welcome'}}>
+                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                        <Components.Icon source={{uri:'icon1'}} size={80} borderRadius={15}/>
+                         <Text style={WelcomeStyle.subTitle}>地质勘测信息化，让工作更轻松</Text>
+                         <Text style={{color:'#fff',fontSize:10}}>{this.props.statusText}</Text>
                       </View>
-                      <View style={{padding:20}}>
-                        <Text style={{color:'#fff',fontSize:10}}>{this.props.statusText}</Text>
+                      <View style={{flex:1,justifyContent:'flex-end',padding:10}}>
+                          <Text style={{color:'#fff',fontSize:10}}>版权所有：浙江省地质调查院</Text>
                       </View>
                 </Image>);
     },
     componentDidMount(){
+        //SystemInfo.setFullScreen(true);
         if(this.props.delay) {
             this.time = setTimeout(function () {
+                //SystemInfo.setFullScreen(false);
                 this.jump("index");
             }.bind(this), this.props.delay);
         }
