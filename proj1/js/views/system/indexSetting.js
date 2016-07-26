@@ -15,7 +15,7 @@ import {
     NativeModules
 } from 'react-native';
 import Components from '../../components';
-import systeminfo from "../../systeminfo";
+import Environment from "../../environment";
 var SystemInfo=NativeModules.SystemInfoAndroid
 module.exports=React.createClass({
     getInitialState(){
@@ -30,9 +30,11 @@ module.exports=React.createClass({
         }
     },
     getIsNeedUpdate(){
-        SystemInfo.getIsNeedUpdate(function(newVersionName){
-            this.setState({isNeedUpdate:newVersionName?true:false,newVersionName:newVersionName});
-        }.bind(this));
+        if(!this.state.isNeedUpdate) {
+            SystemInfo.getIsNeedUpdate(function (newVersionName) {
+                this.setState({isNeedUpdate: newVersionName ? true : false, newVersionName: newVersionName});
+            }.bind(this));
+        }
     },
     handleUpdate(){
         if(this.state.isNeedUpdate){
@@ -73,7 +75,7 @@ module.exports=React.createClass({
                                             color="#ff0000"
                                             margin={5}
                                           />:null}
-                                        <Text>{systeminfo.APP_VERSION_NAME}</Text>
+                                        <Text>{Environment.APP_VERSION_NAME}</Text>
                                     </View>,
                                     action:this.handleUpdate
                                 },
@@ -86,6 +88,9 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
+        this.getIsNeedUpdate();
+    },
+    componentDidUpdate() {
         this.getIsNeedUpdate();
     }
 });

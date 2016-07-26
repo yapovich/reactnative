@@ -1,7 +1,11 @@
 /**
  * Created by yebo on 2016/7/14.
 */
+import React from 'react';
 import {
+    View,
+    Text,
+    TouchableHighlight,
     NativeModules
 } from 'react-native';
 var components={
@@ -20,6 +24,24 @@ var components={
     get FormRadio(){return require('./components/FormRadio')},//单选框
     get FormPicker(){return require('./components/FormPicker')},//下拉框
     get FormDatePicker(){return require('./components/FormDatePicker')},//日期输入框
-    get FormTimePicker(){return require('./components/FormTimePicker')}//时间输入框
+    get FormTimePicker(){return require('./components/FormTimePicker')},//时间输入框
+    /*常用操作*/
+    //对话框
+    get Dialog(){
+        var dialog=require('./components/Dialog');
+        var global=this.global;
+        return {
+          //确认对话框
+          confirm(msg,okAction){
+              global.showModal(dialog.confirm(msg,()=>{
+                  global.hideModal();
+                  if(okAction)
+                      okAction();
+              },()=>{
+                  global.hideModal();
+              }));
+          }
+      }
+    }
 }
 module.exports=components;

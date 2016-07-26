@@ -7,15 +7,20 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   View,
+  Text,
+  Modal,
   NativeModules,
   Alert
 } from 'react-native';
 import Scenes from "./js/views/system/scenes";
-import systeminfo from "./js/systeminfo";
+import Environment from "./js/environment";
+import Components from "./js/components";
 var SystemInfo=NativeModules.SystemInfoAndroid;
 var proj1=React.createClass({
     getInitialState() {
         return {
+            modalVisible:true,
+            modalView:null,
             inited: false,
             comein: false
         };
@@ -23,13 +28,29 @@ var proj1=React.createClass({
     handleComeinBtn(){
         this.setState({comein: true});
     },
+    showModal(view){
+      this.setState({modalView:view,modalVisible: true});
+    },
+    hideModal(){
+        this.setState({modalView:null,modalVisible: false});
+    },
     render() {
         // var comp=<Views.Welcome onPress={this.handleComeinBtn}></Views.Welcome>;
         // if (this.state.comein)
         //     comp = <Scenes></Scenes>;
         var comp = <Scenes></Scenes>
         return (this.state.inited ?
-                <View style={{flex: 1}}>{comp}</View> :
+                <View style={{flex: 1}}>
+                    <Modal
+                        ref={(modal)=>this.modal=modal}
+                        transparent={true}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {this.setState({modalVisible:false})}}
+                    >
+                        {this.state.modalView}
+                    </Modal>
+                    {comp}
+                </View> :
                 <View style={{flex: 1, backgroundColor: '#000'}}></View>
         );
     },
@@ -42,12 +63,14 @@ var proj1=React.createClass({
                 {text: '确定', onPress: () => console.log('OK Pressed')}
             ]
         );*/
-
+        Components.global=this;
         SystemInfo.getInfo((info)=>{
             var json=JSON.parse(info);
-            systeminfo.ANDROID_VERSION_CODE=json.androidVersionCode;
-            systeminfo.APP_VERSION_CODE=json.appVersionCode;
-            systeminfo.APP_VERSION_NAME=json.appVersionName;
+            Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
+            Environment.APP_VERSION_CODE=json.appVersionCode;
+            Environment.APP_VERSION_NAME=json.appVersionName;
+            if(Environment.ANDROID_VERSION_CODE>=19)
+                Environment.IMMERSE_OFFSET=25
             this.setState({inited:true});
             //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
         });

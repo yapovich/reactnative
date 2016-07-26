@@ -11,13 +11,12 @@ import {
     NativeModules
 } from 'react-native';
 import {NavigatorBarStyle} from '../stylesheets/componentStyle';
-import systeminfo from '../systeminfo';
+import Environment from "../environment";
 //样式
-var topValue=systeminfo.VERSION>=19?25:0;
 var _style= {
-        toolbar: {
-        paddingTop:topValue,
-        height: 48+topValue,
+   toolbar: {
+        paddingTop:Environment.IMMERSE_OFFSET,
+        height: 48+Environment.IMMERSE_OFFSET,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

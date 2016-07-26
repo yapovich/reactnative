@@ -13,7 +13,7 @@ import {
     ScrollView,
     NativeModules,
 } from 'react-native';
-import systeminfo from "../../systeminfo";
+import Environment from "../../environment";
 import Components from '../../components';
 import IndexComponents from './indexComponents'
 import IndexSetting from './indexSetting'
@@ -57,7 +57,7 @@ module.exports=React.createClass({
                             <Text style={{color:'#000',fontSize:14}}>采集录入系统是浙江省地质调查院的野外信息采集与记录平台，主要面向在野外地质勘测人员，记录勘测信息，并支持后期的数据导出与整理工作。旨在利用移动APP引进新的信息录入模式，提供工作效率。</Text>
                         </View>
                         <View style={{alignItems:'center',marginTop:12}}>
-                            <Text style={{color:'#000',fontWeight:'bold',fontSize:14}}>版本：{systeminfo.APP_VERSION_NAME}</Text>
+                            <Text style={{color:'#000',fontWeight:'bold',fontSize:14}}>版本：{Environment.APP_VERSION_NAME}</Text>
                         </View>
                     </ScrollView>
                 </View>

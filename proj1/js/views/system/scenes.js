@@ -11,12 +11,14 @@ import {
     Navigator,
     BackAndroid
 } from 'react-native';
+import Components from "../../components";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'index',
+            name:'welcome',
         }
         var initialRouteComp={
+            welcome:require("./welcome"),
             index:require("./index"),
             list:require("./list"),
             about:require("./about")
@@ -41,9 +43,17 @@ var scenes=React.createClass({
     componentDidMount() {
         var navigator = this._navigator;
         BackAndroid.addEventListener('hardwareBackPress', function() {
+            //alert(navigator.getCurrentRoutes().length);
             if (navigator && navigator.getCurrentRoutes().length > 1) {
-                navigator.pop();
-                return true;
+                if(navigator.getCurrentRoutes().length>2) {
+                    navigator.pop();
+                    return true;
+                }else{
+                    Components.Dialog.confirm("确定要退出应用程序吗？",()=>{
+                        BackAndroid.exitApp(0)
+                    });
+                    return true;
+                }
             }
             return false;
         });
