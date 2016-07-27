@@ -65,6 +65,7 @@ var cjllxt=React.createClass({
         );*/
         Components.global=this;
         SystemInfo.setFullScreen(true);
+        //alert("我要全屏");
         SystemInfo.getInfo((info)=>{
             var json=JSON.parse(info);
             Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
