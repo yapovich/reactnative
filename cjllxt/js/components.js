@@ -9,6 +9,7 @@ import {
     NativeModules
 } from 'react-native';
 var components={
+    get MediaPlayer(){return  require('./components/MediaPlayer/index')},
     get AutoPlayBanner(){return require('./components/AutoPlayBanner')},//自动播放公告板
     get GridNavigator(){return require('./components/GridNavigator')},//网格导航复合组件
     get ListNavigator(){return require('./components/ListNavigator')},//列表导航复合组件
@@ -17,7 +18,6 @@ var components={
     get Icon(){return require('./components/Icon')},//导航条
     get IconBar(){return require('./components/IconBar')},//图标操作栏
     get FlexLayout(){return require('./components/FlexLayout')},//flex布局视图
-    get WheelView(){return require('./components/WheelView')},//flex布局视图
     /*表单组件*/
     get FormTextInput(){return require('./components/FormTextInput')},//文本输入框
     get FormCheckbox(){return require('./components/FormCheckbox')},//多选框

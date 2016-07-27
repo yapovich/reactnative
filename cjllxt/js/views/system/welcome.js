@@ -39,7 +39,6 @@ module.exports=React.createClass({
     componentDidMount(){
         if(this.props.delay) {
             this.time = setTimeout(function () {
-                SystemInfo.setFullScreen(false);
                 this.jump("index");
             }.bind(this), this.props.delay);
         }

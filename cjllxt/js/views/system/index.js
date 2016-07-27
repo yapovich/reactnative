@@ -44,6 +44,6 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-
+        SystemInfo.setFullScreen(false);
     }
 });
