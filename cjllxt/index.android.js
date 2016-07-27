@@ -64,8 +64,6 @@ var cjllxt=React.createClass({
             ]
         );*/
         Components.global=this;
-        SystemInfo.setFullScreen(true);
-        //alert("我要全屏");
         SystemInfo.getInfo((info)=>{
             var json=JSON.parse(info);
             Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
@@ -76,6 +74,8 @@ var cjllxt=React.createClass({
             this.setState({inited:true});
             //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
         });
+    },
+    componentWillMount(){
     }
 });
 AppRegistry.registerComponent('cjllxt', () => cjllxt);

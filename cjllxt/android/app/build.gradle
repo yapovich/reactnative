@@ -133,7 +133,7 @@ android {
             def oldFile = output.outputFile
             if (variant.buildType.name.equals('release')) {
                  def releaseApkName = 'cjllxt.apk'
-                 output.outputFile = new File(oldFile.parent, releaseApkName)
+                 output.outputFile = new File('../../packages/android/latest', releaseApkName)
             }
         }
     }

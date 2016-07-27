@@ -25,6 +25,10 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Window window = getWindow();
+        //初始化时全屏
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             window.setFlags(
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
@@ -46,10 +50,7 @@ public class MainActivity extends ReactActivity {
                 }
             }
         };
-        MessageProxy.registerHandler("mainActivityHandler",handler);
-        /*
-        window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
+        MessageProxy.registerHandler("mainActivityHandler", handler);
+
     }
 }
