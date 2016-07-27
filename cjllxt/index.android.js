@@ -64,6 +64,7 @@ var cjllxt=React.createClass({
             ]
         );*/
         Components.global=this;
+        SystemInfo.setFullScreen(true);
         SystemInfo.getInfo((info)=>{
             var json=JSON.parse(info);
             Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
@@ -71,7 +72,7 @@ var cjllxt=React.createClass({
             Environment.APP_VERSION_NAME=json.appVersionName;
             if(Environment.ANDROID_VERSION_CODE>=19)
                 Environment.IMMERSE_OFFSET=25
-                this.setState({inited:true});
+            this.setState({inited:true});
             //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
         });
     }

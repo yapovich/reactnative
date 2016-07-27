@@ -29,7 +29,7 @@ module.exports=React.createClass({
                      <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                         <Components.Icon source={{uri:'icon1'}} size={80} borderRadius={15}/>
                          <Text style={WelcomeStyle.subTitle}>地质勘测信息化，让工作更轻松</Text>
-                         <Text style={{color:'#fff',fontSize:10}}>{this.props.statusText}</Text>
+                         <Text style={{color:'#aaa',fontSize:10}}>{this.props.statusText}</Text>
                       </View>
                       <View style={{flex:1,justifyContent:'flex-end',padding:10}}>
                           <Text style={{color:'#fff',fontSize:10}}>版权所有：浙江省地质调查院</Text>
@@ -37,10 +37,9 @@ module.exports=React.createClass({
                 </Image>);
     },
     componentDidMount(){
-        //SystemInfo.setFullScreen(true);
         if(this.props.delay) {
             this.time = setTimeout(function () {
-                //SystemInfo.setFullScreen(false);
+                SystemInfo.setFullScreen(false);
                 this.jump("index");
             }.bind(this), this.props.delay);
         }

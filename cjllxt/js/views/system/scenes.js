@@ -16,7 +16,7 @@ var scenes=React.createClass({
     render() {
         var initialRoute={
             name:'welcome',
-            delay:2000
+            delay:3000
         }
         var initialRouteComp={
             welcome:require("./welcome"),
