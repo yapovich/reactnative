@@ -9,7 +9,7 @@ import {
     NativeModules
 } from 'react-native';
 var components={
-    get MediaPlayer(){return  require('./components/MediaPlayer/index')},
+    get MediaPlayer(){return require('./components/MediaPlayer/index')},
     get AutoPlayBanner(){return require('./components/AutoPlayBanner')},//自动播放公告板
     get GridNavigator(){return require('./components/GridNavigator')},//网格导航复合组件
     get ListNavigator(){return require('./components/ListNavigator')},//列表导航复合组件

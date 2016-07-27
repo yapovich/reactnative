@@ -23,6 +23,16 @@ module.exports=React.createClass({
     },
     render() {
         return (<ScrollView style={{flex:1}}>
+                <Components.MediaPlayer.Video
+                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width / (16/9)}}
+                    src={'http://v.yoai.com/femme_tampon_tutorial.mp4'}
+                    autoplay={false}
+                    preload={'none'}
+                    loop={false}
+                    controls={true}
+                    muted={false}
+                    poster={'http://static.yoaicdn.com/shoppc/images/cover_img_e1e9e6b.jpg'}
+                />
                 <Components.AutoPlayBanner
                     style={{marginBottom:8}}
                     delay={10000}

@@ -127,7 +127,7 @@ export default class Controls extends React.Component {
             style={{width: 40, height: 40, alignItems: 'center', justifyContent: 'center'}}>
             <Image
               style={{width: 20, height: 20, resizeMode: 'contain'}}
-              source={this.props.playing ? {uri:'media-player-pause'} : {uri:'media-player-play'}}/>
+              source={this.props.playing ? {uri:'media_player_pause'} : {uri:'media_player_play'}}/>
           </TouchableOpacity>
 
           <Text
@@ -138,7 +138,7 @@ export default class Controls extends React.Component {
           <Slider
             style={{flex: 1, marginHorizontal: 5, height: 40}}
             trackContainerStyle={{height: 2, backgroundColor: 'gray'}}
-            thumbImage={{uri:'media-player-thumb'}}
+            thumbImage={{uri:'media_player_thumb'}}
             thumbStyle={{width: 10, height: 10}}
 
             onSlidingComplete={(value) => {
