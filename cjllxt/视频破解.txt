@@ -1,0 +1,6 @@
+腾讯视频地址：
+
+替换vid为视频的链接地址上的vid,访问网页找地址
+
+<杭州宣传片>
+http://vv.video.qq.com/geturl?vid=o0302l9gyu9&otype=xml&platform=1&ran=0%2E9652906153351068

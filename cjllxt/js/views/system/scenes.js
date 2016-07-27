@@ -15,7 +15,7 @@ import Components from "../../components";
 var scenes=React.createClass({
     render() {
         var initialRoute={
-            name:'index',
+            name:'about',
             delay:3000
         }
         var initialRouteComp={

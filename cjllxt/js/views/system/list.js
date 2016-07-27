@@ -31,7 +31,6 @@ module.exports=React.createClass({
         }
     },
     render() {
-        var mediaWidth=Dimensions.get('window').width;
         return (
             <Components.FlexLayout>
                 <Components.NavigatorBar
