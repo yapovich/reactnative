@@ -130,6 +130,11 @@ android {
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
+            def oldFile = output.outputFile
+            if (variant.buildType.name.equals('release')) {
+                 def releaseApkName = 'cjllxt.apk'
+                 output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
         }
     }
 }
