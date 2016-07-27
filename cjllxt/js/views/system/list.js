@@ -11,11 +11,9 @@ import {
     Text,
     View,
     ScrollView,
-    NativeModules,
+    NativeModules
 } from 'react-native';
 import Components from '../../components';
-import IndexComponents from './indexComponents'
-import IndexSetting from './indexSetting'
 module.exports=React.createClass({
     getInitialState(){
         return {
@@ -33,6 +31,7 @@ module.exports=React.createClass({
         }
     },
     render() {
+        var mediaWidth=Dimensions.get('window').width;
         return (
             <Components.FlexLayout>
                 <Components.NavigatorBar
@@ -47,7 +46,6 @@ module.exports=React.createClass({
                     }
                 />
                 <ScrollView contentContainerStyle={{flex:1,backgroundColor:'#fff'}}>
-                    <Text>this is list</Text>
                 </ScrollView>
             </Components.FlexLayout>
         );

@@ -11,11 +11,12 @@ import {
     Text,
     View,
     ScrollView,
-    NativeModules,
+    NativeModules
 } from 'react-native';
 import Components from '../../components';
 import IndexComponents from './indexComponents'
 import IndexSetting from './indexSetting'
+var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     getInitialState(){
         return {
