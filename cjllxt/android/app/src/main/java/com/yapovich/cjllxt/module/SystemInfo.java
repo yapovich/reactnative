@@ -120,6 +120,5 @@ public class SystemInfo extends ReactContextBaseJavaModule {
         else
             msg.what=102;
         MessageProxy.sendMessage(msg);
-
     }
 }

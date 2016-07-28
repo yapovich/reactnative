@@ -51,6 +51,5 @@ public class MainActivity extends ReactActivity {
             }
         };
         MessageProxy.registerHandler("mainActivityHandler", handler);
-
     }
 }
