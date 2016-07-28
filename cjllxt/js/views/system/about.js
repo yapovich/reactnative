@@ -62,13 +62,13 @@ module.exports=React.createClass({
                         <View style={{paddingTop:14,paddingBottom:14}}>
                             <Components.MediaPlayer.Video
                                 style={{width: mediaWidth, height: mediaWidth/(16/9)}}
-                                src={'http://124.232.144.156/vhot2.qqvideo.tc.qq.com/o0302l9gyu9.mp4?vkey=F5492AE0B73EBF42CB0BC773A600BC63C61F8553B1CDD6DCA1B6A34DD44B8BE6EB10D9B1218C3722746C11B911655CA1A21268CAAAAD5B1400F8DBCAA32242CB0FA5F8161130EE3912712EF6B7206D139F9A833923C06624FBFC75D81B38C278&br=62103&platform=1&fmt=mp4&level=0&type=mp4'}
+                                src='http://v.yoai.com/femme_tampon_tutorial.mp4'
                                 autoplay={false}
-                                preload={'auto'}
+                                preload={'none'}
                                 loop={false}
                                 controls={true}
                                 muted={false}
-                                poster=""
+                                poster='playerbg'
                             />
                         </View>
                     </ScrollView>

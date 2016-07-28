@@ -5,7 +5,8 @@ import ReactNative, {
   View,
   NativeModules,
   requireNativeComponent,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import Controls from './Controls';
@@ -21,7 +22,6 @@ const RCTMediaPlayerView = requireNativeComponent('RCTMediaPlayerView', {
     preload: PropTypes.string,
     loop: PropTypes.bool,
     muted: PropTypes.bool,
-
     onPlayerPaused: PropTypes.func,
     onPlayerPlaying: PropTypes.func,
     onPlayerFinished: PropTypes.func,
@@ -50,11 +50,13 @@ export default class MediaPlayerView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showControl:false,
+      showPlayOrPauseBtn:true,
       buffering: false,
       playing: false,
+      muted:false,
       current: 0,
       total: 0,
-
       width: 0,
       height: 0,
       showPoster: true
@@ -89,9 +91,11 @@ export default class MediaPlayerView extends React.Component {
       controlsView = (
         <Controls
           buffering={this.state.buffering}
+          showControl={this.state.showControl}
           playing={this.state.playing}
           current={this.state.current}
           total={this.state.total}
+          muted={this.state.muted}
           onSeekTo={this.seekTo.bind(this)}
           onPauseOrPlay={() => {
             if(this.state.playing) {
@@ -100,18 +104,38 @@ export default class MediaPlayerView extends React.Component {
               this.play();
             }
           }}
+          onMuted={()=>{
+              this.setState({muted:!this.state.muted})
+          }}
           bufferRanges={this.state.bufferRanges}
         />
       );
     }
 
-    return (
+    return (<TouchableOpacity
+            activeOpacity={1}
+            onPress={()=>{
+              if(!this.state.buffering) {
+                if (this.state.showPlayOrPauseBtn) {
+                  this.setState({
+                    showPlayOrPauseBtn: false,
+                    showControl: false
+                  })
+                } else {
+                  this.setState({
+                    showPlayOrPauseBtn: true,
+                    showControl: true
+                  })
+                }
+              }
+            }}
+        >
       <View
         style={this.props.style}
         onLayout={this._onLayout.bind(this)}>
-
         <RCTMediaPlayerView
           {...this.props}
+          muted={this.state.muted}
           style={{flex: 1, alignSelf: 'stretch'}}
           ref={RCT_MEDIA_PLAYER_VIEW_REF}
           onPlayerPlaying={this._onPlayerPlaying.bind(this)}
@@ -122,10 +146,37 @@ export default class MediaPlayerView extends React.Component {
           onPlayerFinished={this._onPlayerFinished.bind(this)}
           onPlayerBufferChange={this._onPlayerBufferChange.bind(this)}
         />
-
         {posterView}
         {controlsView}
-      </View>
+        {this.state.showPlayOrPauseBtn?<TouchableOpacity
+            style={{
+              position:'absolute',
+              top:(this.props.style.height-48)/2,
+              left:(this.props.style.width-48)/2
+            }}
+            activeOpacity={1}
+            onPress={()=> {
+              if (this.state.playing) {
+                this.pause();
+              } else {
+                this.play();
+              }
+            }}
+        >
+           <View style={{
+              backgroundColor:'#333',
+              opacity:0.8,
+              width:48,
+              height:48,
+              padding:14,
+              borderRadius:24
+               }}>
+             <Image
+                 style={{width: 20, height: 20, resizeMode: 'contain'}}
+                 source={this.props.playing ? {uri:'media_player_pause'} : {uri:'media_player_play'}}/>
+            </View>
+          </TouchableOpacity>:null}
+      </View></TouchableOpacity>
     );
   }
 
@@ -177,10 +228,11 @@ export default class MediaPlayerView extends React.Component {
 
   _onPlayerBuffering() {
     this.props.onPlayerBuffering && this.props.onPlayerBuffering();
-
     if (this.props.controls) {
       this.setState({
-        buffering: true
+        buffering: true,
+        showControl:false,
+        showPlayOrPauseBtn:false
       });
     }
   }
@@ -200,7 +252,9 @@ export default class MediaPlayerView extends React.Component {
 
     if (this.props.controls) {
       this.setState({
-        buffering: false
+        buffering: false,
+        showControl:true,
+        showPlayOrPauseBtn:true
       });
     }
   }
@@ -212,7 +266,9 @@ export default class MediaPlayerView extends React.Component {
     if (this.props.controls) {
       this.setState({
         buffering: false,
-        playing: true
+        playing: true,
+        showControl:false,
+        showPlayOrPauseBtn:false
       });
     }
   }
@@ -222,7 +278,9 @@ export default class MediaPlayerView extends React.Component {
 
     if (this.props.controls) {
       this.setState({
-        playing: false
+        playing: false,
+        showControl:true,
+        showPlayOrPauseBtn:true
       });
     }
   }
@@ -233,7 +291,9 @@ export default class MediaPlayerView extends React.Component {
     if (this.props.controls) {
       this.setState({
         playing: false,
-        buffering: false
+        buffering: false,
+        showControl:false,
+        showPlayOrPauseBtn:true
       });
     }
   }
