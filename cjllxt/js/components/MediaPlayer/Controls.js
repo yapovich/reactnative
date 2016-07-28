@@ -122,6 +122,7 @@ export default class Controls extends React.Component {
         {(this.props.showControl)?<View
           style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: 40, backgroundColor: '#00000033', flexDirection: 'row'}}>
           <TouchableOpacity
+              activeOpacity={1}
               onPress={this.props.onMuted}
               style={{width: 40, height: 40, alignItems: 'center', justifyContent: 'center'}}>
             <Image
@@ -155,14 +156,21 @@ export default class Controls extends React.Component {
             maximumValue={this.props.total}
             minimumValue={0}
             value={this.state.current}
-            disabled={this.props.total > 0}
+            //disabled={this.props.total > 0}
             tracks={tracks}
           />
-
           <Text
             style={{alignSelf: 'center', fontSize: 12, color: 'white', width: totalFormated.length == 5 ? 35:56, marginRight: 10}}>
             {totalFormated}
           </Text>
+          <TouchableOpacity
+              activeOpacity={1}
+              onPress={this.props.onFullScreen}
+              style={{width: 40, height: 40, alignItems: 'center', justifyContent: 'center'}}>
+            <Image
+                style={{width: 20, height: 20, resizeMode: 'contain'}}
+                source={{uri:'media_player_fullscreen'}}/>
+          </TouchableOpacity>
         </View>:null}
       </View>
     );

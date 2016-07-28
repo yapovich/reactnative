@@ -10,6 +10,8 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.views.modal.ReactModalHostManager;
+import com.facebook.react.views.modal.ReactModalHostView;
 import com.yapovich.cjllxt.R;
 
 import org.json.JSONObject;
@@ -119,6 +121,20 @@ public class SystemInfo extends ReactContextBaseJavaModule {
             msg.what=101;
         else
             msg.what=102;
+        MessageProxy.sendMessage(msg);
+    }
+    /**
+     *设置横屏
+     * */
+    @ReactMethod
+    public void setLandscape(boolean isLandscape) {
+        final Window window=this.getCurrentActivity().getWindow();
+        //.getCurrentActivity().getWindow();
+        Message msg=new Message();
+        if (isLandscape)
+            msg.what=103;
+        else
+            msg.what=104;
         MessageProxy.sendMessage(msg);
     }
 }

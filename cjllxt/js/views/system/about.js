@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import Environment from "../../environment";
 import Components from '../../components';
+var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     getInitialState(){
         return {
@@ -77,6 +78,5 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-
     }
 });

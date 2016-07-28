@@ -1,5 +1,6 @@
 package com.yapovich.cjllxt;
 
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,6 +47,11 @@ public class MainActivity extends ReactActivity {
                         window.setFlags(
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                    }
+                    else if (msg.what == 103) {//∫·∆¡
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    } else if (msg.what == 104) {// ˙∆¡
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                     }
                 }
             }

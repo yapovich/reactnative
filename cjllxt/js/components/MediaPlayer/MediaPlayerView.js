@@ -6,11 +6,11 @@ import ReactNative, {
   NativeModules,
   requireNativeComponent,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal
 } from 'react-native';
-
+var SystemInfo=NativeModules.SystemInfoAndroid;
 import Controls from './Controls';
-
 const UIManager = NativeModules.UIManager;
 const RCT_MEDIA_PLAYER_VIEW_REF = "RCTMediaPlayerView";
 const RCTMediaPlayerView = requireNativeComponent('RCTMediaPlayerView', {
@@ -59,8 +59,8 @@ export default class MediaPlayerView extends React.Component {
       total: 0,
       width: 0,
       height: 0,
-      showPoster: true
-
+      showPoster: true,
+      modalVisible:false
     };
   }
 
@@ -98,6 +98,7 @@ export default class MediaPlayerView extends React.Component {
           total={this.state.total}
           muted={this.state.muted}
           onSeekTo={this.seekTo.bind(this)}
+          onFullScreen={this.setFullScreen.bind(this)}
           onPauseOrPlay={() => {
             if(this.state.playing) {
               this.pause();
@@ -117,6 +118,14 @@ export default class MediaPlayerView extends React.Component {
       <View
         style={this.props.style}
         onLayout={this._onLayout.bind(this)}>
+        <Modal
+            ref={(modal)=>this.modal=modal}
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={this.setNotFullScreen.bind(this)}
+        >
+          <View style={{backgroundColor:'#000',flex:1}}></View>
+        </Modal>
         <RCTMediaPlayerView
           {...this.props}
           muted={this.state.muted}
@@ -206,6 +215,14 @@ export default class MediaPlayerView extends React.Component {
       UIManager.RCTMediaPlayerView.Commands.seekTo,
       args
     );
+  }
+  setFullScreen(){
+     this.setState({modalVisible:true});
+     SystemInfo.setLandscape(true)
+  }
+  setNotFullScreen(){
+    this.setState({modalVisible:false});
+    SystemInfo.setLandscape(false)
   }
 
   _getMediaPlayerViewHandle() {
