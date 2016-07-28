@@ -112,10 +112,14 @@ export default class MediaPlayerView extends React.Component {
       );
     }
 
-    return (<TouchableOpacity
+    return (
+      <View
+        style={this.props.style}
+        onLayout={this._onLayout.bind(this)}>
+        <TouchableOpacity
             activeOpacity={1}
             onPress={()=>{
-              if(!this.state.buffering) {
+              if(!this.state.buffering&&this.state.current>0) {
                 if (this.state.showPlayOrPauseBtn) {
                   this.setState({
                     showPlayOrPauseBtn: false,
@@ -130,9 +134,6 @@ export default class MediaPlayerView extends React.Component {
               }
             }}
         >
-      <View
-        style={this.props.style}
-        onLayout={this._onLayout.bind(this)}>
         <RCTMediaPlayerView
           {...this.props}
           muted={this.state.muted}
@@ -146,6 +147,7 @@ export default class MediaPlayerView extends React.Component {
           onPlayerFinished={this._onPlayerFinished.bind(this)}
           onPlayerBufferChange={this._onPlayerBufferChange.bind(this)}
         />
+          </TouchableOpacity>
         {posterView}
         {controlsView}
         {this.state.showPlayOrPauseBtn?<TouchableOpacity
@@ -176,7 +178,7 @@ export default class MediaPlayerView extends React.Component {
                  source={this.state.playing ? {uri:'media_player_pause'} : {uri:'media_player_play'}}/>
             </View>
           </TouchableOpacity>:null}
-      </View></TouchableOpacity>
+      </View>
     );
   }
 
@@ -290,6 +292,7 @@ export default class MediaPlayerView extends React.Component {
 
     if (this.props.controls) {
       this.setState({
+        current:0,
         playing: false,
         buffering: false,
         showControl:false,
