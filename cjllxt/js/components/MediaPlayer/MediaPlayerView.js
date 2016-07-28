@@ -173,7 +173,7 @@ export default class MediaPlayerView extends React.Component {
                }}>
              <Image
                  style={{width: 20, height: 20, resizeMode: 'contain'}}
-                 source={this.props.playing ? {uri:'media_player_pause'} : {uri:'media_player_play'}}/>
+                 source={this.state.playing ? {uri:'media_player_pause'} : {uri:'media_player_play'}}/>
             </View>
           </TouchableOpacity>:null}
       </View></TouchableOpacity>
