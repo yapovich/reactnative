@@ -116,7 +116,21 @@ export default class MediaPlayerView extends React.Component {
       <View
         style={this.props.style}
         onLayout={this._onLayout.bind(this)}>
+        <RCTMediaPlayerView
+          {...this.props}
+          muted={this.state.muted}
+          style={{flex: 1, alignSelf: 'stretch'}}
+          ref={RCT_MEDIA_PLAYER_VIEW_REF}
+          onPlayerPlaying={this._onPlayerPlaying.bind(this)}
+          onPlayerProgress={this._onPlayerProgress.bind(this)}
+          onPlayerPaused={this._onPlayerPaused.bind(this)}
+          onPlayerBuffering={this._onPlayerBuffering.bind(this)}
+          onPlayerBufferOK={this._onPlayerBufferOK.bind(this)}
+          onPlayerFinished={this._onPlayerFinished.bind(this)}
+          onPlayerBufferChange={this._onPlayerBufferChange.bind(this)}
+        />
         <TouchableOpacity
+            style={{height:this.props.style.height, alignSelf: 'stretch'}}
             activeOpacity={1}
             onPress={()=>{
               if(!this.state.buffering&&this.state.current>0) {
@@ -134,20 +148,8 @@ export default class MediaPlayerView extends React.Component {
               }
             }}
         >
-        <RCTMediaPlayerView
-          {...this.props}
-          muted={this.state.muted}
-          style={{flex: 1, alignSelf: 'stretch'}}
-          ref={RCT_MEDIA_PLAYER_VIEW_REF}
-          onPlayerPlaying={this._onPlayerPlaying.bind(this)}
-          onPlayerProgress={this._onPlayerProgress.bind(this)}
-          onPlayerPaused={this._onPlayerPaused.bind(this)}
-          onPlayerBuffering={this._onPlayerBuffering.bind(this)}
-          onPlayerBufferOK={this._onPlayerBufferOK.bind(this)}
-          onPlayerFinished={this._onPlayerFinished.bind(this)}
-          onPlayerBufferChange={this._onPlayerBufferChange.bind(this)}
-        />
-          </TouchableOpacity>
+          <View style={{flex:1}}></View>
+        </TouchableOpacity>
         {posterView}
         {controlsView}
         {this.state.showPlayOrPauseBtn?<TouchableOpacity
