@@ -45,7 +45,8 @@ public class ReactMediaPlayerViewManager extends SimpleViewManager<ReactMediaPla
 
   @Override
   protected ReactMediaPlayerView createViewInstance(ThemedReactContext reactContext) {
-    return new ReactMediaPlayerView(reactContext);
+    ReactMediaPlayerView view=new ReactMediaPlayerView(reactContext);
+    return view;
   }
 
   @ReactProp(name = "src")

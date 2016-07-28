@@ -245,10 +245,12 @@ export default class MediaPlayerView extends React.Component {
   }
   setFullScreen(){
      this.setState({modalVisible:true});
+     SystemInfo.setFullScreen(true)
      SystemInfo.setLandscape(true)
   }
   setNotFullScreen(){
     this.setState({modalVisible:false});
+    SystemInfo.setFullScreen(false)
     SystemInfo.setLandscape(false)
   }
 
