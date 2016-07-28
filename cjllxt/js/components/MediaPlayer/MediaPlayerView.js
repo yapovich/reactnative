@@ -207,7 +207,8 @@ export default class MediaPlayerView extends React.Component {
   }
 
   play() {
-    this.setState({showPoster: false})
+    if(this.state.current>0)
+      this.setState({showPoster: false})
     UIManager.dispatchViewManagerCommand(
       this._getMediaPlayerViewHandle(),
       UIManager.RCTMediaPlayerView.Commands.play,
@@ -224,7 +225,10 @@ export default class MediaPlayerView extends React.Component {
   }
 
   seekTo(timeMs) {
-    this.setState({showPoster: false})
+    if(this.state.current>0)
+      this.setState({showPoster: false})
+    else
+      this.setState({showPoster: true})
     let args = [timeMs];
     UIManager.dispatchViewManagerCommand(
       this._getMediaPlayerViewHandle(),
@@ -260,7 +264,6 @@ export default class MediaPlayerView extends React.Component {
 
   _onPlayerBufferOK() {
     this.props.onPlayerBufferOK && this.props.onPlayerBufferOK();
-
     if (this.props.controls) {
       this.setState({
         buffering: false,
