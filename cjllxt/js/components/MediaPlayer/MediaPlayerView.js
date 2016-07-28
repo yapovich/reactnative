@@ -90,6 +90,7 @@ export default class MediaPlayerView extends React.Component {
     if (this.props.controls) {
       controlsView = (
         <Controls
+          ref="mediaPlayControls"
           buffering={this.state.buffering}
           showControl={this.state.showControl}
           playing={this.state.playing}
@@ -130,7 +131,13 @@ export default class MediaPlayerView extends React.Component {
           onPlayerBufferChange={this._onPlayerBufferChange.bind(this)}
         />
         <TouchableOpacity
-            style={{height:this.props.style.height, alignSelf: 'stretch'}}
+            style={{
+              position:"absolute",
+              top:0,
+              left:0,
+              width:this.props.style.width,
+              height:this.props.style.height
+            }}
             activeOpacity={1}
             onPress={()=>{
               if(!this.state.buffering&&this.state.current>0) {
@@ -148,7 +155,7 @@ export default class MediaPlayerView extends React.Component {
               }
             }}
         >
-          <View style={{flex:1}}></View>
+          <View style={{flex:1,opacity:0}}></View>
         </TouchableOpacity>
         {posterView}
         {controlsView}
