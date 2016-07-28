@@ -130,33 +130,6 @@ export default class MediaPlayerView extends React.Component {
           onPlayerFinished={this._onPlayerFinished.bind(this)}
           onPlayerBufferChange={this._onPlayerBufferChange.bind(this)}
         />
-        <TouchableOpacity
-            style={{
-              position:"absolute",
-              top:0,
-              left:0,
-              width:this.props.style.width,
-              height:this.props.style.height
-            }}
-            activeOpacity={1}
-            onPress={()=>{
-              if(!this.state.buffering&&this.state.current>0) {
-                if (this.state.showPlayOrPauseBtn) {
-                  this.setState({
-                    showPlayOrPauseBtn: false,
-                    showControl: false
-                  })
-                } else {
-                  this.setState({
-                    showPlayOrPauseBtn: true,
-                    showControl: true
-                  })
-                }
-              }
-            }}
-        >
-          <View style={{flex:1,opacity:0}}></View>
-        </TouchableOpacity>
         {posterView}
         {controlsView}
         {this.state.showPlayOrPauseBtn?<TouchableOpacity

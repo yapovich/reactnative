@@ -11,7 +11,7 @@ import ReactNative, {
   ScrollView,
   Image,
   Platform,
-  ActivityIndicator,
+  ActivityIndicator
 } from 'react-native';
 
 import Slider from '@ldn0x7dc/react-native-slider';
