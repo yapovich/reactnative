@@ -21,7 +21,7 @@ module.exports=React.createClass({
     getInitialState(){
         return {
             viewPage:0,
-            slidingMenuVisible:false
+            slidingMenuStatus:0
         };
     },
     jump(name){
@@ -29,17 +29,24 @@ module.exports=React.createClass({
             this.props.navigator.push({name:name});
         }
     },
+    showSlidingMenu(){
+        if(this.state.slidingMenuStatus==0||this.state.slidingMenuStatus==2)
+          this.setState({slidingMenuStatus:1})
+        else
+          this.setState({slidingMenuStatus:2})
+    },
     render() {
         return (
             <Components.FlexLayout>
                 <Components.SlidingMenu
-                    visible={this.state.slidingMenuVisible}
+                    ref={(slidingMenu)=>this.slidingMenu=slidingMenu}
+                    visible={this.state.slidingMenuStatus?true:false}
                 >
                 </Components.SlidingMenu>
                 <Components.NavigatorBar
                     title={"采集录入系统"}
                     alignCenter={false}
-                    leftBtn={{text:<Text>&#xf0c9;</Text>,action:()=>{this.setState({slidingMenuVisible:true})}}}
+                    leftBtn={{text:<Text>&#xf0c9;</Text>,action:this.showSlidingMenu}}
                 />
                 <Components.BottomNavigator
                     scrollEnabled={false}
