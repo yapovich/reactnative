@@ -16,6 +16,8 @@ import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.facebook.react.views.scroll.ReactHorizontalScrollViewManager;
+import com.facebook.react.views.viewpager.ReactViewPagerManager;
 
 import java.util.Map;
 

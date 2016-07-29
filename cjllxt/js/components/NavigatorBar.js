@@ -69,7 +69,7 @@ var _style= {
         flex: 1,
         borderColor: NavigatorBarStyle.splitColor?NavigatorBarStyle.splitColor:'#333',
         borderStyle: 'solid',
-        borderLeftWidth: 1
+        borderLeftWidth: 0
     },
     toolbarTitleTextNoBorder: {
         flex: 1

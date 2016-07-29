@@ -7,7 +7,6 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.yapovich.cjllxt.module.SystemInfo;
 import com.yapovich.cjllxt.module.ToastCustom;
-import com.yapovich.cjllxt.viewmanager.ImageCustomViewManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,8 +29,6 @@ public class CustomPackage implements ReactPackage {
     }
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        List<ViewManager> vms=new ArrayList<>();
-        vms.add(new ImageCustomViewManager());
-        return vms;
+        return Collections.emptyList();
     }
 }

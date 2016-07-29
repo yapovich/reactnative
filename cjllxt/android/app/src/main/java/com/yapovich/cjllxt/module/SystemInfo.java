@@ -12,6 +12,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.views.modal.ReactModalHostManager;
 import com.facebook.react.views.modal.ReactModalHostView;
+import com.facebook.react.views.scroll.ReactScrollView;
+import com.facebook.react.views.view.ReactViewGroup;
 import com.yapovich.cjllxt.R;
 
 import org.json.JSONObject;
@@ -118,9 +120,9 @@ public class SystemInfo extends ReactContextBaseJavaModule {
         //.getCurrentActivity().getWindow();
         Message msg=new Message();
         if (!isFullScreen)
-            msg.what=101;
+            msg.what=MessageProxy.SCREEN_NOT_FULL;
         else
-            msg.what=102;
+            msg.what=MessageProxy.SCREEN_FULL;
         MessageProxy.sendMessage(msg);
     }
     /**
@@ -132,9 +134,9 @@ public class SystemInfo extends ReactContextBaseJavaModule {
         //.getCurrentActivity().getWindow();
         Message msg=new Message();
         if (isLandscape)
-            msg.what=103;
+            msg.what=MessageProxy.SCREEN_ORIENTATION_LANDSCAPE;
         else
-            msg.what=104;
+            msg.what=MessageProxy.SCREEN_ORIENTATION_PORTRAIT;
         MessageProxy.sendMessage(msg);
     }
 }

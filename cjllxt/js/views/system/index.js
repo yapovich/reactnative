@@ -21,6 +21,7 @@ module.exports=React.createClass({
     getInitialState(){
         return {
             viewPage:0,
+            slidingMenuVisible:false
         };
     },
     jump(name){
@@ -31,6 +32,15 @@ module.exports=React.createClass({
     render() {
         return (
             <Components.FlexLayout>
+                <Components.SlidingMenu
+                    visible={this.state.slidingMenuVisible}
+                >
+                </Components.SlidingMenu>
+                <Components.NavigatorBar
+                    title={"采集录入系统"}
+                    alignCenter={false}
+                    leftBtn={{text:<Text>&#xf0c9;</Text>,action:()=>{this.setState({slidingMenuVisible:true})}}}
+                />
                 <Components.BottomNavigator
                     scrollEnabled={false}
                     icons={[

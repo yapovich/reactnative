@@ -51,15 +51,6 @@ module.exports=React.createClass({
     render() {
         return (
             <Components.FlexLayout>
-                <Components.NavigatorBar
-                    title="配置"
-                    alignCenter={true}
-                    rightBtn={
-                        [
-                            {text:<Text>&#xf1b2;</Text>}
-                            ]
-                    }
-                />
             <ScrollView style={{flex:1}}>
                         <Components.ListNavigator
                         icons={[
