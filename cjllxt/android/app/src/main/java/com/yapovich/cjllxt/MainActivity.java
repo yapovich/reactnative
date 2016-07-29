@@ -86,7 +86,7 @@ public class MainActivity extends ReactActivity {
     }
     private void showSlidingMenu(){
         if(menu!=null)
-            menu.showMenu();
+            menu.toggle();
     }
     private void hideSlidingMenu(){
 

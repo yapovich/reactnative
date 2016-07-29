@@ -39,7 +39,6 @@ module.exports=React.createClass({
         return (
             <Components.FlexLayout>
                 <Components.SlidingMenu
-                    ref={(slidingMenu)=>this.slidingMenu=slidingMenu}
                     visible={this.state.slidingMenuStatus?true:false}
                 >
                 </Components.SlidingMenu>
