@@ -21,7 +21,7 @@ var cjllxt=React.createClass({
         return {
             modalVisible:false,
             modalView:null,
-            inited: false,
+            inited: true,
             comein: false
         };
     },

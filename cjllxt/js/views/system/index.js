@@ -11,17 +11,41 @@ import {
     Text,
     View,
     ScrollView,
-    NativeModules
+    NativeModules,
+    Dimensions,
+    DrawerLayoutAndroid
 } from 'react-native';
 import Components from '../../components';
 import IndexComponents from './indexComponents'
 import IndexSetting from './indexSetting'
+import Environment from "../../environment";
+import Message from "../../message";
 var SystemInfo=NativeModules.SystemInfoAndroid;
+
 module.exports=React.createClass({
     getInitialState(){
         return {
             viewPage:0,
-            slidingMenuStatus:0
+            isNeedUpdate:false
+        };
+    },
+    getIsNeedUpdate(){
+        if(!this.state.isNeedUpdate) {
+            SystemInfo.getIsNeedUpdate(function (newVersionName) {
+                this.setState({isNeedUpdate: newVersionName ? true : false, newVersionName: newVersionName});
+            }.bind(this));
+        }
+    },
+    handleUpdate(){
+        if(this.state.isNeedUpdate){
+            Alert.alert(
+                '',
+                '确定要升级到最新版本('+this.state.newVersionName+')吗？',
+                [
+                    {text: '取消', onPress: () => console.log('Cancel Pressed')},
+                    {text: '确定', onPress: () => console.log('OK Pressed')}
+                ]
+            );
         };
     },
     jump(name){
@@ -29,23 +53,50 @@ module.exports=React.createClass({
             this.props.navigator.push({name:name});
         }
     },
-    showSlidingMenu(){
-        if(this.state.slidingMenuStatus==0||this.state.slidingMenuStatus==2)
-          this.setState({slidingMenuStatus:1})
-        else
-          this.setState({slidingMenuStatus:2})
+    openDrawer(){
+        this.drawer.openDrawer(0);
     },
     render() {
+        var navigationView = (
+            <ScrollView contentContainerStyle={{flex: 1, backgroundColor: '#fff',paddingTop:Environment.IMMERSE_OFFSET}}>
+                <Components.ListNavigator
+                    icons={[
+                        {text:<Text>&#xf004;</Text>,label:'首选项'},
+                        [
+                            {
+                                text:<Text>&#xf019;</Text>,
+                                label:'软件升级',
+                                rightComponent:<View style={{flexDirection:'row',alignItems:'center'}}>
+                                    {this.state.isNeedUpdate? <Components.Icon
+                                        text={<Text>&#xf111;</Text>}
+                                        size={8}
+                                        color="#ff0000"
+                                        margin={5}
+                                    />:null}
+                                    <Text>{Environment.APP_VERSION_NAME}</Text>
+                                </View>,
+                                action:this.handleUpdate
+                            },
+                            {text:<Text>&#xf1b2;</Text>,label:'关于采集录入系统',action:()=>this.jump("about")}
+                        ]
+                    ]}
+                />
+            </ScrollView>
+        );
         return (
-            <Components.FlexLayout>
-                <Components.SlidingMenu
-                    visible={this.state.slidingMenuStatus?true:false}
-                >
-                </Components.SlidingMenu>
+            <DrawerLayoutAndroid
+                ref={(drawer)=>this.drawer=drawer}
+                drawerWidth={Dimensions.get('window').width-60}
+                drawerPosition={DrawerLayoutAndroid.positions.Left}
+                renderNavigationView={() => navigationView}
+                onDrawerOpen={()=>this.drawerOpened=true}
+                onDrawerClose={()=>this.drawerOpened=false}
+            >
+              <Components.FlexLayout>
                 <Components.NavigatorBar
                     title={"采集录入系统"}
                     alignCenter={false}
-                    leftBtn={{text:<Text>&#xf0c9;</Text>,action:this.showSlidingMenu}}
+                    leftBtn={{text:<Text>&#xf0c9;</Text>,action:this.openDrawer}}
                 />
                 <Components.BottomNavigator
                     scrollEnabled={false}
@@ -57,10 +108,18 @@ module.exports=React.createClass({
                     <View><IndexComponents  navigator={this.props.navigator}/></View>
                     <View><IndexSetting navigator={this.props.navigator}/></View>
                 </Components.BottomNavigator>
-            </Components.FlexLayout>
+              </Components.FlexLayout>
+            </DrawerLayoutAndroid>
         );
     },
     componentDidMount() {
         SystemInfo.setFullScreen(false);
+        Message.handleMessage("index",(msg)=>{
+            if(msg.what=="closeDrawer"){
+                if(msg.handler)
+                    msg.handler(this.drawerOpened)
+                this.drawer.closeDrawer(0);
+            }
+        });
     }
 });
