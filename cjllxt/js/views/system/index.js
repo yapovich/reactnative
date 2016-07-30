@@ -61,8 +61,8 @@ module.exports=React.createClass({
             <ScrollView contentContainerStyle={{flex: 1, backgroundColor: '#fff',paddingTop:Environment.IMMERSE_OFFSET}}>
                 <Components.ListNavigator
                     icons={[
-                        {text:<Text>&#xf004;</Text>,label:'首选项'},
                         [
+                            {text:<Text>&#xf004;</Text>,label:'首选项'},
                             {
                                 text:<Text>&#xf019;</Text>,
                                 label:'软件升级',

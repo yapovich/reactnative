@@ -26,6 +26,8 @@ var components={
     get FormPicker(){return require('./components/FormPicker')},//下拉框
     get FormDatePicker(){return require('./components/FormDatePicker')},//日期输入框
     get FormTimePicker(){return require('./components/FormTimePicker')},//时间输入框
+    /*其他组件*/
+    get BaiduMap(){return require('./components/BaiduMap')},
     /*常用操作*/
     //对话框
     get Dialog(){

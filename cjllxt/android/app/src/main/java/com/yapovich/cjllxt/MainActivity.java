@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.views.scroll.ReactScrollView;
 import com.facebook.react.views.text.ReactTextView;

@@ -35,23 +35,27 @@ var cjllxt=React.createClass({
         this.setState({modalView:null,modalVisible: false});
     },
     render() {
-        var WelCome=require("./js/views/system/welcome");
-        // if (this.state.comein)
-        //     comp = <Scenes></Scenes>;
-        var comp = <Scenes></Scenes>
-        return (this.state.inited ?
-                <View style={{flex: 1}}>
-                    <Modal
-                        ref={(modal)=>this.modal=modal}
-                        transparent={true}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => {this.setState({modalVisible:false})}}
-                    >
-                        {this.state.modalView}
-                    </Modal>
-                    {comp}
-                </View> :
-                <WelCome statusText="正在初始化..."/>
+        /*
+         var WelCome=require("./js/views/system/welcome");
+         var comp = <Scenes></Scenes>
+         return (this.state.inited ?
+         <View style={{flex: 1}}>
+         <Modal
+         ref={(modal)=>this.modal=modal}
+         transparent={true}
+         visible={this.state.modalVisible}
+         onRequestClose={() => {this.setState({modalVisible:false})}}
+         >
+         {this.state.modalView}
+         </Modal>
+         {comp}
+         </View> :
+         <WelCome statusText="正在初始化..."/>
+         );*/
+        return (
+            <View style={{flex: 1}}>
+                <Components.BaiduMap>boboweiqi</Components.BaiduMap>
+            </View>
         );
     },
     componentDidMount(){

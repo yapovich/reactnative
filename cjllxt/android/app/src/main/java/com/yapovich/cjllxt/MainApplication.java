@@ -3,6 +3,7 @@ package com.yapovich.cjllxt;
 import android.app.Application;
 import android.util.Log;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     protected boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
