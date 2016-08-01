@@ -21,7 +21,7 @@ var cjllxt=React.createClass({
         return {
             modalVisible:false,
             modalView:null,
-            inited: true,
+            inited: false,
             comein: false
         };
     },
@@ -35,7 +35,6 @@ var cjllxt=React.createClass({
         this.setState({modalView:null,modalVisible: false});
     },
     render() {
-        /*
          var WelCome=require("./js/views/system/welcome");
          var comp = <Scenes></Scenes>
          return (this.state.inited ?
@@ -51,7 +50,8 @@ var cjllxt=React.createClass({
          {comp}
          </View> :
          <WelCome statusText="正在初始化..."/>
-         );*/
+         );
+        /*
         return (
             <View style={{flex: 1}}>
                 <Components.BaiduMap
@@ -59,7 +59,7 @@ var cjllxt=React.createClass({
                     showsUserLocation={true}
                 />
             </View>
-        );
+        );*/
     },
     componentDidMount(){
         /*Alert.alert(

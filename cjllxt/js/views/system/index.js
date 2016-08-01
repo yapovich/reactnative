@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import Components from '../../components';
 import IndexComponents from './indexComponents'
-import IndexSetting from './indexSetting'
+import IndexMap from './indexMap'
 import Environment from "../../environment";
 import Message from "../../message";
 var SystemInfo=NativeModules.SystemInfoAndroid;
@@ -102,11 +102,11 @@ module.exports=React.createClass({
                     scrollEnabled={false}
                     icons={[
                         {text:<Text>&#xf015;</Text>,label:'首页'},
-                        {text:<Text>&#xf013;</Text>,label:'配置'}
+                        {text:<Text>&#xf279;</Text>,label:'地图'}
                     ]}
                 >
                     <View><IndexComponents  navigator={this.props.navigator}/></View>
-                    <View><IndexSetting navigator={this.props.navigator}/></View>
+                    <View><IndexMap navigator={this.props.navigator}/></View>
                 </Components.BottomNavigator>
               </Components.FlexLayout>
             </DrawerLayoutAndroid>
