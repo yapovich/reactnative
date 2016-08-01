@@ -11,6 +11,7 @@ module.exports = requireNativeComponent('RCTBaiduMapAndroid', {
     name: 'RCTBaiduMapAndroid',
     propTypes: {
         zoomEnabled:PropTypes.bool,
+        showsUserLocation:PropTypes.bool,
         ...View.propTypes
     }
 });

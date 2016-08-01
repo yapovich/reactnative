@@ -19,6 +19,7 @@ import com.yapovich.cjllxt.MainActivityManager;
 public class BaiduMapViewManager extends SimpleViewManager<MapView> {
     private Context mContext;
     private boolean isMapLoaded;
+    private ReactMapView mMapView;
     @Override
     public String getName() {
         return "RCTBaiduMapAndroid";
@@ -28,18 +29,28 @@ public class BaiduMapViewManager extends SimpleViewManager<MapView> {
     protected MapView createViewInstance(ThemedReactContext themedReactContext) {
         SDKInitializer.initialize(themedReactContext.getApplicationContext());
         MapView view=new MapView(MainActivityManager.getInstance().getCurrentActivity());
+        mMapView=new ReactMapView(view);
         view.getMap().setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
                 BaiduMapViewManager.this.isMapLoaded = true;
+                mMapView.onMapLoaded();
             }
         });
         this.mContext = themedReactContext;
         //mapView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
         return view;
     }
+    /*
+       显示用户位置
+     */
+    @ReactProp(name="showsUserLocation", defaultBoolean = false)
+    public void showsUserLocation(MapView mapView, Boolean show) {
+        mMapView.setShowsUserLocation(show);
+    }
     @ReactProp(name="zoomEnabled", defaultBoolean = true)
     public void setZoomEnabled(MapView mapView, Boolean enable) {
-        mapView.getMap().getUiSettings().setZoomGesturesEnabled(enable);
+        mMapView.getMap().getUiSettings().setZoomGesturesEnabled(enable);
     }
+
 }
