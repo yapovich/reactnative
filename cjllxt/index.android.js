@@ -54,7 +54,7 @@ var cjllxt=React.createClass({
          );*/
         return (
             <View style={{flex: 1}}>
-                <Components.BaiduMap>boboweiqi</Components.BaiduMap>
+                <Components.BaiduMap></Components.BaiduMap>
             </View>
         );
     },

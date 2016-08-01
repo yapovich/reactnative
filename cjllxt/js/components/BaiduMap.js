@@ -10,6 +10,7 @@ import ReactNative,{
 module.exports = requireNativeComponent('RCTBaiduMapAndroid', {
     name: 'RCTBaiduMapAndroid',
     propTypes: {
-        zoomEnabled:PropTypes.bool
+        zoomEnabled:PropTypes.bool,
+        ...View.propTypes
     }
 });
