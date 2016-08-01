@@ -22,6 +22,14 @@ public class ReactMapView {
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
         //Receive Location
+            MyLocationData locData = new MyLocationData.Builder()
+                    .accuracy(bdLocation.getRadius())
+                    .latitude(bdLocation.getLatitude())
+                    .longitude(bdLocation.getLongitude())
+                    .build();
+            if (getMap().isMyLocationEnabled()) {
+                getMap().setMyLocationData(locData);
+            }
         /*
         StringBuffer sb = new StringBuffer(256);
         sb.append("time : ");
@@ -115,13 +123,19 @@ public class ReactMapView {
         if (map == null) {
             return;
         }
+        getMap().setMyLocationEnabled(showsUserLocation);
         if(showsUserLocation){
             if(mLocationClient==null)
                 initLocation();
-            mLocationClient.start();
+            if (mLocationClient.isStarted()) {
+                mLocationClient.requestLocation();
+            } else {
+                mLocationClient.start();
+            }
         }else{
-            if(mLocationClient!=null)
+            if (mLocationClient!=null&&mLocationClient.isStarted()) {
                 mLocationClient.stop();
+            }
         }
     }
 }
