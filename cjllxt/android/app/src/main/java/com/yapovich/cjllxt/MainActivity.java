@@ -30,7 +30,6 @@ public class MainActivity extends ReactActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("采集录入系统Activity", getClass().getSimpleName());
         super.onCreate(savedInstanceState);
         final Window window = getWindow();
         //初始化时全屏
