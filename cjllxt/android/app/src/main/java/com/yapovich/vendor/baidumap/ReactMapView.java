@@ -7,8 +7,12 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
 
 /**
  * Created by yebo on 2016/8/1.
@@ -22,13 +26,24 @@ public class ReactMapView {
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
         //Receive Location
-            MyLocationData locData = new MyLocationData.Builder()
-                    .accuracy(bdLocation.getRadius())
-                    .latitude(bdLocation.getLatitude())
-                    .longitude(bdLocation.getLongitude())
-                    .build();
-            if (getMap().isMyLocationEnabled()) {
-                getMap().setMyLocationData(locData);
+            if(bdLocation!=null) {
+                MyLocationData locData = new MyLocationData.Builder()
+                        .accuracy(bdLocation.getRadius())
+                        .latitude(bdLocation.getLatitude())
+                        .longitude(bdLocation.getLongitude())
+                        .build();
+                if (getMap().isMyLocationEnabled()) {
+                    getMap().setMyLocationData(locData);
+                }
+                //定义地图状态
+                MapStatus mMapStatus = new MapStatus.Builder()
+                        .target(new LatLng(bdLocation.getLatitude(),bdLocation.getLongitude()))
+                        .zoom(18)
+                        .build();
+                //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
+                MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+                //改变地图状态
+                getMap().setMapStatus(mMapStatusUpdate);
             }
         /*
         StringBuffer sb = new StringBuffer(256);

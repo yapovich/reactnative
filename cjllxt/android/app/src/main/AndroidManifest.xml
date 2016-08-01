@@ -39,6 +39,7 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
     </application>
 
 </manifest>
