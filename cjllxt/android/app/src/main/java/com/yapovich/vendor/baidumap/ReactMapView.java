@@ -31,6 +31,7 @@ public class ReactMapView {
                         .accuracy(bdLocation.getRadius())
                         .latitude(bdLocation.getLatitude())
                         .longitude(bdLocation.getLongitude())
+                        .direction(bdLocation.getDirection())
                         .build();
                 if (getMap().isMyLocationEnabled()) {
                     getMap().setMyLocationData(locData);
@@ -38,7 +39,7 @@ public class ReactMapView {
                 //定义地图状态
                 MapStatus mMapStatus = new MapStatus.Builder()
                         .target(new LatLng(bdLocation.getLatitude(),bdLocation.getLongitude()))
-                        .zoom(18)
+                        .zoom(15)
                         .build();
                 //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
                 MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
