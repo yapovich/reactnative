@@ -36,6 +36,7 @@ public class ReactMapView {
                 if (getMap().isMyLocationEnabled()) {
                     getMap().setMyLocationData(locData);
                 }
+                /*
                 //定义地图状态
                 MapStatus mMapStatus = new MapStatus.Builder()
                         .target(new LatLng(bdLocation.getLatitude(),bdLocation.getLongitude()))
@@ -44,7 +45,7 @@ public class ReactMapView {
                 //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
                 MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
                 //改变地图状态
-                getMap().setMapStatus(mMapStatusUpdate);
+                getMap().setMapStatus(mMapStatusUpdate);*/
             }
         /*
         StringBuffer sb = new StringBuffer(256);
