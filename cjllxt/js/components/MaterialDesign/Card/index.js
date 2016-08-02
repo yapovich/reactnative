@@ -49,7 +49,9 @@ export default class Card extends Component {
                     backgroundColor: COLOR[theme].color
                 }, overrides && overrides.backgroundColor && {
                     backgroundColor: overrides.backgroundColor
-                }, style
+                }, {
+                    borderRadius:0
+                },style
             ];
         })();
 

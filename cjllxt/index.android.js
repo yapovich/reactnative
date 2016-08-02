@@ -39,13 +39,40 @@ var cjllxt=React.createClass({
          <WelCome statusText="正在初始化..."/>
          );*/
         return (
-            <View style={{flex:1,backgroundColor:'#fff'}}>
-                <Components.MD.Icon
-                    name="add"
-                    size={16}
-                    color="#000"
-                    style={{padding:0}}
+            <View style={{flex:1}}>
+                <Components.MD.Toolbar
+                    icon="menu"
+                    theme="dark"
+                    title="采集录入系统"
+                    actions={[
+                        {icon:'add',onPress:()=>Components.Dialog.show({content:'cctv'})}
+                    ]}
                 />
+                <Components.MD.Card
+                    style={{
+                        marginTop:64
+                    }}
+                    onPress={()=>Components.Dialog.show({
+                        content:'my name is boboweiqi'
+                    })}
+                >
+                    <Components.MD.RadioButtonGroup
+                        onSelect={(value)=>{}}
+                        selected="wc"
+                        items={[
+                            {label:'yebo',value:'yebo'},
+                            {label:'wc',value:'wc'}
+                        ]}
+                    />
+                    <Components.MD.CheckboxGroup
+                        onSelect={(value)=>{}}
+                        checked={["wc"]}
+                        items={[
+                            {label:'yebo',value:'yebo'},
+                            {label:'wc',value:'wc',disabled:true}
+                        ]}
+                    />
+                </Components.MD.Card>
                 </View>
         );
     },
