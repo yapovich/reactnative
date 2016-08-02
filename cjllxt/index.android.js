@@ -38,28 +38,15 @@ var cjllxt=React.createClass({
          </View> :
          <WelCome statusText="正在初始化..."/>
          );*/
-        var results=[];
-        for(var key in glyphMap){
-            var value=glyphMap[key];
-            results.push({
-                name:key
-            })
-        }
         return (
-            <ScrollView contentContainerStyle={{flexWrap:'wrap',flexDirection:'row',alignItems:'center'}}>
-                {
-                    results.map((g,index)=>{
-                        return <View key={"icon_"+g.name} style={{alignItems:'center',width:120}}>
-                            <Components.MD.Icon
-                            name={g.name}
-                            size={16}
-                            style={{padding:0}}
-                            />
-                            <Text style={{fontSize:10}}>{g.name}</Text>
-                        </View>
-                    })
-                }
-            </ScrollView>
+            <View style={{flex:1,backgroundColor:'#fff'}}>
+                <Components.MD.Icon
+                    name="add"
+                    size={16}
+                    color="#000"
+                    style={{padding:0}}
+                />
+                </View>
         );
     },
     componentDidMount(){
