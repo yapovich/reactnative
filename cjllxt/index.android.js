@@ -11,7 +11,8 @@ import {
   Modal,
   NativeModules,
   ScrollView,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
 import Scenes from "./js/views/system/scenes";
 import Environment from "./js/environment";
@@ -73,6 +74,17 @@ var cjllxt=React.createClass({
                         ]}
                     />
                 </Components.MD.Card>
+                <Components.MD.Avatar
+                    icon="add"
+                    size={30}
+                    backgroundColor="#ff0000"
+                />
+                <Components.MD.Button
+                    text="点我呀"
+                    raised={true}
+                    theme="dark"
+                    primary="googleGreen"
+                />
                 </View>
         );
     },
