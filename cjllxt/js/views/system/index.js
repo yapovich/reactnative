@@ -101,12 +101,12 @@ module.exports=React.createClass({
                 <Components.BottomNavigator
                     scrollEnabled={false}
                     icons={[
-                        {text:<Text>&#xf279;</Text>,label:'地图'},
-                        {text:<Text>&#xf015;</Text>,label:'首页'}
+                        {text:<Text>&#xf015;</Text>,label:'首页'},
+                        {text:<Text>&#xf279;</Text>,label:'地图'}
                     ]}
                 >
-                    <View><IndexMap navigator={this.props.navigator}/></View>
                     <View><IndexComponents  navigator={this.props.navigator}/></View>
+                    <View><IndexMap navigator={this.props.navigator}/></View>
                 </Components.BottomNavigator>
               </Components.FlexLayout>
             </DrawerLayoutAndroid>

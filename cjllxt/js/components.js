@@ -9,6 +9,7 @@ import {
     NativeModules
 } from 'react-native';
 var components={
+    get MD(){return require('./components/MaterialDesign/index')},
     get SlidingMenu(){return require('./components/SlidingMenu')},
     get MediaPlayer(){return require('./components/MediaPlayer/index')},//媒体播放器
     get AutoPlayBanner(){return require('./components/AutoPlayBanner')},//自动播放公告板
@@ -30,21 +31,6 @@ var components={
     get BaiduMap(){return require('./components/BaiduMap')},
     /*常用操作*/
     //对话框
-    get Dialog(){
-        var dialog=require('./components/Dialog');
-        var global=this.global;
-        return {
-          //确认对话框
-          confirm(msg,okAction){
-              global.showModal(dialog.confirm(msg,()=>{
-                  global.hideModal();
-                  if(okAction)
-                      okAction();
-              },()=>{
-                  global.hideModal();
-              }));
-          }
-      }
-    }
+    get Dialog() {return new (require('./components/Dialog'))}
 }
 module.exports=components;

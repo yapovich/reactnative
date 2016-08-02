@@ -6,7 +6,6 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "@ldn0x7dc/react-native-slider": "0.0.3",
     "react": "15.2.1",
     "react-native": "0.30.0"
   }

@@ -6,6 +6,7 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.yapovich.vendor.baidumap.BaiduMapViewManager;
+import com.yapovich.vendor.dialog.DialogAndroid;
 import com.yapovich.vendor.mediaplayer.ReactMediaPlayerViewManager;
 import com.yapovich.vendor.slidingmenu.SlidingMenuViewManager;
 
@@ -19,11 +20,9 @@ import java.util.List;
 public class VendorPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        /*List<NativeModule> modules=new ArrayList<>();
-        modules.add(new ToastCustom(reactContext));
-        modules.add(new SystemInfo(reactContext));
-        return modules;*/
-        return Collections.emptyList();
+        List<NativeModule> modules=new ArrayList<>();
+        modules.add(new DialogAndroid(reactContext));
+        return modules;
     }
     @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {

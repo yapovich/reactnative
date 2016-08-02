@@ -10,17 +10,17 @@ import {
   Text,
   Modal,
   NativeModules,
+  ScrollView,
   Alert
 } from 'react-native';
 import Scenes from "./js/views/system/scenes";
 import Environment from "./js/environment";
 import Components from "./js/components";
 var SystemInfo=NativeModules.SystemInfoAndroid;
+import {glyphMap} from './js/components/MaterialDesign/style/MaterialIcons';
 var cjllxt=React.createClass({
     getInitialState() {
         return {
-            modalVisible:false,
-            modalView:null,
             inited: false,
             comein: false
         };
@@ -28,48 +28,41 @@ var cjllxt=React.createClass({
     handleComeinBtn(){
         this.setState({comein: true});
     },
-    showModal(view){
-      this.setState({modalView:view,modalVisible: true});
-    },
-    hideModal(){
-        this.setState({modalView:null,modalVisible: false});
-    },
     render() {
+        /*
          var WelCome=require("./js/views/system/welcome");
          var comp = <Scenes></Scenes>
          return (this.state.inited ?
          <View style={{flex: 1}}>
-         <Modal
-         ref={(modal)=>this.modal=modal}
-         transparent={true}
-         visible={this.state.modalVisible}
-         onRequestClose={() => {this.setState({modalVisible:false})}}
-         >
-         {this.state.modalView}
-         </Modal>
          {comp}
          </View> :
          <WelCome statusText="正在初始化..."/>
-         );
-        /*
+         );*/
+        var results=[];
+        for(var key in glyphMap){
+            var value=glyphMap[key];
+            results.push({
+                name:key
+            })
+        }
         return (
-            <View style={{flex: 1}}>
-                <Components.BaiduMap
-                    style={{flex:1}}
-                    showsUserLocation={true}
-                />
-            </View>
-        );*/
+            <ScrollView contentContainerStyle={{flexWrap:'wrap',flexDirection:'row',alignItems:'center'}}>
+                {
+                    results.map((g,index)=>{
+                        return <View key={"icon_"+g.name} style={{alignItems:'center',width:120}}>
+                            <Components.MD.Icon
+                            name={g.name}
+                            size={16}
+                            style={{padding:0}}
+                            />
+                            <Text style={{fontSize:10}}>{g.name}</Text>
+                        </View>
+                    })
+                }
+            </ScrollView>
+        );
     },
     componentDidMount(){
-        /*Alert.alert(
-            '提示',
-            '确定要保存吗？',
-            [
-                {text: '取消', onPress: () => console.log('Cancel Pressed')},
-                {text: '确定', onPress: () => console.log('OK Pressed')}
-            ]
-        );*/
         Components.global=this;
         SystemInfo.getInfo((info)=>{
             var json=JSON.parse(info);

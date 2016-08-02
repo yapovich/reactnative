@@ -39,8 +39,7 @@ module.exports=React.createClass({
                     leftBtn={{text:<Text>&#xf104;</Text>,action:()=>this.pop()}}
                     rightBtn={
                         [
-                            {text:<Text>&#xf14c;</Text>},
-                            {text:<Text>&#xf067;</Text>}
+                            {text:<Text>&#xf067;</Text>,action:()=>this.jump("update")}
                         ]
                     }
                 />

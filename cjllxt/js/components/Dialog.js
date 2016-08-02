@@ -1,71 +1,83 @@
 /**
- * Created by yebo on 2016/7/14.
- * 正方形字体或图片图标
+ * @providesModule DialogAndroid
  */
-import React,{ Component } from 'react';
-import {
-    Text,
-    View,
-    TouchableHighlight
-} from 'react-native';
-module.exports={
-    //确认对话框
-    confirm(msg,okAction,cancelAction){
-        var style1={
-            flex: 1,
-            justifyContent: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)'
-        }
-        var style2={
-            padding:5,
-            margin: 20,
-            borderRadius: 5,
-            backgroundColor: '#fff',
-        }
-        var style3={
-            minHeight: 100,
-            padding:8,
-            borderBottomWidth:1,
-            borderStyle:'solid',
-            borderColor:'#ccc',
-            justifyContent: 'center',
-            alignItems:'center'
-        }
-        var style4={
-            flex:1,
-            height:40,
-            justifyContent: 'center',
-            alignItems:'center'
-        }
-        var style5={
-            flex:1,
-            height:40,
-            borderLeftWidth:1,
-            borderStyle:'solid',
-            borderColor:'#ccc',
-            justifyContent: 'center',
-            alignItems:'center'
-        }
-        var modelComponent=(<View style={style1}>
-                <View style={style2}>
-                    <View style={style3}>
-                        <Text style={{textAlign: 'center',fontSize:14,color:'#666'}}>{msg}</Text>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <TouchableHighlight style={{flex:1}} underlayColor="#ddd" onPress={cancelAction}>
-                            <View style={style4}>
-                                <Text style={{fontSize:14,color:'#ff0000'}}>取消</Text>
-                            </View>
-                        </TouchableHighlight>
-                        <TouchableHighlight style={{flex:1}} underlayColor="#ddd" onPress={okAction}>
-                            <View style={style5}>
-                                <Text style={{fontSize:14,color:'#109d59'}}>确定</Text>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
-                </View>
-            </View>
-        )
-        return modelComponent;
+
+'use strict';
+
+var { NativeModules } = require('react-native');
+
+var callbackNames = [
+  'onPositive',
+  'onNegative',
+  'onNeutral',
+  'onAny',
+  'itemsCallback',
+  'itemsCallbackSingleChoice',
+  'itemsCallbackMultiChoice',
+  'showListener',
+  'cancelListener',
+  'dismissListener',
+];
+
+class Dialog {
+  constructor() {
+    this.options = {};
+  }
+
+  set(obj) {
+    Object.assign(this.options, obj);
+  }
+
+  show(obj) {
+    if(obj)
+      Object.assign(this.options, obj);
+    var finalOptions = Object.assign({}, this.options);
+
+    var callbacks = {
+      error: (err, op) => console.error(err, op),
     }
+
+    // Remove callbacks from the options, and store them separately
+    callbackNames.forEach(cb => {
+      if (cb in finalOptions) {
+        callbacks[cb] = finalOptions[cb];
+        finalOptions[cb] = true;
+      }
+    });
+
+    // Handle special case of input separately
+    if ('input' in finalOptions) {
+      finalOptions.input = Object.assign({}, finalOptions.input);
+      var inputCallback = finalOptions.input.callback || (x => console.log(x));
+      finalOptions.input.callback = true;
+      callbacks['input'] = inputCallback;
+    }
+
+    // Parse the result form multiple choice dialog
+    if ('itemsCallbackMultiChoice' in callbacks) {
+      var originalCallback = callbacks.itemsCallbackMultiChoice;
+      callbacks.itemsCallbackMultiChoice = selected => {
+        var indices = selected.split(',').map(x => parseInt(x));
+        var elements = indices.map(ind => (finalOptions.items || [])[ind]);
+        if(indices.length === 1 && isNaN(indices[0])){
+          indices=[] // the case of empty selection
+        }
+        originalCallback(indices, elements);
+      }
+    }
+
+    var callbackFunc = (cb, ...rest) => callbacks[cb](...rest);
+
+    NativeModules.DialogAndroid.show(finalOptions, callbackFunc);
+  }
+
+  dismiss() {
+    NativeModules.DialogAndroid.dismiss();
+  }
+
+  list(options, cb){
+    NativeModules.DialogAndroid.list(options, cb)
+  }
 }
+
+module.exports = Dialog;

@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import Icon from './Icon';
 import {IconBarStyle} from '../stylesheets/componentStyle';
-class BottomNavigator extends Component {
+class IconBar extends Component {
     constructor(props){
         super(props);
         this.handlePageSelect=this.handlePageSelect.bind(this);
@@ -76,4 +76,4 @@ class BottomNavigator extends Component {
         )
     }
 }
-module.exports=BottomNavigator;
+module.exports=IconBar;
