@@ -1,0 +1,3 @@
+rootProject.name = 'cjzs'
+
+include ':app'

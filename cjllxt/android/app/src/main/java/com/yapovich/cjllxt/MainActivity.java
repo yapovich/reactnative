@@ -9,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.facebook.react.ReactActivity;
-import com.yapovich.cjllxt.module.MessageProxy;
 
 public class MainActivity extends ReactActivity {
 
@@ -26,7 +25,7 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Window window = getWindow();
-        //初始化时全屏
+        //锟斤拷始锟斤拷时全锟斤拷
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -35,26 +34,5 @@ public class MainActivity extends ReactActivity {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg != null) {
-                    if (msg.what == MessageProxy.SCREEN_NOT_FULL) {//取消全屏
-                        window.setFlags(
-                                WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
-                                WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                    } else if (msg.what == MessageProxy.SCREEN_FULL) {//全屏
-                        window.setFlags(
-                                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                    } else if (msg.what == MessageProxy.SCREEN_ORIENTATION_LANDSCAPE) {//横屏
-                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    } else if (msg.what == MessageProxy.SCREEN_ORIENTATION_PORTRAIT) {//竖屏
-                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                    }
-                }
-            }
-        };
-        MessageProxy.registerHandler("mainActivityHandler",handler);
     }
 }
