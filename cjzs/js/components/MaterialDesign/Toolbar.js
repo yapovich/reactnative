@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import {View, Text} from "react-native";
+import {View, Text,Alert} from "react-native";
 import { TYPO, PRIMARY, THEME_NAME, PRIMARY_COLORS } from './config';
 import { getColor } from './helpers';
 import Icon from './Icon';
@@ -68,7 +68,7 @@ export default class Toolbar extends Component {
         };
 
         return (
-            <View style={[styles.toolbar, { backgroundColor :styleMap.backgroundColor, elevation }, style]}>
+            <View style={[styles.toolbar, {paddingTop: Environment.IMMERSE_OFFSET,backgroundColor :styleMap.backgroundColor, elevation }, style]}>
                 {
                     icon && (
                         <IconToggle
@@ -120,11 +120,9 @@ export default class Toolbar extends Component {
         );
     }
 }
-
 const styles = {
     toolbar: {
         position: 'relative',
-        paddingTop: Environment.IMMERSE_OFFSET,
         top:0,
         left: 0,
         right: 0,

@@ -1,4 +1,5 @@
-export { COLOR, TYPO, PRIMARY_COLORS, THEME_NAME } from './config';
+export { COLOR, TYPO, PRIMARY, PRIMARY_COLORS, THEME_NAME } from './config';
+export { getColor } from './helpers';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
 export { default as Card } from './Card';

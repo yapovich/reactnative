@@ -35,7 +35,7 @@ var cjzs=React.createClass({
             <View style={{flex: 1}}>
               {comp}
             </View> :
-            <WelCome statusText="正在初始化..."/>
+            <WelCome loading={true}/>
     );
     /*
      return (

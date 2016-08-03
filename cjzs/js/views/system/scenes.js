@@ -9,7 +9,8 @@
 import React,{ Component } from 'react';
 import {
     Navigator,
-    BackAndroid
+    BackAndroid,
+    Alert
 } from 'react-native';
 import Components from "../../components";
 import Message from "../../message";
@@ -31,6 +32,9 @@ var scenes=React.createClass({
                 initialRoute={initialRoute}
                 configureScene={(route, routeStack) =>
                     Navigator.SceneConfigs.PushFromRight}
+                onDidFocus={(route)=>{
+
+                }}
                 renderScene={(route, navigator) => {
                     var Component;
                     this._navigator = navigator;
