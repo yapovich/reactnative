@@ -4,6 +4,7 @@ import { TYPO, PRIMARY, THEME_NAME, PRIMARY_COLORS } from './config';
 import { getColor } from './helpers';
 import Icon from './Icon';
 import IconToggle from './IconToggle';
+import Environment from "../../environment";
 
 export default class Toolbar extends Component {
 
@@ -122,11 +123,11 @@ export default class Toolbar extends Component {
 
 const styles = {
     toolbar: {
-        position: 'absolute',
-        top: 0,
+        position: 'relative',
+        paddingTop: Environment.IMMERSE_OFFSET,
+        top:0,
         left: 0,
         right: 0,
-        height: 56,
         flexDirection: 'row',
         alignItems: 'center'
     },

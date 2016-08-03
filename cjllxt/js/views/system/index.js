@@ -18,6 +18,7 @@ import {
 import Components from '../../components';
 import IndexComponents from './indexComponents'
 import IndexMap from './indexMap'
+import IndexSetting from './indexSetting'
 import Environment from "../../environment";
 import Message from "../../message";
 var SystemInfo=NativeModules.SystemInfoAndroid;
@@ -93,11 +94,12 @@ module.exports=React.createClass({
                 onDrawerClose={()=>this.drawerOpened=false}
             >
               <Components.FlexLayout>
-                <Components.NavigatorBar
-                    title={"采集录入系统"}
-                    alignCenter={false}
-                    leftBtn={{text:<Text>&#xf0c9;</Text>,action:this.openDrawer}}
-                />
+                  <Components.MD.Toolbar
+                      icon="menu"
+                      theme="dark"
+                      title="采集录入系统"
+                      onIconPress={this.openDrawer}
+                  />
                 <Components.BottomNavigator
                     scrollEnabled={false}
                     icons={[
@@ -106,7 +108,7 @@ module.exports=React.createClass({
                     ]}
                 >
                     <View><IndexComponents  navigator={this.props.navigator}/></View>
-                    <View><IndexMap navigator={this.props.navigator}/></View>
+                    <View><IndexSetting navigator={this.props.navigator}/></View>
                 </Components.BottomNavigator>
               </Components.FlexLayout>
             </DrawerLayoutAndroid>

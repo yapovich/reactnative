@@ -18,7 +18,6 @@ import Scenes from "./js/views/system/scenes";
 import Environment from "./js/environment";
 import Components from "./js/components";
 var SystemInfo=NativeModules.SystemInfoAndroid;
-import {glyphMap} from './js/components/MaterialDesign/style/MaterialIcons';
 var cjllxt=React.createClass({
     getInitialState() {
         return {
@@ -30,7 +29,6 @@ var cjllxt=React.createClass({
         this.setState({comein: true});
     },
     render() {
-        /*
          var WelCome=require("./js/views/system/welcome");
          var comp = <Scenes></Scenes>
          return (this.state.inited ?
@@ -38,7 +36,8 @@ var cjllxt=React.createClass({
          {comp}
          </View> :
          <WelCome statusText="正在初始化..."/>
-         );*/
+         );
+        /*
         return (
             <View style={{flex:1}}>
                 <Components.MD.Toolbar
@@ -49,44 +48,27 @@ var cjllxt=React.createClass({
                         {icon:'add',onPress:()=>Components.Dialog.show({content:'cctv'})}
                     ]}
                 />
-                <Components.MD.Card
-                    style={{
-                        marginTop:64
-                    }}
-                    onPress={()=>Components.Dialog.show({
-                        content:'my name is boboweiqi'
-                    })}
-                >
-                    <Components.MD.RadioButtonGroup
-                        onSelect={(value)=>{}}
-                        selected="wc"
-                        items={[
-                            {label:'yebo',value:'yebo'},
-                            {label:'wc',value:'wc'}
-                        ]}
-                    />
-                    <Components.MD.CheckboxGroup
-                        onSelect={(value)=>{}}
-                        checked={["wc"]}
-                        items={[
-                            {label:'yebo',value:'yebo'},
-                            {label:'wc',value:'wc',disabled:true}
-                        ]}
-                    />
-                </Components.MD.Card>
                 <Components.MD.Avatar
                     icon="add"
                     size={30}
-                    backgroundColor="#ff0000"
+                    backgroundColor="#333"
                 />
-                <Components.MD.Button
-                    text="点我呀"
-                    raised={true}
-                    theme="dark"
-                    primary="googleGreen"
-                />
+                <View style={{justifyContent:'center',alignItems:'flex-end'}}>
+                <Components.MD.IconToggle
+                    color="#ff0000"
+                    percent={50}
+                    badge={{
+                        value:99
+                    }}
+                >
+                    <Components.MD.Icon
+                        name="email"
+                        size={36}
+                    />
+                </Components.MD.IconToggle>
+                    </View>
                 </View>
-        );
+        );*/
     },
     componentDidMount(){
         Components.global=this;

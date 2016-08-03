@@ -33,15 +33,14 @@ module.exports=React.createClass({
     render() {
         return (
             <Components.FlexLayout>
-                <Components.NavigatorBar
+                <Components.MD.Toolbar
+                    icon="arrow-back"
+                    theme="dark"
                     title={this.props.title}
-                    alignCenter={false}
-                    leftBtn={{text:<Text>&#xf104;</Text>,action:()=>this.pop()}}
-                    rightBtn={
-                        [
-                            {text:<Text>&#xf067;</Text>,action:()=>this.jump("update")}
-                        ]
-                    }
+                    onIconPress={()=>this.pop()}
+                    actions={[
+                        {icon:'add',onPress:()=>this.jump("update")}
+                    ]}
                 />
                 <ScrollView contentContainerStyle={{flex:1,backgroundColor:'#fff'}}>
                 </ScrollView>

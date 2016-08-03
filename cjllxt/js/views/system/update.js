@@ -25,8 +25,8 @@ import {
     TimePickerAndroid,
     DatePickerAndroid
 } from 'react-native';
-import {MainStyle} from '../styles';
-import Components from '../components';
+import {MainStyle} from '../../styles';
+import Components from '../../components';
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var update=React.createClass({
     getInitialState() {
@@ -58,71 +58,16 @@ var update=React.createClass({
     render() {
         return (
             <Components.FlexLayout>
-                <Components.NavigatorBar
+                <Components.MD.Toolbar
+                    icon="arrow-back"
+                    theme="dark"
                     title="新建"
-                    alignCenter={true}
-                    leftBtn={{text:<Text>&#xf060;</Text>,action:this.handleBack}}
-                    rightBtn={[
-                        {text:<Text>&#xf00c;</Text>,action:this.handleSaveBtn}
+                    onIconPress={()=>this.pop()}
+                    actions={[
+                        {icon:'done',onPress:this.handleSaveBtn}
                     ]}
                 />
                 <ScrollView>
-                    <View style={{height:500}}>
-                    <Components.ListNavigator
-                        icons={[
-                            {
-                                iconSize:80,
-                                source:{uri:'icon1'},
-                                label: '首页',
-                                sublabel:'微信号：yeboweiqi',
-                                action: ()=>alert("boboweiqi"),
-                                rightComponent:<Components.Icon source={{uri:'icon1'}} size={16}/>
-                        },
-                            [
-                             {text:<Text>&#xf002;</Text>,label:'地图'},
-                             {text:<Text>&#xf003;</Text>,label:'首页'}
-                            ],
-                            {text:<Text>&#xf004;</Text>,label:'地图'},
-                            {text:<Text>&#xf105;</Text>,label:'首页'},
-                            [
-                                {text:<Text>&#xf002;</Text>,label:'地图'},
-                                {text:<Text>&#xf003;</Text>,label:'首页'}
-                            ]
-                        ]}
-                    />
-                    </View>
-                    <Components.GridNavigator
-                        column={4}
-                        size={24}
-                        icons={[
-                            {text:<Text>&#xf001;</Text>,label:'首页'},
-                            {text:<Text>&#xf002;</Text>,label:'地图'},
-                            {text:<Text>&#xf003;</Text>,label:'首页'},
-                            {text:<Text>&#xf004;</Text>,label:'地图'},
-                            {text:<Text>&#xf105;</Text>,label:'首页'},
-                            {text:<Text>&#xf006;</Text>,label:'地图'},
-                            {text:<Text>&#xf107;</Text>,label:'首页'},
-                            {text:<Text>&#xf008;</Text>,label:'地图'},
-                            {text:<Text>&#xf209;</Text>,label:'首页'},
-                            {text:<Text>&#xf017;</Text>,label:'地图'},
-                            {text:<Text>&#xf011;</Text>,label:'首页'},
-                            {text:<Text>&#xf112;</Text>,label:'地图'},
-                            {text:<Text>&#xf013;</Text>,label:'首页'},
-                            {text:<Text>&#xf014;</Text>,label:'地图'},
-                            {text:<Text>&#xf015;</Text>,label:'首页'},
-                            {text:<Text>&#xf016;</Text>,label:'地图'},
-                            {text:<Text>&#xf217;</Text>,label:'首页'},
-                            {text:<Text>&#xf018;</Text>,label:'地图'},
-                            {text:<Text>&#xf019;</Text>,label:'首页'},
-                            {text:<Text>&#xf020;</Text>,label:'地图'},
-                            {text:<Text>&#xf021;</Text>,label:'首页'},
-                            {text:<Text>&#xf022;</Text>,label:'地图'},
-                            {text:<Text>&#xf023;</Text>,label:'首页'},
-                            {text:<Text>&#xf024;</Text>,label:'地图'},
-                            {text:<Text>&#xf24a;</Text>,activeText:<Text>&#xf249;</Text>,label:'便签'},
-                            {text:<Text>&#xf013;</Text>,label:'配置'}
-                        ]}
-                    />
                     <View style={{margin:14}}>
                         <Components.FormDatePicker
                             required={true}
