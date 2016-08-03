@@ -5,10 +5,8 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
-import com.yapovich.vendor.baidumap.BaiduMapViewManager;
 import com.yapovich.vendor.dialog.DialogAndroid;
 import com.yapovich.vendor.mediaplayer.ReactMediaPlayerViewManager;
-import com.yapovich.vendor.slidingmenu.SlidingMenuViewManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,8 +30,6 @@ public class VendorPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> vms=new ArrayList<>();
         vms.add(new ReactMediaPlayerViewManager());
-        vms.add(new SlidingMenuViewManager());
-        vms.add(new BaiduMapViewManager());
         return vms;
     }
 }
