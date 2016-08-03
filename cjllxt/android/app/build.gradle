@@ -155,5 +155,5 @@ dependencies {
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
   from configurations.compile
-  into '../libs'
+  into 'libs'
 }
