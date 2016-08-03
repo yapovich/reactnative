@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">采集录入系统</string>
-    <string name="package_name">com.yapovich.cjllxt</string>
-    <string name="updateApk_url">
-        https://raw.githubusercontent.com/yapovich/reactnative/master/cjllxt/android/app/package/update.json
-    </string>
-</resources>
