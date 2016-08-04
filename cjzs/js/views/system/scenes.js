@@ -16,11 +16,11 @@ import Components from "../../components";
 import Message from "../../message";
 var scenes=React.createClass({
     render() {
-        var initialRoute={
-            name:'welcome',
-            delay:1000
-        }
-        var initialRouteComp={
+        var initialRouteStack=[
+            {name:'index'},
+            {name:'welcome'}
+        ]
+        var allRouteComp={
             welcome:require("./welcome"),
             index:require("./index"),
             list:require("./list"),
@@ -29,17 +29,18 @@ var scenes=React.createClass({
         };
         return (
             <Navigator
-                initialRoute={initialRoute}
-                configureScene={(route, routeStack) =>
-                    Navigator.SceneConfigs.PushFromRight}
-                onDidFocus={(route)=>{
-
+                ref={(nav)=>this.nav=nav}
+                initialRouteStack={initialRouteStack}
+                configureScene={(route, routeStack) => {
+                    return route.name=="welcome"?
+                        Navigator.SceneConfigs.FloatFromLeft:
+                        Navigator.SceneConfigs.PushFromRight;
                 }}
                 renderScene={(route, navigator) => {
                     var Component;
                     this._navigator = navigator;
-                    if(route.name&&initialRouteComp[route.name]){
-                        Component=initialRouteComp[route.name];
+                    if(route.name&&allRouteComp[route.name]){
+                        Component=allRouteComp[route.name];
                     }
                     return (<Component {...route} navigator={navigator}></Component>);
                 }

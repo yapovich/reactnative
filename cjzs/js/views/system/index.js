@@ -58,6 +58,7 @@ module.exports=React.createClass({
         this.drawer.openDrawer(0);
     },
     render() {
+        /*
         var navigationView = (
             <ScrollView contentContainerStyle={{flex: 1, backgroundColor: '#fff',paddingTop:Environment.IMMERSE_OFFSET}}>
                 <Components.ListNavigator
@@ -83,7 +84,20 @@ module.exports=React.createClass({
                     ]}
                 />
             </ScrollView>
-        );
+        );*/
+        var navigationView=(
+            <Components.MD.Drawer>
+                <Components.MD.Drawer.Header/>
+                <Components.MD.Drawer.Section
+                    title="波波维奇"
+                    items={[
+                        {icon:'add', iconColor:'#ff0000',value:'首选项'},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'关于采集助手',onPress:()=>this.jump("about")}
+                    ]}
+                />
+            </Components.MD.Drawer>
+            );
         return (
             <DrawerLayoutAndroid
                 ref={(drawer)=>this.drawer=drawer}

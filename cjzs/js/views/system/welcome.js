@@ -24,12 +24,12 @@ var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     getInitialState(){
       return {
-          count:5
+          count:2
       }
     },
     jump(name){
         if(this.props.navigator){
-            this.props.navigator.push({name:name});
+            this.props.navigator.pop();
         }
     },
     render() {
@@ -79,7 +79,7 @@ module.exports=React.createClass({
                 </Image>);
     },
     componentDidMount(){
-        if(this.props.delay) {
+        if(!this.props.loading) {
             this.time = setInterval(function () {
                 this.setState({count:--this.state.count})
                 //ToastCustom.show(this.state.count+"",ToastCustom.SHORT)
@@ -88,7 +88,7 @@ module.exports=React.createClass({
                     this.jump("index");
                 }
 
-            }.bind(this), this.props.delay);
+            }.bind(this), 1000);
         }
     }
 });

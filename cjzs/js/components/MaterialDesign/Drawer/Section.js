@@ -29,7 +29,7 @@ export default class Section extends Component {
                 {item.icon &&
                     <Icon
                         name={item.icon}
-                        color={color}
+                        color={item.iconColor?item.iconColor:color}
                         size={22}
                         style={styles.icon}
                     />

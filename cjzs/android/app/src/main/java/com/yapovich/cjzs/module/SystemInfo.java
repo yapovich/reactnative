@@ -1,5 +1,6 @@
 package com.yapovich.cjzs.module;
 
+import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -49,12 +50,13 @@ public class SystemInfo extends ReactContextBaseJavaModule {
                 json.put("appVersionCode",versionCode);
                 //应用程序版本名称
                 String versionName = getReactApplicationContext().getPackageManager().getPackageInfo(packageName, 0).versionName;
-                json.put("appVersionName",versionName);
+                json.put("appVersionName", versionName);
                 /*
                 json.put("androidVersionCode",22);
                 json.put("appVersionCode",1);
                 json.put("appVersionName","1.0");*/
                 successCallback.invoke(json.toString());
+
             }catch(Exception ex){
 
             }
