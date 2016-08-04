@@ -66,9 +66,8 @@ export default class Toolbar extends Component {
             leftIconColor: overrides && overrides.leftIconColor ? getColor(overrides.leftIconColor) : themeMap[theme].leftIconColor,
             rightIconColor: overrides && overrides.rightIconColor ? getColor(overrides.rightIconColor) : themeMap[theme].rightIconColor
         };
-
         return (
-            <View style={[styles.toolbar, {paddingTop: Environment.IMMERSE_OFFSET,backgroundColor :styleMap.backgroundColor, elevation }, style]}>
+            <View style={[styles.toolbar, {paddingTop:Environment.IMMERSE_OFFSET,backgroundColor :styleMap.backgroundColor, elevation }, style]}>
                 {
                     icon && (
                         <IconToggle

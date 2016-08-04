@@ -9,6 +9,21 @@ import {
     NativeModules
 } from 'react-native';
 var components={
+    //模块组件------------------------------------------------------------
+    get Toast(){
+        return {
+            short(text){
+                NativeModules.ToastCustomAndroid.show(text,NativeModules.ToastCustomAndroid.SHORT)
+            },
+            long(text){
+                NativeModules.ToastCustomAndroid.show(text,NativeModules.ToastCustomAndroid.LONG)
+            },
+            cancel(){
+                NativeModules.ToastCustomAndroid.cancel();
+            }
+        }
+    },
+    //视图组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},
     get SlidingMenu(){return require('./components/SlidingMenu')},
     get MediaPlayer(){return require('./components/MediaPlayer/index')},//媒体播放器

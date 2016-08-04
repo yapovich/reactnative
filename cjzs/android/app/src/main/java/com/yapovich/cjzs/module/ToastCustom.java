@@ -21,6 +21,7 @@ import java.util.Map;
 public class ToastCustom extends ReactContextBaseJavaModule {
     private static final String DURATION_SHORT="SHORT";
     private static final String DURATION_LONG="LONG";
+    private static Toast toast;
     public ToastCustom(ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -37,13 +38,12 @@ public class ToastCustom extends ReactContextBaseJavaModule {
     }
 
     /**
-     * �÷������ڸ�JavaScript���е���
      * @param message
      * @param duration
      */
     @ReactMethod
     public void show(String message, int duration) {
-        Toast toast = Toast.makeText(getReactApplicationContext(), message, duration);
+        toast = Toast.makeText(getReactApplicationContext(), message, duration);
         /*TextView textView = new TextView(getReactApplicationContext());
         textView.setText(message);
         textView.setBackgroundColor(0x1bfa5);
@@ -57,5 +57,10 @@ public class ToastCustom extends ReactContextBaseJavaModule {
         toast.setView(layout);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+    }
+    @ReactMethod
+    public void cancel() {
+        if(toast!=null)
+            toast.cancel();
     }
 }

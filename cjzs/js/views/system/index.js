@@ -89,9 +89,13 @@ module.exports=React.createClass({
             <Components.MD.Drawer>
                 <Components.MD.Drawer.Header/>
                 <Components.MD.Drawer.Section
-                    title="波波维奇"
                     items={[
-                        {icon:'add', iconColor:'#ff0000',value:'首选项'},
+                        {icon:'add', iconColor:'#ff0000',value:'首选项'}
+                    ]}
+                />
+                <Components.MD.Divider/>
+                <Components.MD.Drawer.Section
+                    items={[
                         {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
                         {icon:'add', value:'关于采集助手',onPress:()=>this.jump("about")}
                     ]}

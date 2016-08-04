@@ -130,7 +130,6 @@ export default class Section extends Component {
 
 const styles = {
     section: {
-        flex: 1,
         marginTop: 8
     },
     item: {

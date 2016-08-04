@@ -3,87 +3,93 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-import React, { Component } from 'react';
+import React,{ Component } from 'react';
 import {
     AppRegistry,
-    View,
-    Text,
-    Modal,
-    NativeModules,
-    ScrollView,
+    Navigator,
+    BackAndroid,
     Alert,
-    Image
+    NativeModules
 } from 'react-native';
-import Scenes from "./js/views/system/scenes";
-import Environment from "./js/environment";
 import Components from "./js/components";
-var SystemInfo=NativeModules.SystemInfoAndroid;
+import Message from "./js/message";
+var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var cjzs=React.createClass({
-  getInitialState() {
-    return {
-      inited: false,
-      comein: false
-    };
-  },
-  handleComeinBtn(){
-    this.setState({comein: true});
-  },
   render() {
-    var WelCome=require("./js/views/system/welcome");
-    var comp = <Scenes></Scenes>
-    return (this.state.inited ?
-            <View style={{flex: 1}}>
-              {comp}
-            </View> :
-            <WelCome loading={true}/>
+    var initialRouteStack=[
+      {name:'index'},
+      {name:'welcome'}
+    ]
+    var allRouteComp={
+      welcome:require("./js/views/system/welcome"),
+      index:require("./js/views/system/index"),
+      list:require("./js/views/system/list"),
+      update:require("./js/views/system/update"),
+      about:require("./js/views/system/about")
+    };
+    return (
+        <Navigator
+            ref={(nav)=>this.nav=nav}
+            initialRouteStack={initialRouteStack}
+            configureScene={(route, routeStack) => {
+              return route.name=="welcome"?
+                  Navigator.SceneConfigs.FloatFromLeft:
+                  Navigator.SceneConfigs.PushFromRight;
+            }}
+            renderScene={(route, navigator) => {
+              var Component;
+              this._navigator = navigator;
+              if(route.name&&allRouteComp[route.name]){
+                Component=allRouteComp[route.name];
+              }
+              return (<Component {...route} navigator={navigator}></Component>);
+            }
+            }
+        />
     );
-    /*
-     return (
-     <View style={{flex:1}}>
-     <Components.MD.Toolbar
-     icon="menu"
-     theme="dark"
-     title="采集录入系统"
-     actions={[
-     {icon:'add',onPress:()=>Components.Dialog.show({content:'cctv'})}
-     ]}
-     />
-     <Components.MD.Avatar
-     icon="add"
-     size={30}
-     backgroundColor="#333"
-     />
-     <View style={{justifyContent:'center',alignItems:'flex-end'}}>
-     <Components.MD.IconToggle
-     color="#ff0000"
-     percent={50}
-     badge={{
-     value:99
-     }}
-     >
-     <Components.MD.Icon
-     name="email"
-     size={36}
-     />
-     </Components.MD.IconToggle>
-     </View>
-     </View>
-     );*/
   },
-  componentDidMount(){
-    Components.global=this;
-    SystemInfo.getInfo((info)=>{
-      var json=JSON.parse(info);
-      Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
-      Environment.APP_VERSION_CODE=json.appVersionCode;
-      Environment.APP_VERSION_NAME=json.appVersionName;
-      if(Environment.ANDROID_VERSION_CODE>=19)
-        Environment.IMMERSE_OFFSET=25
-      this.setState({inited:true});
-      //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
+  componentDidMount() {
+    var navigator = this._navigator;
+    var flag=false;
+    BackAndroid.addEventListener('hardwareBackPress', function() {
+      var len=navigator.getCurrentRoutes().length;
+      if (navigator && len > 0 && navigator.getCurrentRoutes()[len-1].name!="welcome") {
+        if(len>1) {
+          navigator.pop();
+          return true;
+        }else{
+          //var indexRoute=navigator.getCurrentRoutes()[1];
+          Message.sendMessage({
+            what:'closeDrawer',
+            handler:(isDrawerOpened)=>{
+              if(!isDrawerOpened){
+                if(!flag) {
+                  flag=true;
+                  Components.Toast.short("再按一次退出程序哦！");
+                  setTimeout(()=>flag=false,2000);
+                }else{
+                  Components.Toast.cancel();
+                  BackAndroid.exitApp(0)
+                }
+
+                /*
+                 Components.Dialog.show({
+                 content:'确定要退出应用程序吗？',
+                 positiveText: '确定',
+                 negativeText: '取消',
+                 onPositive:()=>BackAndroid.exitApp(0)
+                 });*/
+              }
+            }
+          })
+          return true;
+        }
+      }
+      return false;
     });
   },
-  componentWillMount(){
-  }
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress');
+  },
 });
 AppRegistry.registerComponent('cjzs', () => cjzs);

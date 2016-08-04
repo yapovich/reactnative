@@ -11,6 +11,7 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.yapovich.cjzs.MainActivityManager;
 import com.yapovich.cjzs.R;
 
 import org.json.JSONObject;
@@ -118,8 +119,7 @@ public class SystemInfo extends ReactContextBaseJavaModule {
      * */
     @ReactMethod
     public void setFullScreen(boolean isFullScreen) {
-        final Window window=this.getCurrentActivity().getWindow();
-        //.getCurrentActivity().getWindow();
+        final Window window= MainActivityManager.getInstance().getCurrentActivity().getWindow();
         Message msg=new Message();
         if (!isFullScreen)
             msg.what=MessageProxy.SCREEN_NOT_FULL;

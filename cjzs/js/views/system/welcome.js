@@ -18,13 +18,14 @@ import {
     ActivityIndicator
 } from 'react-native';
 import Components from '../../components'
+import Environment from '../../environment'
 import WelcomeStyle from '../../stylesheets/welcomeStyle';
-var  ToastCustom=NativeModules.ToastCustomAndroid
 var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     getInitialState(){
       return {
-          count:2
+          count:3,
+          isloaded:false
       }
     },
     jump(name){
@@ -35,10 +36,10 @@ module.exports=React.createClass({
     render() {
         return (<Image style={WelcomeStyle.container} source={{uri: 'welcome'}}>
                      <View style={{flex:1,alignItems:'center',justifyContent:'flex-start',paddingTop:50}}>
-                        <Components.Icon source={{uri:'icon1'}} size={80} borderRadius={15}/>
+                         <Image source={{uri:'icon1'}} style={{width:80,height:80,borderRadius:15}}/>
                          <Text style={WelcomeStyle.subTitle}>地质勘测信息化，让工作更轻松</Text>
                          {
-                             this.props.loading?<ActivityIndicator
+                             !this.state.isloaded?<ActivityIndicator
                                  animating={true}
                                  color={Components.MD.getColor()}
                                  style={{
@@ -53,13 +54,13 @@ module.exports=React.createClass({
                       <View style={{flex:1,justifyContent:'flex-end',padding:10}}>
                           <Text style={{color:'#fff',fontSize:10}}>版权所有：浙江省地质调查院</Text>
                       </View>
-                       {!this.props.loading?
+                       {this.state.isloaded?
                     <TouchableOpacity
                         activeOpacity={1}
                         style={{
                             position: 'absolute',
-                            right: 14,
-                            top: 14
+                            right: 16,
+                            top: Environment.IMMERSE_OFFSET+16
                         }}
                         onPress={()=> {
                             clearInterval(this.time);
@@ -79,16 +80,22 @@ module.exports=React.createClass({
                 </Image>);
     },
     componentDidMount(){
-        if(!this.props.loading) {
+        SystemInfo.getInfo((info)=>{
+            var json=JSON.parse(info);
+            Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
+            Environment.APP_VERSION_CODE=json.appVersionCode;
+            Environment.APP_VERSION_NAME=json.appVersionName;
+            if(Environment.ANDROID_VERSION_CODE>=19)
+                Environment.IMMERSE_OFFSET=25
             this.time = setInterval(function () {
-                this.setState({count:--this.state.count})
+                this.setState({isloaded:true,count:--this.state.count})
                 //ToastCustom.show(this.state.count+"",ToastCustom.SHORT)
                 if(this.state.count==0){
                     clearInterval(this.time);
                     this.jump("index");
                 }
-
             }.bind(this), 1000);
-        }
+            //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
+        });
     }
 });
