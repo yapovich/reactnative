@@ -71,14 +71,6 @@ var cjzs=React.createClass({
                   Components.Toast.cancel();
                   BackAndroid.exitApp(0)
                 }
-
-                /*
-                 Components.Dialog.show({
-                 content:'确定要退出应用程序吗？',
-                 positiveText: '确定',
-                 negativeText: '取消',
-                 onPositive:()=>BackAndroid.exitApp(0)
-                 });*/
               }
             }
           })

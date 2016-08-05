@@ -31,7 +31,7 @@ export default class Drawer extends Component {
 
         const backgroundColorMap = {
             light: '#ffffff',
-            dark: '#333333'
+            dark: getColor()
         };
 
         const backgroundColor = (() => {

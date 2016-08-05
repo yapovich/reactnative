@@ -10,6 +10,7 @@ import React,{ Component } from 'react';
 import {
     Text,
     View,
+    Image,
     ScrollView,
     NativeModules,
     Dimensions,
@@ -87,15 +88,29 @@ module.exports=React.createClass({
         );*/
         var navigationView=(
             <Components.MD.Drawer>
-                <Components.MD.Drawer.Header/>
+                <Components.MD.Drawer.Header
+                    image={<Image source={{uri:"banner1"}} resizeMode="cover"/>}
+                >
+                    <View style={{flex:1,backgroundColor:"rgba(0,0,0,.50)",alignItems:'center',justifyContent:'center'}}>
+                        <Components.MD.Avatar
+                             image={<Image source={{uri:"icon1"}}/>}
+                             size={64}
+                             borderRadius={32}
+                        />
+                    </View>
+                </Components.MD.Drawer.Header>
                 <Components.MD.Drawer.Section
                     items={[
-                        {icon:'add', iconColor:'#ff0000',value:'首选项'}
-                    ]}
-                />
-                <Components.MD.Divider/>
-                <Components.MD.Drawer.Section
-                    items={[
+                        {icon:'add', iconColor:'#ff0000',value:'首选项'},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
+                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
                         {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
                         {icon:'add', value:'关于采集助手',onPress:()=>this.jump("about")}
                     ]}
@@ -105,7 +120,7 @@ module.exports=React.createClass({
         return (
             <DrawerLayoutAndroid
                 ref={(drawer)=>this.drawer=drawer}
-                drawerWidth={Dimensions.get('window').width-60}
+                drawerWidth={Dimensions.get('window').width-56}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
                 renderNavigationView={() => navigationView}
                 onDrawerOpen={()=>this.drawerOpened=true}

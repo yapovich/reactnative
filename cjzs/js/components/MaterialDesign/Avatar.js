@@ -53,7 +53,6 @@ export default class Avatar extends Component {
 
         if (icon) {
             return (
-                <View style={{ flex: 1 }}>
                     <View style={{ width: size, height: size, borderRadius: borderRadius, backgroundColor: getColor(backgroundColor), alignItems:'center', justifyContent: 'center' }}>
                         <Icon
                             name={icon}
@@ -61,17 +60,14 @@ export default class Avatar extends Component {
                             size={0.6 * size}
                         />
                     </View>
-                </View>
             );
         }
 
         if (text) {
             return (
-                <View style={{ flex: 1 }}>
                     <View style={{ width: size, height: size, borderRadius: borderRadius, backgroundColor: getColor(backgroundColor), alignItems:'center', justifyContent: 'center' }}>
                         <Text style={{ color: getColor(color) }}>{text}</Text>
                     </View>
-                </View>
             );
         }
 

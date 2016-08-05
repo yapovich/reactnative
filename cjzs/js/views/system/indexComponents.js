@@ -23,18 +23,21 @@ module.exports=React.createClass({
         }
     },
     render() {
+        /*
+         <Components.AutoPlayBanner
+         style={{marginBottom:8}}
+         delay={10000}
+         scale={2}
+         icons={[
+         {source:{uri:'banner1'}},
+         {source:{uri:'banner2'}},
+         {source:{uri:'banner3'}},
+         {source:{uri:'banner4'}},
+         {source:{uri:'banner1'}}
+         ]}/>
+        */
         return (<ScrollView style={{flex:1}}>
-                <Components.AutoPlayBanner
-                    style={{marginBottom:8}}
-                    delay={10000}
-                    scale={2}
-                    icons={[
-                        {source:{uri:'banner1'}},
-                        {source:{uri:'banner2'}},
-                        {source:{uri:'banner3'}},
-                        {source:{uri:'banner4'}},
-                        {source:{uri:'banner1'}}
-                    ]}/>
+
                 <Components.GridNavigator
                     border={1}
                     space={0}

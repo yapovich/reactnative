@@ -35,13 +35,13 @@ export default class Section extends Component {
                     />
                 }
                 <View style={styles.value}>
-                    <Text style={[TYPO.paperFontBody2, { color }]}>
+                    <Text style={[TYPO.paperFontBody1, { color }]}>
                         {item.value}
                     </Text>
                 </View>
                 {item.label &&
                     <View style={styles.label}>
-                        <Text style={[TYPO.paperFontBody2, { color }]}>
+                        <Text style={[TYPO.paperFontBody1, { color }]}>
                             {item.label}
                         </Text>
                     </View>

@@ -16,7 +16,7 @@ export const TYPO = typography;
  * Primary color name
  * @type {string}
  */
-export const PRIMARY = 'googleGreen';
+export const PRIMARY = 'googleBlue';
 
 /**
  * Paper style color names
