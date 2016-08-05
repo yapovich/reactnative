@@ -45,7 +45,7 @@ module.exports=React.createClass({
                     ]}
                 />
                 <Components.MD.AvatarNavigator index={0} visible={true}
-                                               backgroundColor='googleGrey'
+                                               backgroundColor={Components.MD.PRIMARY}
                                                name={this.state.showMenu?"keyboard-arrow-down":"keyboard-arrow-up"}
                                                onPress={()=>this.setState({showMenu:!this.state.showMenu})}/>
                 <Components.MD.AvatarNavigator index={1} visible={this.state.showMenu}
@@ -55,7 +55,7 @@ module.exports=React.createClass({
                 <Components.MD.AvatarNavigator index={2} visible={this.state.showMenu}
                                                name="add"
                                                onPress={()=>this.jump("update")}/>
-                <ScrollView contentContainerStyle={{backgroundColor:'#fff'}}>
+                <ScrollView style={{flex:1,backgroundColor:'#fff'}}>
                     <Text>波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇</Text>
                     <Text>波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇</Text>
                     <Text>波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇波波维奇</Text>
