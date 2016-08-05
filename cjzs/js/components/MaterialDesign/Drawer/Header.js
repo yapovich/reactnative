@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {View, Image} from "react-native";
 import { getColor } from '../helpers';
+import Environment from '../../../environment';
 export default class Header extends Component {
 
     static propTypes = {
@@ -16,7 +17,7 @@ export default class Header extends Component {
     };
 
     render() {
-        const { image, height, backgroundColor, children } = this.props;
+        const { image, height, backgroundColor, children ,style} = this.props;
 
         if (image) {
             return React.cloneElement(image, {
@@ -25,7 +26,7 @@ export default class Header extends Component {
         }
 
         return (
-            <View style={[styles.header, { height: height, backgroundColor: backgroundColor }]}>
+            <View style={[styles.header, { height: height, backgroundColor: backgroundColor },style]}>
                 {children}
             </View>
         );
@@ -34,7 +35,7 @@ export default class Header extends Component {
 
 const styles = {
     header: {
-        paddingHorizontal: 0,
-        marginBottom: 8
+        paddingTop:Environment.IMMERSE_OFFSET,
+        paddingHorizontal: 0
     }
 };

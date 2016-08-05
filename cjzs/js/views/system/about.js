@@ -54,21 +54,27 @@ module.exports=React.createClass({
                 <Components.MD.Toolbar
                     icon="arrow-back"
                     theme="dark"
-                    title="关于采集助手"
+                    title=""
                     onIconPress={this.pop}
                 />
-                <View style={{flex:1,paddingTop:8}}>
+                <Components.MD.Drawer.Header
+                    style={{paddingTop:0}}
+                >
+                    <View style={{alignItems:'center',justifyContent:'center'}}>
+                       <View style={{alignItems:'center',marginTop:14}}>
+                        <Components.Icon
+                            source={{uri:'icon1'}}
+                            size={64}
+                            borderRadius={15}
+                        />
+                      </View>
+                      <View style={{alignItems:'center',marginTop:14}}>
+                        <Text style={{color:'#fff',fontWeight:'bold',fontSize:16}}>采集助手</Text>
+                      </View>
+                    </View>
+                </Components.MD.Drawer.Header>
+                <View style={{flex:1}}>
                     <ScrollView contentContainerStyle={{flex:1,backgroundColor:'#fff',alignItems:'center'}}>
-                        <View style={{alignItems:'center',marginTop:14}}>
-                            <Components.Icon
-                               source={{uri:'icon1'}}
-                               size={64}
-                               borderRadius={15}
-                            />
-                        </View>
-                        <View style={{alignItems:'center',marginTop:14}}>
-                            <Text style={{color:'#000',fontWeight:'bold',fontSize:16}}>采集助手</Text>
-                        </View>
                         <View style={{alignItems:'center',margin:14}}>
                             <Text style={{color:'#000',fontSize:14}}>采集助手是浙江省地质调查院的野外信息采集与记录平台，主要面向在野外地质勘测人员，记录勘测信息，并支持后期的数据导出与整理工作。旨在利用移动APP引进新的信息录入模式，提供工作效率。</Text>
                         </View>

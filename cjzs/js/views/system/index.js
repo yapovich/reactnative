@@ -89,28 +89,20 @@ module.exports=React.createClass({
         var navigationView=(
             <Components.MD.Drawer>
                 <Components.MD.Drawer.Header
-                    image={<Image source={{uri:"banner1"}} resizeMode="cover"/>}
+                    image={<Image source={{uri:"drawer"}} resizeMode="cover"/>}
                 >
-                    <View style={{flex:1,backgroundColor:"rgba(0,0,0,.50)",alignItems:'center',justifyContent:'center'}}>
-                        <Components.MD.Avatar
-                             image={<Image source={{uri:"icon1"}}/>}
-                             size={64}
-                             borderRadius={32}
-                        />
+                    <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                         <Text style={{color:'#fff'}}>欢迎使用采集助手</Text>
+                         <Components.MD.Icon
+                            name="settings"
+                            color="#fff"
+                            style={{position:'absolute',top:5,right:16}}
+                         />
                     </View>
                 </Components.MD.Drawer.Header>
                 <Components.MD.Drawer.Section
                     items={[
                         {icon:'add', iconColor:'#ff0000',value:'首选项'},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
-                        {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
                         {icon:'add', value:'系统升级', label:Environment.APP_VERSION_NAME},
                         {icon:'add', value:'关于采集助手',onPress:()=>this.jump("about")}
                     ]}
@@ -133,16 +125,16 @@ module.exports=React.createClass({
                       title="采集录入系统"
                       onIconPress={this.openDrawer}
                   />
-                <Components.BottomNavigator
+                <Components.MD.BottomBarNavigator
                     scrollEnabled={false}
                     icons={[
-                        {text:<Text>&#xf015;</Text>,label:'首页'},
-                        {text:<Text>&#xf279;</Text>,label:'地图'}
+                        {name:"add",label:'采录'},
+                        {name:"mail",label:'地图'}
                     ]}
                 >
                     <View><IndexComponents  navigator={this.props.navigator}/></View>
                     <View><IndexSetting navigator={this.props.navigator}/></View>
-                </Components.BottomNavigator>
+                </Components.MD.BottomBarNavigator>
               </Components.FlexLayout>
             </DrawerLayoutAndroid>
         );

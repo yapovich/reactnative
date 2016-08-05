@@ -57,7 +57,7 @@ var update=React.createClass({
     },
     render() {
         return (
-            <Components.FlexLayout>
+            <View style={{flex:1,backgroundColor:'#fff'}}>
                 <Components.MD.Toolbar
                     icon="arrow-back"
                     theme="dark"
@@ -267,7 +267,7 @@ var update=React.createClass({
                         />
                     </View>
                 </ScrollView>
-            </Components.FlexLayout>
+            </View>
         );
     }
 });

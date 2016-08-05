@@ -33,8 +33,7 @@ export default class Toolbar extends Component {
 
     static defaultProps = {
         theme: 'dark',
-        primary: PRIMARY,
-        elevation: 4
+        primary: PRIMARY
     };
 
     render() {

@@ -87,6 +87,8 @@ module.exports=React.createClass({
             Environment.APP_VERSION_NAME=json.appVersionName;
             if(Environment.ANDROID_VERSION_CODE>=19)
                 Environment.IMMERSE_OFFSET=25
+            else
+                Environment.IMMERSE_OFFSET=0
             this.time = setInterval(function () {
                 this.setState({isloaded:true,count:--this.state.count})
                 //ToastCustom.show(this.state.count+"",ToastCustom.SHORT)

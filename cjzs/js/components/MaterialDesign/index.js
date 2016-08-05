@@ -16,3 +16,6 @@ export { default as RadioButtonGroup } from './RadioButtonGroup';
 export { default as Subheader } from './Subheader';
 export { default as Toolbar } from './Toolbar';
 export { default as VectorIconComponent } from './VectorIconComponent';
+export { default as TabBar } from './TabBar';
+export { default as AvatarNavigator } from './AvatarNavigator';
+export { default as BottomBarNavigator } from './BottomBarNavigator';
