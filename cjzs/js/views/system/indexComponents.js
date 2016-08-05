@@ -36,25 +36,7 @@ module.exports=React.createClass({
          {source:{uri:'banner1'}}
          ]}/>
         */
-        var items=[
-            {icon:'account-box'},
-            {icon:'wb-cloudy'},
-            {icon:'attach-file'},
-            {icon:'edit'},
-            {icon:'mail-outline'}
-        ]/*
-        items=[
-            {label:'运维'},
-            {label:'运维'},
-            {label:'运维'},
-            {label:'运维'},
-            {label:'运维'}
-        ]*/
         return (<ScrollView style={{flex:1}}>
-                <Components.MD.TabBar
-                    theme="dark"
-                    items={items}
-                />
                 <Components.GridNavigator
                     border={1}
                     space={0}
