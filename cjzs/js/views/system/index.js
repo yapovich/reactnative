@@ -124,7 +124,7 @@ module.exports=React.createClass({
                   <Components.MD.Toolbar
                       icon="menu"
                       theme="dark"
-                      title="采集录入系统"
+                      title="采集助手"
                       onIconPress={this.openDrawer}
                   />
                 <Components.MD.BottomBarNavigator

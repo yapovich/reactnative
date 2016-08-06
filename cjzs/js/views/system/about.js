@@ -20,7 +20,8 @@ var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     getInitialState(){
         return {
-            viewPage:0,
+            isNeedUpdate:false,
+            newVersionName:''
         };
     },
     pop(){
@@ -28,10 +29,16 @@ module.exports=React.createClass({
             this.props.navigator.pop();
         }
     },
-    jump(name){
-        if(this.props.navigator){
-            this.props.navigator.push({name:name});
+    getIsNeedUpdate(){
+        if(!this.state.isNeedUpdate) {
+            SystemInfo.getIsNeedUpdate(function (newVersionName) {
+                this.setState({isNeedUpdate: newVersionName ? true : false, newVersionName: newVersionName});
+            }.bind(this));
         }
+    },
+    checkUpdate(){
+       if(!this.state.isNeedUpdate)
+           this.getIsNeedUpdate();
     },
     render() {
         var mediaWidth=Dimensions.get('window').width-28;
@@ -75,17 +82,27 @@ module.exports=React.createClass({
                 </Components.MD.Drawer.Header>
                 <View style={{flex:1}}>
                     <ScrollView contentContainerStyle={{flex:1,backgroundColor:'#fff',alignItems:'center'}}>
-                        <View style={{alignItems:'center',margin:14}}>
-                            <Text style={{color:'#000',fontSize:14}}>采集助手是浙江省地质调查院的野外信息采集与记录平台，主要面向在野外地质勘测人员，记录勘测信息，并支持后期的数据导出与整理工作。旨在利用移动APP引进新的信息录入模式，提供工作效率。</Text>
-                        </View>
-                        <View style={{alignItems:'center',marginTop:14}}>
-                            <Text style={{color:'#000',fontWeight:'bold',fontSize:14}}>版本：{Environment.APP_VERSION_NAME}</Text>
-                        </View>
+                        <Text style={{color:'#000',fontSize:14,margin:16}}>采集助手是浙江省地质调查院的野外信息采集与记录平台，主要面向在野外地质勘测人员，记录勘测信息，并支持后期的数据导出与整理工作。旨在利用移动APP引进新的信息录入模式，提供工作效率。</Text>
+                        <Text style={{color:'#000',fontWeight:'bold',fontSize:14}}>版本：{Environment.APP_VERSION_NAME}</Text>
+                        <Components.MD.Button
+                            style={{width:150,margin:16}}
+                            raised={true}
+                            text={this.state.isNeedUpdate?'在线更新':'检查更新'}
+                            theme="dark"
+                            type="normal"
+                            onPress={this.checkUpdate}
+                        />
+                        {
+                            this.state.isNeedUpdate?
+                                <Text style={{color:'#ff0000',fontSize:14}}>发布新版本啦！[{this.state.newVersionName}]</Text>:
+                                <Text style={{color:'#ccc',fontSize:14}}>已是最新版本！</Text>
+                        }
                     </ScrollView>
                 </View>
             </Components.FlexLayout>
         );
     },
     componentDidMount() {
+        this.getIsNeedUpdate();
     }
 });

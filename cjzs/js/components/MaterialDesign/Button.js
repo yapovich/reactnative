@@ -49,7 +49,7 @@ export default class Button extends Component {
 
     render() {
         const { elevation } = this.state;
-        const { text, value, theme, primary, overrides, disabled, raised, onPress, onLongPress } = this.props;
+        const { style,text, value, theme, primary, overrides, disabled, raised, onPress, onLongPress } = this.props;
 
         const textStyleMap = {
             flat: {
@@ -179,7 +179,7 @@ export default class Button extends Component {
                         styles.button,
                         buttonStyle, {
                             backgroundColor: buttonStyle && buttonStyle.backgroundColor
-                        }
+                        },style
                     ]}
                 >
                     <Text style={[TYPO.paperFontButton, textStyle, styles.text]}>
@@ -203,7 +203,7 @@ export default class Button extends Component {
                         }, raised && !isCompatible('elevation') && Platform.OS !== 'ios' && {
                             borderWidth: 1,
                             borderColor: 'rgba(0,0,0,.12)'
-                        }
+                        },style
                     ]}
                 >
                     <Text style={[TYPO.paperFontButton, textStyle, styles.text]}>
@@ -226,7 +226,7 @@ export default class Button extends Component {
                     buttonStyle, {
                         backgroundColor: buttonStyle && buttonStyle.backgroundColor,
                         elevation: raised ? elevation : 0
-                    }]}
+                    },style]}
                 >
                     <Text style={[TYPO.paperFontButton, textStyle, styles.text]}>
                         {text || value}
