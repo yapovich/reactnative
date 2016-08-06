@@ -21,6 +21,7 @@ import IndexComponents from './indexComponents'
 import IndexMap from './indexMap'
 import IndexSetting from './indexSetting'
 import IndexMaillist from './indexMaillist'
+import IndexAssignment from './indexAssignment'
 import Environment from "../../environment";
 import Message from "../../message";
 var SystemInfo=NativeModules.SystemInfoAndroid;
@@ -129,13 +130,15 @@ module.exports=React.createClass({
                 <Components.MD.BottomBarNavigator
                     scrollEnabled={false}
                     icons={[
-                        {name:"add",label:'首页'},
-                        {name:"mail",label:'通讯录'},
-                        {name:"settings",label:'配置'},
+                        {name:"home",label:'首页'},
+                        {name:"account-circle",label:'联系人'},
+                        {name:"assignment",label:'备忘录'},
+                        {name:"settings",label:'配置'}
                     ]}
                 >
                     <View><IndexComponents  navigator={this.props.navigator}/></View>
                     <View><IndexMaillist navigator={this.props.navigator}/></View>
+                    <View><IndexAssignment navigator={this.props.navigator}/></View>
                     <View><IndexSetting navigator={this.props.navigator}/></View>
                 </Components.MD.BottomBarNavigator>
               </Components.FlexLayout>

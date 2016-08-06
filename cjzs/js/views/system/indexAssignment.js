@@ -28,24 +28,9 @@ module.exports=React.createClass({
         }
     },
     render(){
-        var items=[
-            {icon:'account-box'},
-            {icon:'wb-cloudy'},
-            {icon:'attach-file'},
-            {icon:'edit'},
-            {icon:'mail-outline'}
-        ]
-         items=[
-             {label:'常用联系人'},
-             {label:'手机通讯录'},
-             {label:'院内通讯录'}
-         ]
         return (
             <Components.FlexLayout>
-                <Components.MD.TabBar
-                    theme="dark"
-                    items={items}
-                />
+                <Text>备忘录</Text>
            </Components.FlexLayout>
         );
     },
