@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {StyleSheet, View, Text, TouchableWithoutFeedback} from "react-native";
 import { TYPO } from './config';
-
+import Ripple  from './Ripple';
 export default class List extends Component {
 
     static propTypes = {
@@ -42,14 +42,17 @@ export default class List extends Component {
             onLeftIconClicked,
             onRightIconClicked,
             secondaryTextMoreLine,
-            captionText
+            captionText,
+            captionIcon,
+            style,
+            splitLine
         } = this.props;
-
         return (
-                <View style={[styles.listContainer, { height: lines > 2 ? ((lines -1) * 16 + 56) : (secondaryText ? 72 : (leftAvatar || rightAvatar ) ? 56 : 48) }]}>
+            <Ripple onPress={onPress}>
+                <View style={[styles.listContainer, {borderBottomWidth:splitLine?splitLine:0,height: lines > 2 ? ((lines -1) * 16 + 56) : (secondaryText ? 72 : (leftAvatar || rightAvatar ) ? 56 : 48) },style]}>
                     {leftIcon &&
                         <TouchableWithoutFeedback onPress={onLeftIconClicked}>
-                            <View style={[styles.leftIcon, lines > 2 && { paddingTop: 16, alignSelf: 'flex-start' }]}>
+                            <View style={[styles.leftIcon, lines > 2 && { paddingTop: 16, alignSelf: 'flex-start'}]}>
                                 {leftIcon}
                             </View>
                         </TouchableWithoutFeedback>
@@ -59,7 +62,7 @@ export default class List extends Component {
                             {leftAvatar}
                         </View>
                     }
-                    <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <View style={{ flex: 1, justifyContent: 'center'}}>
                         <View style={styles.firstLine}>
                             <View style={styles.primaryTextContainer}>
                                 <Text numberOfLines={1} style={[styles.primaryText,{ color: primaryColor }]}>
@@ -74,13 +77,15 @@ export default class List extends Component {
                                 </View>
                             }
                         </View>
+                        <View style={styles.firstLine}>
                         {secondaryText &&
-                            <View>
-                                <Text style={[{ height:18 }, lines > 2 && { height: 22 * (lines - 1) -4 }, styles.secondaryText]}>
+                            <View style={styles.secondaryTextContainer}>
+                                <Text numberOfLines={1} style={[{ height:18 }, lines > 2 && { height: 22 * (lines - 1) -4 }, styles.secondaryText]}>
                                     {secondaryText}
                                 </Text>
                             </View>
                         }
+                        {captionIcon}
                         {secondaryTextMoreLine &&
                             <View style={[{ height:18 }, lines > 2 && { height: 22 * (lines - 1) - 4 }]}>
                                 {secondaryTextMoreLine.map((line) => (
@@ -90,6 +95,7 @@ export default class List extends Component {
                                 ))}
                             </View>
                         }
+                        </View>
                     </View>
 
                     {rightAvatar &&
@@ -116,7 +122,6 @@ export default class List extends Component {
                                         alignSelf: 'flex-end',
                                         justifyContent:'flex-end'
                                     }]}
-                                    onPress={onRightIconClicked}
                                 >
                                     {rightIcon}
                                 </View>
@@ -124,27 +129,27 @@ export default class List extends Component {
                         }
                     </View>
                 </View>
+            </Ripple>
         )
     }
 }
-
 const styles = StyleSheet.create({
     listContainer: {
         flexDirection: 'row',
         paddingLeft: 16,
         paddingRight: 16,
-        height: 48,
-        alignItems: 'center'
+        minHeight: 48,
+        alignItems: 'center',
+        borderColor:'#eee',
+        borderStyle:'solid'
     },
     leftIcon: {
-        width: 56,
-        position: 'relative',
-        top: -6
+        marginRight:16,
+        position: 'relative'
     },
     rightIcon: {
         paddingLeft: 16,
         position: 'relative',
-        top: -3,
         left: -8
     },
     leftAvatar: {
@@ -161,6 +166,11 @@ const styles = StyleSheet.create({
     }),
     firstLine: {
         flexDirection: 'row'
+    },
+    secondaryTextContainer: {
+        flex: 1,
+        paddingRight: 16,
+        justifyContent:'flex-start'
     },
     primaryTextContainer: {
         flex: 1,

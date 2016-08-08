@@ -25,7 +25,7 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Window window = getWindow();
-        //初始化时全屏
+        //?????????
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -38,17 +38,17 @@ public class MainActivity extends ReactActivity {
             @Override
             public void handleMessage(Message msg) {
                 if (msg != null) {
-                    if (msg.what == MessageProxy.SCREEN_NOT_FULL) {//取消全屏
+                    if (msg.what == MessageProxy.SCREEN_NOT_FULL) {//??????
                         window.setFlags(
                                 WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                    } else if (msg.what == MessageProxy.SCREEN_FULL) {//全屏
+                    } else if (msg.what == MessageProxy.SCREEN_FULL) {//???
                         window.setFlags(
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                    } else if (msg.what == MessageProxy.SCREEN_ORIENTATION_LANDSCAPE) {//横屏
+                    } else if (msg.what == MessageProxy.SCREEN_ORIENTATION_LANDSCAPE) {//????
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    } else if (msg.what == MessageProxy.SCREEN_ORIENTATION_PORTRAIT) {//竖屏
+                    } else if (msg.what == MessageProxy.SCREEN_ORIENTATION_PORTRAIT) {//????
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                     }
                 }

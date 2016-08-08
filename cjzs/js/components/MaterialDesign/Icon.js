@@ -14,7 +14,7 @@ export default class Icon extends Component {
     };
 
     static defaultProps = {
-        size: 30,
+        size: 16,
         color: '#757575',
         allowFontScaling: true
     };

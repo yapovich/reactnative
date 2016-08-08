@@ -25,7 +25,6 @@ import {
     TimePickerAndroid,
     DatePickerAndroid
 } from 'react-native';
-import {MainStyle} from '../../styles';
 import Components from '../../components';
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var update=React.createClass({
