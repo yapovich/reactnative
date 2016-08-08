@@ -16,6 +16,7 @@ import Message from "./js/message";
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var cjzs=React.createClass({
   render() {
+
     var initialRouteStack=[
       {name:'index'},
       {name:'welcome'}

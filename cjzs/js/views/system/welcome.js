@@ -20,11 +20,12 @@ import {
 } from 'react-native';
 import Components from '../../components'
 import Environment from '../../environment'
+import SQLite from '../../storages/sqlite'
 var SystemInfo=NativeModules.SystemInfoAndroid;
 module.exports=React.createClass({
     getInitialState(){
       return {
-          count:3,
+          count:30,
           isloaded:false
       }
     },
@@ -81,6 +82,26 @@ module.exports=React.createClass({
     },
     componentDidMount(){
         SystemInfo.getInfo((info)=>{
+            var db = SQLite.openDatabase("test.db", "1.0", "Test Database", 200000,
+                ()=>{
+                    Components.Toast.short("创建数据库成功")
+            }, ()=>{
+                    Components.Toast.short("创建数据库失败")
+                });
+            db.transaction((tx) => {
+                tx.executeSql('CREATE TABLE COMPANY('
+                    +'ID INT PRIMARY KEY NOT NULL,'
+                    +'NAME TEXT NOT NULL,'
+                    +'AGE INT NOT NULL,'
+                    +'ADDRESS CHAR(50),'
+                    +'SALARY REAL)',[],()=>{
+                    Components.Toast.short("创建表COMPANY成功")
+                },()=>{
+                    Components.Toast.short("创建表COMPANY失败")
+                });
+            });
+
+            /*
             var json=JSON.parse(info);
             Environment.ANDROID_VERSION_CODE=json.androidVersionCode;
             Environment.APP_VERSION_CODE=json.appVersionCode;
@@ -96,8 +117,7 @@ module.exports=React.createClass({
                     clearInterval(this.time);
                     this.jump("index");
                 }
-            }.bind(this), 1000);
-            //alert("安卓版本："+systeminfo.ANDROID_VERSION_CODE+";应用程序版本："+systeminfo.APP_VERSION_CODE+";应用程序版本名称："+systeminfo.APP_VERSION_NAME);
+            }.bind(this), 1000);*/
         });
     }
 });

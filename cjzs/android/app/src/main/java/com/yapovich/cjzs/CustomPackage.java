@@ -9,6 +9,7 @@ import com.yapovich.cjzs.module.SystemInfo;
 import com.yapovich.cjzs.module.ToastCustom;
 import com.yapovich.cjzs.vendor.dialog.DialogAndroid;
 import com.yapovich.cjzs.vendor.mediaplayer.ReactMediaPlayerViewManager;
+import com.yapovich.cjzs.vendor.sqlite.SQLitePlugin;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +25,7 @@ public class CustomPackage implements ReactPackage {
         modules.add(new ToastCustom(reactContext));
         modules.add(new SystemInfo(reactContext));
         modules.add(new DialogAndroid(reactContext));
+        modules.add(new SQLitePlugin(reactContext));
         return modules;
     }
     @Override

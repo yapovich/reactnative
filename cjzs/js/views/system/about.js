@@ -30,11 +30,10 @@ module.exports=React.createClass({
         }
     },
     getIsNeedUpdate(){
-        if(!this.state.isNeedUpdate) {
             SystemInfo.getIsNeedUpdate(function (newVersionName) {
-                this.setState({isNeedUpdate: newVersionName ? true : false, newVersionName: newVersionName});
+                if (this.isMounted())
+                  this.setState({isNeedUpdate: newVersionName ? true : false, newVersionName: newVersionName});
             }.bind(this));
-        }
     },
     checkUpdate(){
        if(!this.state.isNeedUpdate)
@@ -94,8 +93,8 @@ module.exports=React.createClass({
                         />
                         {
                             this.state.isNeedUpdate?
-                                <Text style={{color:'#ff0000',fontSize:14}}>发布新版本啦！[{this.state.newVersionName}]</Text>:
-                                <Text style={{color:'#ccc',fontSize:14}}>已是最新版本！</Text>
+                                <Text style={{color:'#ff0000',fontSize:14}}>发布新版本 {this.state.newVersionName}</Text>:
+                                <Text style={{color:'#ccc',fontSize:14}}>已是最新版本</Text>
                         }
                     </ScrollView>
                 </View>
@@ -103,6 +102,6 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-        this.getIsNeedUpdate();
+        this.checkUpdate();
     }
 });

@@ -15,7 +15,7 @@ import {
     Image,
     NativeModules,
     ListView,
-    RecyclerViewBackedScrollView
+    RefreshControl
 } from 'react-native';
 import Components from '../../components';
 module.exports=React.createClass({
@@ -23,6 +23,7 @@ module.exports=React.createClass({
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         return {
             showMenu:false,
+            refreshing:false,
             dataSource: ds.cloneWithRows([])
         };
     },
@@ -36,24 +37,22 @@ module.exports=React.createClass({
             this.props.navigator.push({name:name});
         }
     },
-    refreshData(){
+    loadData(){
           var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
           var result=[];
           for(var i=0;i<20;i++)
-              result.push({mainTitle:'我的名字',subTitle:'yebo'+i})
-          //this.setState({dataSource:ds.cloneWithRows(result)})
+              result.push({mainTitle:(Math.random()+"").replace('.',''),subTitle:(Math.random()+"").replace('.','')})
+          this.setState({dataSource:ds.cloneWithRows(result)})
     },
     getListComponent(rowData, sectionID, rowID, highlightRow){
-        /*
         return <Components.MD.List
             splitLine={rowID<this.state.dataSource.length-1?1:0}
             primaryText={rowData.mainTitle}
             secondaryText={rowData.subTitle}
-            captionText="8月8日8月8日"
-            captionIcon={<Components.MD.Icon name="email"/>}
+            captionText="2016/8/8"
+            captionIcon={<Components.MD.Icon name="email" color="#8d8d8d"/>}
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
-        />;*/
-        return (<Text>boboweiqi</Text>);
+        />;
     },
     renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
         return (
@@ -61,10 +60,15 @@ module.exports=React.createClass({
                 key={`${sectionID}-${rowID}`}
                 style={{
                     height: adjacentRowHighlighted ? 4 : 1,
-                    backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC',
+                    backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#ddd',
                 }}
             />
         );
+    },
+    onRefresh(){
+        this.setState({refreshing: true});
+        this.loadData();
+        this.setState({refreshing: false});
     },
     render() {
         return (
@@ -91,16 +95,24 @@ module.exports=React.createClass({
                                                name="add"
                                                onPress={()=>this.jump("update")}/>
                 <ListView
+                        enableEmptySections={true}
                         style={{flex:1,backgroundColor:'#fff'}}
                         dataSource={this.state.dataSource}
                         renderRow={this.getListComponent}
-                        renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
+                        renderScrollComponent={props => <ScrollView {...props} />}
                         renderSeparator={this.renderSeparator}
+                        refreshControl={
+                            <RefreshControl
+                                colors={[Components.MD.getColor(Components.MD.PRIMARY)]}
+                                refreshing={this.state.refreshing}
+                                onRefresh={this.onRefresh}
+                            />
+                        }
                 />
             </Components.FlexLayout>
         );
     },
     componentDidMount() {
-        //this.refreshData();
+        this.loadData();
     }
 });

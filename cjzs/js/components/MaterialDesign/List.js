@@ -111,7 +111,7 @@ export default class List extends Component {
                     <View style={{ flexDirection: 'column' }}>
                         {lines > 2 && !!rightIcon && !!captionText &&
                             <View style={styles.captionTextContainer2}>
-                                <Text>{captionText}</Text>
+                                <Text style={styles.captionText}>{captionText}</Text>
                             </View>}
 
                         {rightIcon &&
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         alignItems: 'flex-start'
     },
-    captionText: Object.assign({}, TYPO.paperFontCaption),
+    captionText: Object.assign({color:'#8d8d8d'}, TYPO.paperFontCaption),
     captionTextContainer2: {
         alignSelf: 'flex-end',
         alignItems: 'flex-end'
