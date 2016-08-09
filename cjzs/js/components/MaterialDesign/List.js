@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from "react";
 import {StyleSheet, View, Text, TouchableWithoutFeedback} from "react-native";
 import { TYPO } from './config';
-import Ripple  from './Ripple';
+import Ripple from './Ripple';
 export default class List extends Component {
 
     static propTypes = {
         primaryText: PropTypes.string.isRequired,
         secondaryText: PropTypes.string,
-        captionText: PropTypes.string,
+        captionText: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
         secondaryTextMoreLine: PropTypes.arrayOf(PropTypes.shape({
             text: PropTypes.string.isRequired,
             style: PropTypes.object

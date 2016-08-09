@@ -6,7 +6,7 @@ import {
     AsyncStorage,
     NativeModules
 } from 'react-native';
-import HashMap from '../entries/HashMap';
+import HashMap from '../../entries/HashMap';
 var ToastCustomAndroid= NativeModules.ToastCustomAndroid;
 var STORAGE_KEY='@MainStorage:';
 module.exports={

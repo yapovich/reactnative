@@ -19,7 +19,7 @@ var cjzs=React.createClass({
 
     var initialRouteStack=[
       {name:'index'},
-      {name:'welcome'}
+      {name:'list'}
     ]
     var allRouteComp={
       welcome:require("./js/views/system/welcome"),

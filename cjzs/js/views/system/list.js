@@ -18,6 +18,8 @@ import {
     RefreshControl
 } from 'react-native';
 import Components from '../../components';
+import {default as InfoDao} from '../../storages/dao/InfoDao';
+var infoDao=new InfoDao();
 module.exports=React.createClass({
     getInitialState(){
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -38,18 +40,18 @@ module.exports=React.createClass({
         }
     },
     loadData(){
-          var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-          var result=[];
-          for(var i=0;i<20;i++)
-              result.push({mainTitle:(Math.random()+"").replace('.',''),subTitle:(Math.random()+"").replace('.','')})
-          this.setState({dataSource:ds.cloneWithRows(result)})
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        infoDao.getAllInfos((result)=>{
+            if(result&&result.length>0)
+              this.setState({dataSource:ds.cloneWithRows(result)});
+        });
     },
     getListComponent(rowData, sectionID, rowID, highlightRow){
         return <Components.MD.List
             splitLine={rowID<this.state.dataSource.length-1?1:0}
-            primaryText={rowData.mainTitle}
-            secondaryText={rowData.subTitle}
-            captionText="2016/8/8"
+            primaryText={rowData.name}
+            secondaryText={rowData.yph}
+            captionText={rowData.id}
             captionIcon={<Components.MD.Icon name="email" color="#8d8d8d"/>}
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
         />;

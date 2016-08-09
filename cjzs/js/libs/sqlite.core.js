@@ -698,7 +698,6 @@ SQLiteFactory.prototype.openDatabase = argsArray(function(args) {
       }
     }
   }
-
   return new SQLitePlugin(openargs, okcb, errorcb);
 });
 

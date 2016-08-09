@@ -1,5 +1,6 @@
 package com.yapovich.cjzs.module;
 
+import android.database.SQLException;
 import android.os.Build;
 import android.os.Message;
 import android.view.Window;
@@ -9,6 +10,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.yapovich.cjzs.R;
+import com.yapovich.cjzs.vendor.sqlite.DataBaseHelper;
 
 import org.json.JSONObject;
 
@@ -31,6 +33,20 @@ public class SystemInfo extends ReactContextBaseJavaModule {
     @Override
     public String getName() {
         return "SystemInfoAndroid";
+    }
+    /**
+     * 系统初始化
+     */
+    @ReactMethod
+    public void init(Callback successCallback) {
+        //拷贝数据库
+        DataBaseHelper myDbHelper =new DataBaseHelper(getReactApplicationContext());
+        try {
+            myDbHelper.createDataBase();
+            successCallback.invoke();
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
     }
     /**
      * 获取系统信息

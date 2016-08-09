@@ -20,8 +20,9 @@ import {
 } from 'react-native';
 import Components from '../../components'
 import Environment from '../../environment'
-import SQLite from '../../storages/sqlite'
+import {default as InfoDao} from '../../storages/dao/InfoDao';
 var SystemInfo=NativeModules.SystemInfoAndroid;
+var infoDao=new InfoDao();
 module.exports=React.createClass({
     getInitialState(){
       return {
@@ -82,24 +83,6 @@ module.exports=React.createClass({
     },
     componentDidMount(){
         SystemInfo.getInfo((info)=>{
-            var db = SQLite.openDatabase("test.db", "1.0", "Test Database", 200000,
-                ()=>{
-                    Components.Toast.short("创建数据库成功")
-            }, ()=>{
-                    Components.Toast.short("创建数据库失败")
-                });
-            db.transaction((tx) => {
-                tx.executeSql('CREATE TABLE COMPANY('
-                    +'ID INT PRIMARY KEY NOT NULL,'
-                    +'NAME TEXT NOT NULL,'
-                    +'AGE INT NOT NULL,'
-                    +'ADDRESS CHAR(50),'
-                    +'SALARY REAL)',[],()=>{
-                    Components.Toast.short("创建表COMPANY成功")
-                },()=>{
-                    Components.Toast.short("创建表COMPANY失败")
-                });
-            });
 
             /*
             var json=JSON.parse(info);
