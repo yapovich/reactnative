@@ -18,8 +18,7 @@ import {
     RefreshControl
 } from 'react-native';
 import Components from '../../components';
-import {default as InfoDao} from '../../storages/dao/InfoDao';
-var infoDao=new InfoDao();
+var infoDao=new Components.DAO.InfoDao();
 module.exports=React.createClass({
     getInitialState(){
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -44,6 +43,7 @@ module.exports=React.createClass({
         infoDao.getAllInfos((result)=>{
             if(result&&result.length>0)
               this.setState({dataSource:ds.cloneWithRows(result)});
+            this.setState({refreshing: false});
         });
     },
     getListComponent(rowData, sectionID, rowID, highlightRow){
@@ -70,7 +70,6 @@ module.exports=React.createClass({
     onRefresh(){
         this.setState({refreshing: true});
         this.loadData();
-        this.setState({refreshing: false});
     },
     render() {
         return (
@@ -82,20 +81,20 @@ module.exports=React.createClass({
                     title={this.props.title}
                     onIconPress={()=>this.pop()}
                     actions={[
-                        /*{icon:'add',onPress:()=>this.jump("update")}*/
+                        {icon:'add',onPress:()=>this.jump("create")}
                     ]}
                 />
-                <Components.MD.AvatarNavigator index={0} visible={true}
+                <Components.MD.AvatarNavigator index={0} visible={false}
                                                backgroundColor={Components.MD.PRIMARY}
                                                name={this.state.showMenu?"keyboard-arrow-down":"keyboard-arrow-up"}
                                                onPress={()=>this.setState({showMenu:!this.state.showMenu})}/>
                 <Components.MD.AvatarNavigator index={1} visible={this.state.showMenu}
                                                backgroundColor='googleGreen'
                                                name="grid-on"
-                                               onPress={()=>this.jump("update")}/>
+                                               onPress={()=>this.jump("create")}/>
                 <Components.MD.AvatarNavigator index={2} visible={this.state.showMenu}
                                                name="add"
-                                               onPress={()=>this.jump("update")}/>
+                                               onPress={()=>this.jump("create")}/>
                 <ListView
                         enableEmptySections={true}
                         style={{flex:1,backgroundColor:'#fff'}}

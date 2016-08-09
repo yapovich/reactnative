@@ -17,16 +17,17 @@ export default class BaseDao{
          if(this.db&&this.db.close)
              this.db.close();
     }
-    query(sql,params,success){
+    execute(sql,params,success,error){
         this.opendb();
         this.db.transaction((tx) => {
             tx.executeSql(sql,params,(tx,result)=>{
                 if(success)success(result)
             },()=>{
-                console.log("query error");
+                if(error)error()
             });
         },()=>{
             this.closedb();
+            if(error)error()
         },()=>{
             this.closedb();
         });

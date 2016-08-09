@@ -8,7 +8,12 @@ import {
     TouchableHighlight,
     NativeModules
 } from 'react-native';
+import {default as InfoDao} from './storages/dao/InfoDao';
 var components={
+    //Material Design风格组件------------------------------------------------------------
+    get MD(){return require('./components/MaterialDesign/index')},
+    //数据存储组件------------------------------------------------------------
+    get DAO(){return require('./storages/dao/index')},
     //模块组件------------------------------------------------------------
     get Toast(){
         return {
@@ -24,7 +29,6 @@ var components={
         }
     },
     //视图组件------------------------------------------------------------
-    get MD(){return require('./components/MaterialDesign/index')},
     get SlidingMenu(){return require('./components/SlidingMenu')},
     get MediaPlayer(){return require('./components/MediaPlayer/index')},//媒体播放器
     get AutoPlayBanner(){return require('./components/AutoPlayBanner')},//自动播放公告板

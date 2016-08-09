@@ -25,6 +25,7 @@ var cjzs=React.createClass({
       welcome:require("./js/views/system/welcome"),
       index:require("./js/views/system/index"),
       list:require("./js/views/system/list"),
+      create:require("./js/views/system/create"),
       update:require("./js/views/system/update"),
       about:require("./js/views/system/about")
     };
