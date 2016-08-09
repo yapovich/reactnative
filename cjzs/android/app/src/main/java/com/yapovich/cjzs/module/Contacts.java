@@ -13,6 +13,8 @@ import com.yapovich.cjzs.util.Converter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
+
 /**
  * Created by yebo on 2016/8/9.
  */
@@ -30,7 +32,7 @@ public class Contacts extends ReactContextBaseJavaModule {
             JSONArray array = new JSONArray();
             for (int i = 0; i < 10; i++) {
                 JSONObject obj = new JSONObject();
-                obj.put("name", "Ò¶²¨");
+                obj.put("name","å¶æ³¢");
                 obj.put("tel", "18969196213");
                 array.put(obj);
             }

@@ -5,6 +5,7 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
+import com.yapovich.cjzs.module.Contacts;
 import com.yapovich.cjzs.module.SystemInfo;
 import com.yapovich.cjzs.module.ToastCustom;
 import com.yapovich.cjzs.vendor.dialog.DialogAndroid;
@@ -26,6 +27,7 @@ public class CustomPackage implements ReactPackage {
         modules.add(new SystemInfo(reactContext));
         modules.add(new DialogAndroid(reactContext));
         modules.add(new SQLitePlugin(reactContext));
+        modules.add(new Contacts(reactContext));
         return modules;
     }
     @Override
