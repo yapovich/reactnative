@@ -66,7 +66,7 @@ module.exports=React.createClass({
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
             onLongPress={this.showEditMode}
         />;*/
-        return <View><Text>{rowData.name}</Text><Text>{rowData.tel}</Text></View>
+        return <View><Text>{rowData.peopleName}</Text><Text>{rowData.phoneNum}</Text></View>
 
     },
     renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
