@@ -25,6 +25,7 @@ module.exports=React.createClass({
         return {
             showMenu:false,
             refreshing:false,
+            editMode:false,
             dataSource: ds.cloneWithRows([])
         };
     },
@@ -52,8 +53,9 @@ module.exports=React.createClass({
             primaryText={rowData.name}
             secondaryText={rowData.yph}
             captionText={rowData.id}
-            captionIcon={<Components.MD.Icon name="email" color="#8d8d8d"/>}
+            captionIcon={<Components.MD.Icon name="email" color={Components.MD.getColor("googleGrey300")}/>}
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
+            onLongPress={this.showEditMode}
         />;
     },
     renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
@@ -71,7 +73,28 @@ module.exports=React.createClass({
         this.setState({refreshing: true});
         this.loadData();
     },
+    //编辑模式
+    showEditMode(){
+        this.setState({editMode: true});
+    },
+    //取消编辑模式
+    cancelEditMode(){
+        this.setState({editMode: false});
+    },
     render() {
+        /*
+        * <Components.MD.AvatarNavigator index={0} visible={false}
+         backgroundColor={Components.MD.PRIMARY}
+         name={this.state.showMenu?"keyboard-arrow-down":"keyboard-arrow-up"}
+         onPress={()=>this.setState({showMenu:!this.state.showMenu})}/>
+         <Components.MD.AvatarNavigator index={1} visible={this.state.showMenu}
+         backgroundColor='googleGreen'
+         name="grid-on"
+         onPress={()=>this.jump("create")}/>
+         <Components.MD.AvatarNavigator index={2} visible={this.state.showMenu}
+         name="add"
+         onPress={()=>this.jump("create")}/>
+        * */
         return (
             <Components.FlexLayout>
                 <Components.MD.Toolbar
@@ -84,17 +107,6 @@ module.exports=React.createClass({
                         {icon:'add',onPress:()=>this.jump("create")}
                     ]}
                 />
-                <Components.MD.AvatarNavigator index={0} visible={false}
-                                               backgroundColor={Components.MD.PRIMARY}
-                                               name={this.state.showMenu?"keyboard-arrow-down":"keyboard-arrow-up"}
-                                               onPress={()=>this.setState({showMenu:!this.state.showMenu})}/>
-                <Components.MD.AvatarNavigator index={1} visible={this.state.showMenu}
-                                               backgroundColor='googleGreen'
-                                               name="grid-on"
-                                               onPress={()=>this.jump("create")}/>
-                <Components.MD.AvatarNavigator index={2} visible={this.state.showMenu}
-                                               name="add"
-                                               onPress={()=>this.jump("create")}/>
                 <ListView
                         enableEmptySections={true}
                         style={{flex:1,backgroundColor:'#fff'}}
@@ -110,6 +122,17 @@ module.exports=React.createClass({
                             />
                         }
                 />
+                {
+                    this.state.editMode?
+                    <Components.MD.IconBar
+                        items={[
+                            {name: 'add', label: '删除'},
+                            {name: 'add', label: '删除', enabled: false},
+                            {name: 'add', label: '删除'},
+                            {name: 'add', label: '删除'}
+                        ]}
+                    />:null
+                }
             </Components.FlexLayout>
         );
     },

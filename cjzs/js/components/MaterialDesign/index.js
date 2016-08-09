@@ -19,3 +19,4 @@ export { default as VectorIconComponent } from './VectorIconComponent';
 export { default as TabBar } from './TabBar';
 export { default as AvatarNavigator } from './AvatarNavigator';
 export { default as BottomBarNavigator } from './BottomBarNavigator';
+export { default as IconBar } from './IconBar';

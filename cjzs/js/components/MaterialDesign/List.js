@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {StyleSheet, View, Text, TouchableWithoutFeedback} from "react-native";
 import { TYPO } from './config';
+import { getColor } from './helpers';
 import Ripple from './Ripple';
 export default class List extends Component {
 
@@ -38,6 +39,7 @@ export default class List extends Component {
             rightIcon,
             lines,
             onPress,
+            onLongPress,
             primaryColor,
             onLeftIconClicked,
             onRightIconClicked,
@@ -48,7 +50,7 @@ export default class List extends Component {
             splitLine
         } = this.props;
         return (
-            <Ripple onPress={onPress}>
+            <Ripple onPress={onPress} onLongPress={onLongPress}>
                 <View style={[styles.listContainer, {borderBottomWidth:splitLine?splitLine:0,height: lines > 2 ? ((lines -1) * 16 + 56) : (secondaryText ? 72 : (leftAvatar || rightAvatar ) ? 56 : 48) },style]}>
                     {leftIcon &&
                         <TouchableWithoutFeedback onPress={onLeftIconClicked}>
@@ -180,7 +182,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         alignItems: 'flex-start'
     },
-    captionText: Object.assign({color:'#8d8d8d'}, TYPO.paperFontCaption),
+    captionText: Object.assign({color:getColor("googleGrey300")}, TYPO.paperFontCaption),
     captionTextContainer2: {
         alignSelf: 'flex-end',
         alignItems: 'flex-end'
