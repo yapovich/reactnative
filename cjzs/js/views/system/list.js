@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 import Components from '../../components';
 var infoDao=new Components.DAO.InfoDao();
+var Contacts=NativeModules.ContactsAndroid;
 module.exports=React.createClass({
     getInitialState(){
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -40,14 +41,22 @@ module.exports=React.createClass({
         }
     },
     loadData(){
+
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        infoDao.getAllInfos((result)=>{
+        /*infoDao.getAllInfos((result)=>{
             if(result&&result.length>0)
               this.setState({dataSource:ds.cloneWithRows(result)});
             this.setState({refreshing: false});
+        });*/
+        Contacts.getAllContacts((result)=>{
+            if(result&&result.length>0)
+                this.setState({dataSource:ds.cloneWithRows(result)});
+            this.setState({refreshing: false});
         });
+
     },
     getListComponent(rowData, sectionID, rowID, highlightRow){
+        /*
         return <Components.MD.List
             splitLine={rowID<this.state.dataSource.length-1?1:0}
             primaryText={rowData.name}
@@ -56,7 +65,9 @@ module.exports=React.createClass({
             captionIcon={<Components.MD.Icon name="email" color={Components.MD.getColor("googleGrey300")}/>}
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
             onLongPress={this.showEditMode}
-        />;
+        />;*/
+        return <View><Text>{rowData.name}</Text><Text>{rowData.tel}</Text></View>
+
     },
     renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
         return (
