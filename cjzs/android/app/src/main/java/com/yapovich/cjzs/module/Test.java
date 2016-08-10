@@ -41,11 +41,19 @@ public class Test extends ReactContextBaseJavaModule {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                //bm = createLogoQRCode(createQRCode("抛砖引玉", dip2px(MainActivity.this, 150), 0xff000000));//生成中间有logo的二维码
                 try {
                     Bitmap logo=QRCodeHelper.getImageFromAssetsFile(getReactApplicationContext(), R.drawable.icon1);
-                    Bitmap bitmap = QRCodeHelper.createQRCode("http://www.baidu.com", width, height,logo);
-                    FileOutputStream out = getReactApplicationContext().openFileOutput("boboweiqi.png",getReactApplicationContext().MODE_PRIVATE);
+                    Bitmap bitmap = QRCodeHelper.createQRCode("http://www.baidu.com", width, height, logo);
+                    String fileName="boboweiqi.png";
+                    FileOutputStream out;
+                    //如果存在外置SD卡，保存到外部存储，否则保存到内部存储
+                    if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                        File sdCardDir = Environment.getExternalStorageDirectory();//获取SDCard目录
+                        File saveFile = new File(sdCardDir,fileName);
+                        out = new FileOutputStream(saveFile);
+                    }else{
+                        out = getReactApplicationContext().openFileOutput(fileName,getReactApplicationContext().MODE_PRIVATE);
+                    }
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                     out.flush();
                     out.close();
