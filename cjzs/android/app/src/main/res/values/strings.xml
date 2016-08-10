@@ -1,5 +1,4 @@
 <resources>
-    <string name="package_name">com.yapovich.cjzs</string>
     <string name="app_name">采集助手</string>
     <string name="updateApk_url">
         https://raw.githubusercontent.com/yapovich/reactnative/master/cjzs/android/app/package/update.json

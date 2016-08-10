@@ -19,7 +19,7 @@ var cjzs=React.createClass({
 
     var initialRouteStack=[
       {name:'index'},
-      {name:'list'}
+      {name:'qrcode'}
     ]
     var allRouteComp={
       welcome:require("./js/views/system/welcome"),
@@ -27,7 +27,8 @@ var cjzs=React.createClass({
       list:require("./js/views/system/list"),
       create:require("./js/views/system/create"),
       update:require("./js/views/system/update"),
-      about:require("./js/views/system/about")
+      about:require("./js/views/system/about"),
+      qrcode:require("./js/views/system/qrcode"),
     };
     return (
         <Navigator

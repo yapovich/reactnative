@@ -10,6 +10,10 @@ import {
 } from 'react-native';
 import {default as InfoDao} from './storages/dao/InfoDao';
 var components={
+    //测试模块------------------------------------------------------------
+    get Test(){
+      return NativeModules.TestAndroid;
+    },
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},
     //数据存储组件------------------------------------------------------------
