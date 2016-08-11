@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.facebook.react.ReactActivity;
-import com.yapovich.cjzs.module.MessageProxy;
+import com.yapovich.cjzs.util.MessageProxy;
 
 public class MainActivity extends ReactActivity {
 

@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.yapovich.cjzs.R;
+import com.yapovich.cjzs.util.MessageProxy;
 
 import org.json.JSONObject;
 

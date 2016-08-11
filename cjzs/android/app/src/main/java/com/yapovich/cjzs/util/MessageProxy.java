@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.components;
+package com.yapovich.cjzs.util;
 
 import android.os.Handler;
 import android.os.Message;

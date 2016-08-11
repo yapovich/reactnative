@@ -24,12 +24,31 @@ module.exports=React.createClass({
     },
     render() {
         return (
-            <View style={{padding:50}}><Text>{this.state.info}</Text></View>
+            <View style={{padding:50}}>
+                <Components.MD.Button
+                    raised={true}
+                    text="生成二维码"
+                    onPress={()=>{
+                        Components.QRCode.createQRCode(500,500,(isOk)=>{
+                            this.setState({info:isOk})
+                        })
+                    }}
+                />
+                <Components.MD.Button
+                    raised={true}
+                    text="扫描二维码"
+                    onPress={()=>{
+
+                    }}
+                />
+                <Text>{this.state.info}</Text>
+            </View>
         );
     },
     componentDidMount() {
+        /*
         Components.QRCode.createQRCode(500,500,(isOk)=>{
            this.setState({info:isOk})
-        })
+        })*/
     }
 });
