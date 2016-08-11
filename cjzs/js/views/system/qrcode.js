@@ -39,7 +39,9 @@ module.exports=React.createClass({
                     theme="dark"
                     text="扫描二维码"
                     onPress={()=>{
-
+                        Components.QRCode.scanQRCode((isOk)=>{
+                            this.setState({info:isOk})
+                        })
                     }}
                 />
                 <Text>{this.state.info}</Text>

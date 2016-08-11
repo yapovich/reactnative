@@ -1,6 +1,8 @@
 package com.yapovich.cjzs.components.qrcode;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -10,6 +12,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.yapovich.cjzs.R;
+import com.yapovich.cjzs.components.qrcode.zxing.activity.CaptureActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -62,8 +65,13 @@ public class QRCodeModule extends ReactContextBaseJavaModule {
      * 扫描二维码
      * */
     @ReactMethod
-    public static void scanQRCode(){
-
+    public void scanQRCode(Callback successCallback){
+        try {
+            Activity activity = this.getCurrentActivity();
+            activity.startActivityForResult(new Intent(activity, CaptureActivity.class), 0);
+        }catch(Exception ex){
+            if (successCallback != null) successCallback.invoke("failture");
+        }
     }
 
 }

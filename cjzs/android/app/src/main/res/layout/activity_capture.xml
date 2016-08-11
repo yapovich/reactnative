@@ -4,21 +4,25 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:orientation="vertical">
-
     <SurfaceView
         android:id="@+id/capture_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
     <RelativeLayout
         android:id="@+id/capture_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingTop="25dp"
+            android:background="@android:color/white"
+            >
+        </RelativeLayout>
         <ImageView
             android:id="@+id/capture_mask_top"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="168dp"
             android:layout_alignParentTop="true"
             android:background="@drawable/shadow"/>
 
@@ -38,22 +42,30 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/scan_line"/>
-
         </RelativeLayout>
-
+        <TextView
+            android:id="@+id/cancel_crop_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="将二维码放入框内，即可自动扫描"
+            android:layout_below="@+id/capture_crop_view"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:background="@drawable/shadow"/>
         <ImageView
             android:id="@+id/capture_mask_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@id/capture_crop_view"
+            android:layout_below="@id/cancel_crop_text"
             android:background="@drawable/shadow"/>
 
         <ImageView
             android:id="@+id/capture_mask_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_above="@id/capture_mask_bottom"
+            android:layout_above="@id/cancel_crop_text"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/capture_mask_top"
             android:layout_toLeftOf="@id/capture_crop_view"
@@ -63,7 +75,7 @@
             android:id="@+id/capture_mask_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_above="@id/capture_mask_bottom"
+            android:layout_above="@id/cancel_crop_text"
             android:layout_alignParentRight="true"
             android:layout_below="@id/capture_mask_top"
             android:layout_toRightOf="@id/capture_crop_view"
