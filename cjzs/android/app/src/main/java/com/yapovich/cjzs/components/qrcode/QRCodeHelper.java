@@ -20,14 +20,14 @@ import java.util.Hashtable;
  * Created by yebo on 2016/8/10.
  */
 public class QRCodeHelper {
-    //private static final int IMAGE_HALFWIDTH = 40;//¿í¶ÈÖµ£¬Ó°ÏìÖĞ¼äÍ¼Æ¬´óĞ¡
+    //private static final int IMAGE_HALFWIDTH = 40;//å®½åº¦å€¼ï¼Œå½±å“ä¸­é—´å›¾ç‰‡å¤§å°
     /*
-    É¨Ãè¶şÎ¬Âë
+    æ‰«æäºŒç»´ç 
      */
     public static void scanQRCode(Activity activity){
     }
     /*
-    ´´½¨¶şÎ¬Âë(´øLOGO)
+    åˆ›å»ºäºŒç»´ç (å¸¦LOGO)
     */
     public static Bitmap createQRCode(String content,int width,int height,Bitmap bitmap){
         try {
@@ -35,35 +35,35 @@ public class QRCodeHelper {
             Matrix m = new Matrix();
             float sx = (float) 2 * IMAGE_HALFWIDTH / bitmap.getWidth();
             float sy = (float) 2 * IMAGE_HALFWIDTH / bitmap.getHeight();
-            m.setScale(sx, sy);//ÉèÖÃËõ·ÅĞÅÏ¢
-            //½«logoÍ¼Æ¬°´martixÉèÖÃµÄĞÅÏ¢Ëõ·Å
+            m.setScale(sx, sy);//è®¾ç½®ç¼©æ”¾ä¿¡æ¯
+            //å°†logoå›¾ç‰‡æŒ‰martixè®¾ç½®çš„ä¿¡æ¯ç¼©æ”¾
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
             MultiFormatWriter writer = new MultiFormatWriter();
             Hashtable hst = new Hashtable();
-            hst.put(EncodeHintType.CHARACTER_SET, "UTF-8");//ÉèÖÃ×Ö·û±àÂë
-            BitMatrix matrix = writer.encode(content, BarcodeFormat.QR_CODE, width, height, hst);//Éú³É¶şÎ¬Âë¾ØÕóĞÅÏ¢
+            hst.put(EncodeHintType.CHARACTER_SET, "UTF-8");//è®¾ç½®å­—ç¬¦ç¼–ç 
+            BitMatrix matrix = writer.encode(content, BarcodeFormat.QR_CODE, width, height, hst);//ç”ŸæˆäºŒç»´ç çŸ©é˜µä¿¡æ¯
             int halfW = width / 2;
             int halfH = height / 2;
-            int[] pixels = new int[width * height];//¶¨ÒåÊı×é³¤¶ÈÎª¾ØÕó¸ß¶È*¾ØÕó¿í¶È£¬ÓÃÓÚ¼ÇÂ¼¾ØÕóÖĞÏñËØĞÅÏ¢
-            for (int y = 0; y < height; y++) {//´ÓĞĞ¿ªÊ¼µü´ú¾ØÕó
-                for (int x = 0; x < width; x++) {//µü´úÁĞ
+            int[] pixels = new int[width * height];//å®šä¹‰æ•°ç»„é•¿åº¦ä¸ºçŸ©é˜µé«˜åº¦*çŸ©é˜µå®½åº¦ï¼Œç”¨äºè®°å½•çŸ©é˜µä¸­åƒç´ ä¿¡æ¯
+            for (int y = 0; y < height; y++) {//ä»è¡Œå¼€å§‹è¿­ä»£çŸ©é˜µ
+                for (int x = 0; x < width; x++) {//è¿­ä»£åˆ—
                     if (x > halfW - IMAGE_HALFWIDTH && x < halfW + IMAGE_HALFWIDTH
                             && y > halfH - IMAGE_HALFWIDTH
-                            && y < halfH + IMAGE_HALFWIDTH) {//¸ÃÎ»ÖÃÓÃÓÚ´æ·ÅÍ¼Æ¬ĞÅÏ¢
-                        //¼ÇÂ¼Í¼Æ¬Ã¿¸öÏñËØĞÅÏ¢
+                            && y < halfH + IMAGE_HALFWIDTH) {//è¯¥ä½ç½®ç”¨äºå­˜æ”¾å›¾ç‰‡ä¿¡æ¯
+                        //è®°å½•å›¾ç‰‡æ¯ä¸ªåƒç´ ä¿¡æ¯
                         pixels[y * width + x] = bitmap.getPixel(x - halfW
                                 + IMAGE_HALFWIDTH, y - halfH + IMAGE_HALFWIDTH);
                     } else {
-                        if (matrix.get(x, y)) {//Èç¹ûÓĞºÚ¿éµã£¬¼ÇÂ¼ĞÅÏ¢
-                            pixels[y * width + x] = Color.BLACK;//¼ÇÂ¼ºÚ¿éĞÅÏ¢
+                        if (matrix.get(x, y)) {//å¦‚æœæœ‰é»‘å—ç‚¹ï¼Œè®°å½•ä¿¡æ¯
+                            pixels[y * width + x] = Color.BLACK;//è®°å½•é»‘å—ä¿¡æ¯
                         }else{
-                            pixels[y * width + x] = Color.WHITE;//¼ÇÂ¼ºÚ¿éĞÅÏ¢
+                            pixels[y * width + x] = Color.WHITE;//è®°å½•é»‘å—ä¿¡æ¯
                         }
                     }
                 }
             }
             Bitmap _bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-            // Í¨¹ıÏñËØÊı×éÉú³Ébitmap
+            // é€šè¿‡åƒç´ æ•°ç»„ç”Ÿæˆbitmap
             _bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return _bitmap;
         }catch (WriterException ex) {
@@ -71,7 +71,7 @@ public class QRCodeHelper {
         return null;
     }
     /*
-    ´´½¨¶şÎ¬Âë(ÎŞLOGO)
+    åˆ›å»ºäºŒç»´ç (æ— LOGO)
     */
     public static Bitmap createQRCode(String content,int width,int height) {
         try {

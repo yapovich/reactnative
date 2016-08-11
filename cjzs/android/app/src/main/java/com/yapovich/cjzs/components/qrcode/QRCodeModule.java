@@ -28,7 +28,7 @@ public class QRCodeModule extends ReactContextBaseJavaModule{
     }
     @Override
     public String getName() {
-        return "QRCodeAndroid";
+        return "RCTQRCodeAndroid";
     }
     /*
      * 生成二维码
@@ -74,6 +74,7 @@ public class QRCodeModule extends ReactContextBaseJavaModule{
                 @Override
                 public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
                     String result = data.getExtras().getString("result");
+                    if (successCallback != null) successCallback.invoke(result);
                     return false;
                 }
             };

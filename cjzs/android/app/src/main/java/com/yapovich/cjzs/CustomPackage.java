@@ -11,7 +11,6 @@ import com.yapovich.cjzs.components.ToastCustom;
 import com.yapovich.cjzs.components.dialog.DialogAndroid;
 import com.yapovich.cjzs.components.mediaplayer.ReactMediaPlayerViewManager;
 import com.yapovich.cjzs.components.qrcode.QRCodeModule;
-import com.yapovich.cjzs.components.qrcode.QRCodeViewManager;
 import com.yapovich.cjzs.components.sqlite.SQLitePlugin;
 
 import java.util.ArrayList;
@@ -41,7 +40,6 @@ public class CustomPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> vms=new ArrayList<>();
         vms.add(new ReactMediaPlayerViewManager());
-        vms.add(new QRCodeViewManager());
         return vms;
     }
 }

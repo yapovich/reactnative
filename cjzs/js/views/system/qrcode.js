@@ -12,24 +12,41 @@ import {
     View,
     ScrollView,
     Image,
-    ListView,
-    NativeModules
+    ListView
 } from 'react-native';
 import Components from '../../components';
 module.exports=React.createClass({
     getInitialState(){
-        return {};
+        return {
+            info:""
+        };
     },
     render() {
         return (
-            <View style={{flex:1}}>
-                <Components.QRCode
-                    animation={true}
-                  style={{flex:1,backgroundColor:'#333'}}
+            <View style={{padding:50}}>
+                <Text>{this.state.info}</Text>
+                <Components.MD.Button
+                    raised={true}
+                    text="生成二维码"
+                    onPress={()=>{
+                        Components.QRCode.createQRCode(500,500,(isOk)=>{
+                            this.setState({info:isOk})
+                        })
+                    }}
+                />
+                <Components.MD.Button
+                    raised={true}
+                    text="扫描二维码"
+                    onPress={()=>{
+                        Components.QRCode.scanQRCode((isOk)=>{
+                            this.setState({info:isOk})
+                        })
+                    }}
                 />
             </View>
         );
     },
     componentDidMount() {
+
     }
 });

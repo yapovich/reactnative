@@ -26,6 +26,7 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+
 import com.yapovich.cjzs.R;
 
 import java.io.Closeable;

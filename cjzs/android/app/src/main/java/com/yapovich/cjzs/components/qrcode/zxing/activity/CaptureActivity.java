@@ -197,7 +197,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         bundle.putString("result", rawResult.getText());
         resultIntent.putExtras(bundle);
         this.setResult(RESULT_OK, resultIntent);
-        CaptureActivity.this.finish();
+        //CaptureActivity.this.finish();
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {

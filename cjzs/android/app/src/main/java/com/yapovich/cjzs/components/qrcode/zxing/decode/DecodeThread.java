@@ -21,7 +21,6 @@ import android.os.Looper;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
-import com.yapovich.cjzs.components.qrcode.QRCodeViewManager;
 import com.yapovich.cjzs.components.qrcode.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
@@ -44,14 +43,14 @@ public class DecodeThread extends Thread {
     public static final int QRCODE_MODE = 0X200;
     public static final int ALL_MODE = 0X300;
 
-    private final QRCodeViewManager viewManager;
+    private final CaptureActivity activity;
     private final Map<DecodeHintType, Object> hints;
     private final CountDownLatch handlerInitLatch;
     private Handler handler;
 
-    public DecodeThread(QRCodeViewManager viewManager, int decodeMode) {
+    public DecodeThread(CaptureActivity activity, int decodeMode) {
 
-        this.viewManager = viewManager;
+        this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
 
         hints = new EnumMap<DecodeHintType, Object>(DecodeHintType.class);
@@ -93,7 +92,7 @@ public class DecodeThread extends Thread {
     @Override
     public void run() {
         Looper.prepare();
-        handler = new DecodeHandler(viewManager, hints);
+        handler = new DecodeHandler(activity, hints);
         handlerInitLatch.countDown();
         Looper.loop();
     }
