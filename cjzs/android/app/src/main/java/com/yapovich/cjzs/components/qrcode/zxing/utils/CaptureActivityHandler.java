@@ -43,7 +43,7 @@ public class CaptureActivityHandler extends Handler {
 
     public CaptureActivityHandler(CaptureActivity activity, CameraManager cameraManager, int decodeMode) {
         this.activity = activity;
-        decodeThread = new DecodeThread(activity, decodeMode);
+        decodeThread = new DecodeThread(null, decodeMode);
         decodeThread.start();
         state = State.SUCCESS;
 

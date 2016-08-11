@@ -28,6 +28,7 @@ import com.google.zxing.Result;
 import com.yapovich.cjzs.R;
 import com.yapovich.cjzs.components.qrcode.zxing.camera.CameraManager;
 import com.yapovich.cjzs.components.qrcode.zxing.decode.DecodeThread;
+import com.yapovich.cjzs.components.qrcode.zxing.utils.BeepManager;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.CaptureActivityHandler;
 
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class QRCodeViewManager extends SimpleViewManager<View> implements Surfac
     private ImageView scanLine;
     private ThemedReactContext context;
     private CameraManager cameraManager;
+    private BeepManager beepManager;
     private boolean isHasSurface=false;
     private Rect mCropRect = null;
     private QRCodeHandler handler;
@@ -64,7 +66,6 @@ public class QRCodeViewManager extends SimpleViewManager<View> implements Surfac
     @Override
     protected View createViewInstance(ThemedReactContext themedReactContext) {
         this.context=themedReactContext;
-        cameraManager = new CameraManager(themedReactContext);
         LayoutInflater inflater=LayoutInflater.from(themedReactContext);
         View view = inflater.inflate(R.layout.activity_capture,null);
         view.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT));
@@ -119,6 +120,10 @@ public class QRCodeViewManager extends SimpleViewManager<View> implements Surfac
         CaptureActivity.this.finish();*/
     }
     private void initCamera(SurfaceHolder surfaceHolder) {
+        if(cameraManager==null)
+          cameraManager = new CameraManager(this.context);
+        if(beepManager==null)
+          beepManager = new BeepManager(this.context.getCurrentActivity());
         if (surfaceHolder == null) {
             throw new IllegalStateException("No SurfaceHolder provided");
         }
