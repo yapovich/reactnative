@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import {default as InfoDao} from './storages/dao/InfoDao';
 var components={
-    //测试模块------------------------------------------------------------
+    //二维码模块------------------------------------------------------------
     get QRCode(){
-      return NativeModules.QRCodeAndroid;
+      return require('./components/QRCode');
     },
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},

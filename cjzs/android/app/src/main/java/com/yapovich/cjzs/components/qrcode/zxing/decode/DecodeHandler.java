@@ -32,6 +32,7 @@ import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.yapovich.cjzs.R;
+import com.yapovich.cjzs.components.qrcode.QRCodeViewManager;
 import com.yapovich.cjzs.components.qrcode.zxing.activity.CaptureActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -39,14 +40,14 @@ import java.util.Map;
 
 public class DecodeHandler extends Handler {
 
-    private final CaptureActivity activity;
+    private final QRCodeViewManager viewManager;
     private final MultiFormatReader multiFormatReader;
     private boolean running = true;
 
-    public DecodeHandler(CaptureActivity activity, Map<DecodeHintType, Object> hints) {
+    public DecodeHandler(QRCodeViewManager viewManager, Map<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
-        this.activity = activity;
+        this.viewManager = viewManager;
     }
 
     private static void bundleThumbnail(PlanarYUVLuminanceSource source, Bundle bundle) {
@@ -84,7 +85,7 @@ public class DecodeHandler extends Handler {
      * @param height The height of the preview frame.
      */
     private void decode(byte[] data, int width, int height) {
-        Size size = activity.getCameraManager().getPreviewSize();
+        Size size = viewManager.getCameraManager().getPreviewSize();
 
         // 这里需要将获取的data翻转一下，因为相机默认拿的的横屏的数据
         byte[] rotatedData = new byte[data.length];
@@ -111,7 +112,7 @@ public class DecodeHandler extends Handler {
             }
         }
 
-        Handler handler = activity.getHandler();
+        Handler handler = viewManager.getHandler();
         if (rawResult != null) {
             // Don't log the barcode contents for security.
             if (handler != null) {
@@ -140,7 +141,7 @@ public class DecodeHandler extends Handler {
      * @return A PlanarYUVLuminanceSource instance.
      */
     public PlanarYUVLuminanceSource buildLuminanceSource(byte[] data, int width, int height) {
-        Rect rect = activity.getCropRect();
+        Rect rect = viewManager.getCropRect();
         if (rect == null) {
             return null;
         }

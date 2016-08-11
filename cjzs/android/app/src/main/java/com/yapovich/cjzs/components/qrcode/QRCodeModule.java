@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -20,7 +22,7 @@ import java.io.FileOutputStream;
 /**
  * Created by yebo on 2016/8/9.
  */
-public class QRCodeModule extends ReactContextBaseJavaModule {
+public class QRCodeModule extends ReactContextBaseJavaModule{
     public QRCodeModule(ReactApplicationContext reactContext){
         super(reactContext);
     }
@@ -65,9 +67,16 @@ public class QRCodeModule extends ReactContextBaseJavaModule {
      * 扫描二维码
      * */
     @ReactMethod
-    public void scanQRCode(Callback successCallback){
+    public void scanQRCode(final Callback successCallback){
         try {
             Activity activity = this.getCurrentActivity();
+            PreferenceManager.OnActivityResultListener listener=new PreferenceManager.OnActivityResultListener() {
+                @Override
+                public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+                    String result = data.getExtras().getString("result");
+                    return false;
+                }
+            };
             activity.startActivityForResult(new Intent(activity, CaptureActivity.class), 0);
         }catch(Exception ex){
             if (successCallback != null) successCallback.invoke("failture");

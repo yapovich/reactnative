@@ -18,40 +18,18 @@ import {
 import Components from '../../components';
 module.exports=React.createClass({
     getInitialState(){
-        return {
-            info:""
-        };
+        return {};
     },
     render() {
         return (
-            <View style={{padding:50}}>
-                <Components.MD.Button
-                    raised={true}
-                    text="生成二维码"
-                    onPress={()=>{
-                        Components.QRCode.createQRCode(500,500,(isOk)=>{
-                            this.setState({info:isOk})
-                        })
-                    }}
+            <View style={{flex:1}}>
+                <Components.QRCode
+                    animation={true}
+                  style={{flex:1,backgroundColor:'#333'}}
                 />
-                <Components.MD.Button
-                    raised={true}
-                    theme="dark"
-                    text="扫描二维码"
-                    onPress={()=>{
-                        Components.QRCode.scanQRCode((isOk)=>{
-                            this.setState({info:isOk})
-                        })
-                    }}
-                />
-                <Text>{this.state.info}</Text>
             </View>
         );
     },
     componentDidMount() {
-        /*
-        Components.QRCode.createQRCode(500,500,(isOk)=>{
-           this.setState({info:isOk})
-        })*/
     }
 });
