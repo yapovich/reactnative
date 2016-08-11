@@ -1,14 +1,11 @@
-package com.yapovich.cjzs.util;
+package com.yapovich.cjzs.components.qrcode;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -17,8 +14,6 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Hashtable;
 
 /**

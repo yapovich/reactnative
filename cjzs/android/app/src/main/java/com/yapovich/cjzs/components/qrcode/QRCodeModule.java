@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.components;
+package com.yapovich.cjzs.components.qrcode;
 
 
 import android.graphics.Bitmap;
@@ -10,7 +10,6 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.yapovich.cjzs.R;
-import com.yapovich.cjzs.util.QRCodeHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,13 +17,13 @@ import java.io.FileOutputStream;
 /**
  * Created by yebo on 2016/8/9.
  */
-public class Test extends ReactContextBaseJavaModule {
-    public Test(ReactApplicationContext reactContext){
+public class QRCodeModule extends ReactContextBaseJavaModule {
+    public QRCodeModule(ReactApplicationContext reactContext){
         super(reactContext);
     }
     @Override
     public String getName() {
-        return "TestAndroid";
+        return "QRCodeAndroid";
     }
     /*
      * 生成二维码

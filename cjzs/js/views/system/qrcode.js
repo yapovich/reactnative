@@ -28,7 +28,7 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-        Components.Test.createQRCode(500,500,(isOk)=>{
+        Components.QRCode.createQRCode(500,500,(isOk)=>{
            this.setState({info:isOk})
         })
     }

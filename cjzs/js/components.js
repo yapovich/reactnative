@@ -11,8 +11,8 @@ import {
 import {default as InfoDao} from './storages/dao/InfoDao';
 var components={
     //测试模块------------------------------------------------------------
-    get Test(){
-      return NativeModules.TestAndroid;
+    get QRCode(){
+      return NativeModules.QRCodeAndroid;
     },
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},

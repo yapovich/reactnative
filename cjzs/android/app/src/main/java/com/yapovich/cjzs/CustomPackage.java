@@ -7,10 +7,10 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.yapovich.cjzs.components.Contacts;
 import com.yapovich.cjzs.components.SystemInfo;
-import com.yapovich.cjzs.components.Test;
 import com.yapovich.cjzs.components.ToastCustom;
 import com.yapovich.cjzs.components.dialog.DialogAndroid;
 import com.yapovich.cjzs.components.mediaplayer.ReactMediaPlayerViewManager;
+import com.yapovich.cjzs.components.qrcode.QRCodeModule;
 import com.yapovich.cjzs.components.sqlite.SQLitePlugin;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class CustomPackage implements ReactPackage {
         modules.add(new DialogAndroid(reactContext));
         modules.add(new SQLitePlugin(reactContext));
         modules.add(new Contacts(reactContext));
-        modules.add(new Test(reactContext));
+        modules.add(new QRCodeModule(reactContext));
         return modules;
     }
     @Override
