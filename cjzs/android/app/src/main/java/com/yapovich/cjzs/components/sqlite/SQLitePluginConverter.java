@@ -4,7 +4,7 @@
  * Copyright (c) 2015, Andrzej Porebski
  */
 
-package com.yapovich.cjzs.vendor.sqlite;
+package com.yapovich.cjzs.components.sqlite;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;

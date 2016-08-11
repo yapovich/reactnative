@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.vendor.mediaplayer;
+package com.yapovich.cjzs.components.mediaplayer;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
@@ -30,10 +30,10 @@ import com.google.android.exoplayer.text.Cue;
 import com.google.android.exoplayer.text.TextRenderer;
 import com.google.android.exoplayer.upstream.BandwidthMeter;
 import com.google.android.exoplayer.util.Util;
-import com.yapovich.cjzs.vendor.mediaplayer.trackrenderer.DashRenderersBuilder;
-import com.yapovich.cjzs.vendor.mediaplayer.trackrenderer.ExtractorRenderersBuilder;
-import com.yapovich.cjzs.vendor.mediaplayer.trackrenderer.HlsRenderersBuilder;
-import com.yapovich.cjzs.vendor.mediaplayer.trackrenderer.SmoothStreamingRenderersBuilder;
+import com.yapovich.cjzs.components.mediaplayer.trackrenderer.DashRenderersBuilder;
+import com.yapovich.cjzs.components.mediaplayer.trackrenderer.ExtractorRenderersBuilder;
+import com.yapovich.cjzs.components.mediaplayer.trackrenderer.HlsRenderersBuilder;
+import com.yapovich.cjzs.components.mediaplayer.trackrenderer.SmoothStreamingRenderersBuilder;
 
 import java.util.LinkedList;
 import java.util.List;

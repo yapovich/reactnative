@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.module;
+package com.yapovich.cjzs.components;
 
 
 import android.database.Cursor;
@@ -13,7 +13,6 @@ import com.yapovich.cjzs.util.Converter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 /**

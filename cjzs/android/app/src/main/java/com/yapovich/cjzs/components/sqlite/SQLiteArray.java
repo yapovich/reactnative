@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.vendor.sqlite;
+package com.yapovich.cjzs.components.sqlite;
 
 import org.json.JSONArray;
 

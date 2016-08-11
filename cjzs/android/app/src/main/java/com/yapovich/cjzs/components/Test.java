@@ -1,29 +1,19 @@
-package com.yapovich.cjzs.module;
+package com.yapovich.cjzs.components;
 
 
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.provider.ContactsContract;
-import android.util.Log;
 
-import com.facebook.imageutils.BitmapUtil;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.yapovich.cjzs.R;
-import com.yapovich.cjzs.util.Converter;
 import com.yapovich.cjzs.util.QRCodeHelper;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.HashMap;
 
 /**
  * Created by yebo on 2016/8/9.
@@ -36,6 +26,9 @@ public class Test extends ReactContextBaseJavaModule {
     public String getName() {
         return "TestAndroid";
     }
+    /*
+     * 生成二维码
+     * */
     @ReactMethod
     public void createQRCode(final int width,final int height,final Callback successCallback){
         new AsyncTask<Void, Void, Void>() {
@@ -64,6 +57,13 @@ public class Test extends ReactContextBaseJavaModule {
                 return null;
             }
         }.execute();
+
+    }
+    /*
+     * 扫描二维码
+     * */
+    @ReactMethod
+    public static void scanQRCode(){
 
     }
 

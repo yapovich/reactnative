@@ -1,7 +1,6 @@
-package com.yapovich.cjzs.vendor.dialog;
+package com.yapovich.cjzs.components.dialog;
 
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
 

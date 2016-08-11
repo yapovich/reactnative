@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.vendor.mediaplayer;
+package com.yapovich.cjzs.components.mediaplayer;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,6 +1,5 @@
-package com.yapovich.cjzs.module;
+package com.yapovich.cjzs.components;
 
-import android.database.SQLException;
 import android.os.Build;
 import android.os.Message;
 import android.view.Window;
@@ -119,9 +118,9 @@ public class SystemInfo extends ReactContextBaseJavaModule {
         final Window window= this.getCurrentActivity().getWindow();
         Message msg=new Message();
         if (!isFullScreen)
-            msg.what=MessageProxy.SCREEN_NOT_FULL;
+            msg.what= MessageProxy.SCREEN_NOT_FULL;
         else
-            msg.what=MessageProxy.SCREEN_FULL;
+            msg.what= MessageProxy.SCREEN_FULL;
         MessageProxy.sendMessage(msg);
     }
     /**
@@ -133,9 +132,9 @@ public class SystemInfo extends ReactContextBaseJavaModule {
         //.getCurrentActivity().getWindow();
         Message msg=new Message();
         if (isLandscape)
-            msg.what=MessageProxy.SCREEN_ORIENTATION_LANDSCAPE;
+            msg.what= MessageProxy.SCREEN_ORIENTATION_LANDSCAPE;
         else
-            msg.what=MessageProxy.SCREEN_ORIENTATION_PORTRAIT;
+            msg.what= MessageProxy.SCREEN_ORIENTATION_PORTRAIT;
         MessageProxy.sendMessage(msg);
     }
 }

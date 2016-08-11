@@ -1,4 +1,4 @@
-package com.yapovich.cjzs.vendor.mediaplayer.trackrenderer;
+package com.yapovich.cjzs.components.mediaplayer.trackrenderer;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -20,7 +20,7 @@ import com.google.android.exoplayer.upstream.DataSource;
 import com.google.android.exoplayer.upstream.DefaultAllocator;
 import com.google.android.exoplayer.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer.upstream.DefaultUriDataSource;
-import com.yapovich.cjzs.vendor.mediaplayer.TrackRenderersBuilder;
+import com.yapovich.cjzs.components.mediaplayer.TrackRenderersBuilder;
 
 public class ExtractorRenderersBuilder implements TrackRenderersBuilder {
 
