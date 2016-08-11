@@ -36,6 +36,7 @@ module.exports=React.createClass({
                 />
                 <Components.MD.Button
                     raised={true}
+                    theme="dark"
                     text="扫描二维码"
                     onPress={()=>{
 

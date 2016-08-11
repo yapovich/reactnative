@@ -3,4 +3,5 @@
     <string name="updateApk_url">
         https://raw.githubusercontent.com/yapovich/reactnative/master/cjzs/android/app/package/update.json
     </string>
+
 </resources>
