@@ -22,6 +22,8 @@ public class MaterialHeaderView extends FrameLayout implements MaterialHeadListe
     private int progressBg;
     private int progressSize;
     private static float density;
+    private boolean isShowProgress=true;
+
 
     public MaterialHeaderView(Context context) {
         this(context, null);
@@ -116,7 +118,9 @@ public class MaterialHeaderView extends FrameLayout implements MaterialHeadListe
         if(circleProgressBar!=null)
         circleProgressBar.setShowArrow(isShowArrow);
     }
-
+    public void setIsProgressShow(boolean isShowProgress){
+        this.isShowProgress = isShowProgress;
+    }
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -124,21 +128,22 @@ public class MaterialHeaderView extends FrameLayout implements MaterialHeadListe
         materialWaveView = new MaterialWaveView(getContext());
         materialWaveView.setColor(waveColor);
         addView(materialWaveView);
-
-        circleProgressBar = new CircleProgressBar(getContext());
-        LayoutParams layoutParams = new LayoutParams((int) density * progressSize, (int) density * progressSize);
-        layoutParams.gravity = Gravity.CENTER;
-        circleProgressBar.setLayoutParams(layoutParams);
-        circleProgressBar.setColorSchemeColors(progress_colors);
-        circleProgressBar.setProgressStokeWidth(progressStokeWidth);
-        circleProgressBar.setShowArrow(isShowArrow);
-        circleProgressBar.setShowProgressText(textType == 0);
-        circleProgressBar.setTextColor(progressTextColor);
-        circleProgressBar.setProgress(progressValue);
-        circleProgressBar.setMax(progressValueMax);
-        circleProgressBar.setCircleBackgroundEnabled(isShowProgressBg);
-        circleProgressBar.setProgressBackGroundColor(progressBg);
-        addView(circleProgressBar);
+        if(isShowProgress) {
+            circleProgressBar = new CircleProgressBar(getContext());
+            LayoutParams layoutParams = new LayoutParams((int) density * progressSize, (int) density * progressSize);
+            layoutParams.gravity = Gravity.CENTER;
+            circleProgressBar.setLayoutParams(layoutParams);
+            circleProgressBar.setColorSchemeColors(progress_colors);
+            circleProgressBar.setProgressStokeWidth(progressStokeWidth);
+            circleProgressBar.setShowArrow(isShowArrow);
+            circleProgressBar.setShowProgressText(textType == 0);
+            circleProgressBar.setTextColor(progressTextColor);
+            circleProgressBar.setProgress(progressValue);
+            circleProgressBar.setMax(progressValueMax);
+            circleProgressBar.setCircleBackgroundEnabled(isShowProgressBg);
+            circleProgressBar.setProgressBackGroundColor(progressBg);
+            addView(circleProgressBar);
+        }
     }
 
     @Override

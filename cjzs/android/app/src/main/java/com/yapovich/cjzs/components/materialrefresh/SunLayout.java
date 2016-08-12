@@ -5,10 +5,14 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.cunoraz.gifview.library.GifView;
 import com.yapovich.cjzs.R;
@@ -16,7 +20,7 @@ import com.yapovich.cjzs.R;
 /**
  * Created by cjj on 2016/2/22.
  */
-public class SunLayout extends FrameLayout implements MaterialHeadListener {
+public class SunLayout extends RelativeLayout implements MaterialHeadListener {
 
     private final static String Tag = SunLayout.class.getSimpleName();
     protected static final int DEFAULT_SUN_RADIUS = 12;//太阳的半径
@@ -37,6 +41,7 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
     private int mLineLevel;
     private int mMouthStro;
     private int mLineColor, mLineWidth, mLineHeight;
+    private boolean isShowProgress=true;
 
     private ObjectAnimator mAnimator;
 
@@ -86,12 +91,19 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
 
         startSunLineAnim(mLineView);
         */
-        mGifView=new GifView(context);
-        addView(mGifView);
-        mGifView.setGifResource(R.drawable.loading);
-        mGifView.play();
+        if(isShowProgress) {
+            this.setGravity(Gravity.CENTER);
+            mGifView = new GifView(context);
+            mGifView.setGifResource(R.drawable.loading);
+            mGifView.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT));
+            mGifView.setVisibility(View.VISIBLE);
+            addView(mGifView);
+            mGifView.play();
+        }
     }
-
+    public void setIsProgressShow(boolean isShowProgress){
+        this.isShowProgress = isShowProgress;
+    }
     /**
      * 设置太阳半径
      *
@@ -224,18 +236,24 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
 
     @Override
     public void onPull(MaterialRefreshLayout materialRefreshLayout, float fraction) {
+        float a = Util.limitValue(1, fraction);
         if(mLineView!=null&&mSunView!=null) {
-            float a = Util.limitValue(1, fraction);
             if (a >= 0.7) {
                 mLineView.setVisibility(View.VISIBLE);
             } else {
                 mLineView.setVisibility(View.GONE);
             }
             mSunView.setPerView(mSunRadius, a);
-            ViewCompat.setScaleX(this, a);
-            ViewCompat.setScaleY(this, a);
-            ViewCompat.setAlpha(this, a);
+        }else if(mGifView!=null){
+            if (a >= 0.7) {
+                mGifView.setVisibility(View.VISIBLE);
+            } else {
+                mGifView.setVisibility(View.GONE);
+            }
         }
+        ViewCompat.setScaleX(this, a);
+        ViewCompat.setScaleY(this, a);
+        ViewCompat.setAlpha(this, a);
     }
 
     @Override

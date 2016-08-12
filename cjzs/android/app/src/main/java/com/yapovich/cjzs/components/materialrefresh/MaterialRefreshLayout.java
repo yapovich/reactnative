@@ -16,16 +16,17 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.yapovich.cjzs.R;
 
 public class MaterialRefreshLayout extends FrameLayout {
 
     public static final String Tag = MaterialRefreshLayout.class.getSimpleName();
-    private final static int DEFAULT_WAVE_HEIGHT = 140;
-    private final static int HIGHER_WAVE_HEIGHT = 180;
+    private final static int DEFAULT_WAVE_HEIGHT = 190;
+    private final static int HIGHER_WAVE_HEIGHT = 230;
     private final static int DEFAULT_HEAD_HEIGHT = 70;
-    private final static int hIGHER_HEAD_HEIGHT = 100;
+    private final static int hIGHER_HEAD_HEIGHT = 150;
     private final static int DEFAULT_PROGRESS_SIZE = 50;
     private final static int BIG_PROGRESS_SIZE = 60;
     private final static int PROGRESS_STOKE_WIDTH = 3;
@@ -60,6 +61,7 @@ public class MaterialRefreshLayout extends FrameLayout {
     private boolean isLoadMoreing;
     private boolean isLoadMore;
     private boolean isSunStyle = false;
+    private boolean isShowProgress=true;
 
     public MaterialRefreshLayout(Context context) {
         this(context, null, 0);
@@ -137,52 +139,53 @@ public class MaterialRefreshLayout extends FrameLayout {
         if (mChildView == null) {
             return;
         }
-
         setWaveHeight(Util.dip2px(context, waveHeight));
         setHeaderHeight(Util.dip2px(context, headHeight));
 
-        if (isSunStyle) {
-            mSunLayout = new SunLayout(context);
-            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(context, hIGHER_HEAD_HEIGHT));
-            layoutParams.gravity = Gravity.TOP;
-            mSunLayout.setVisibility(View.GONE);
-            setHeaderView(mSunLayout);
-        } else {
-            mMaterialHeaderView = new MaterialHeaderView(context);
-            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(context, hIGHER_HEAD_HEIGHT));
-            layoutParams.gravity = Gravity.TOP;
-            mMaterialHeaderView.setLayoutParams(layoutParams);
-            mMaterialHeaderView.setWaveColor(isShowWave ? waveColor : Color.TRANSPARENT);
-            mMaterialHeaderView.showProgressArrow(showArrow);
-            mMaterialHeaderView.setProgressSize(progressSize);
-            mMaterialHeaderView.setProgressColors(colorSchemeColors);
-            mMaterialHeaderView.setProgressStokeWidth(PROGRESS_STOKE_WIDTH);
-            mMaterialHeaderView.setTextType(textType);
-            mMaterialHeaderView.setProgressTextColor(progressTextColor);
-            mMaterialHeaderView.setProgressValue(progressValue);
-            mMaterialHeaderView.setProgressValueMax(progressMax);
-            mMaterialHeaderView.setIsProgressBg(showProgressBg);
-            mMaterialHeaderView.setProgressBg(progressBg);
-            mMaterialHeaderView.setVisibility(View.GONE);
-            setHeaderView(mMaterialHeaderView);
-        }
+            if (isSunStyle) {
+                mSunLayout = new SunLayout(context);
+                LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(context, hIGHER_HEAD_HEIGHT));
+                layoutParams.gravity = Gravity.TOP;
+                mSunLayout.setVisibility(View.GONE);
+                mSunLayout.setIsProgressShow(this.isShowProgress);
+                setHeaderView(mSunLayout);
+            } else {
+                mMaterialHeaderView = new MaterialHeaderView(context);
+                LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(context, hIGHER_HEAD_HEIGHT));
+                layoutParams.gravity = Gravity.TOP;
+                mMaterialHeaderView.setLayoutParams(layoutParams);
+                mMaterialHeaderView.setWaveColor(isShowWave ? waveColor : Color.TRANSPARENT);
+                mMaterialHeaderView.showProgressArrow(showArrow);
+                mMaterialHeaderView.setProgressSize(progressSize);
+                mMaterialHeaderView.setProgressColors(colorSchemeColors);
+                mMaterialHeaderView.setProgressStokeWidth(PROGRESS_STOKE_WIDTH);
+                mMaterialHeaderView.setTextType(textType);
+                mMaterialHeaderView.setProgressTextColor(progressTextColor);
+                mMaterialHeaderView.setProgressValue(progressValue);
+                mMaterialHeaderView.setProgressValueMax(progressMax);
+                mMaterialHeaderView.setIsProgressBg(showProgressBg);
+                mMaterialHeaderView.setProgressBg(progressBg);
+                mMaterialHeaderView.setVisibility(View.GONE);
+                mMaterialHeaderView.setIsProgressShow(this.isShowProgress);
+                setHeaderView(mMaterialHeaderView);
+            }
 
 
-        mMaterialFooterView = new MaterialFooterView(context);
-        LayoutParams layoutParams2 = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(context, hIGHER_HEAD_HEIGHT));
-        layoutParams2.gravity = Gravity.BOTTOM;
-        mMaterialFooterView.setLayoutParams(layoutParams2);
-        mMaterialFooterView.showProgressArrow(showArrow);
-        mMaterialFooterView.setProgressSize(progressSize);
-        mMaterialFooterView.setProgressColors(colorSchemeColors);
-        mMaterialFooterView.setProgressStokeWidth(PROGRESS_STOKE_WIDTH);
-        mMaterialFooterView.setTextType(textType);
-        mMaterialFooterView.setProgressValue(progressValue);
-        mMaterialFooterView.setProgressValueMax(progressMax);
-        mMaterialFooterView.setIsProgressBg(showProgressBg);
-        mMaterialFooterView.setProgressBg(progressBg);
-        mMaterialFooterView.setVisibility(View.GONE);
-        setFooderView(mMaterialFooterView);
+            mMaterialFooterView = new MaterialFooterView(context);
+            LayoutParams layoutParams2 = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(context, hIGHER_HEAD_HEIGHT));
+            layoutParams2.gravity = Gravity.BOTTOM;
+            mMaterialFooterView.setLayoutParams(layoutParams2);
+            mMaterialFooterView.showProgressArrow(showArrow);
+            mMaterialFooterView.setProgressSize(progressSize);
+            mMaterialFooterView.setProgressColors(colorSchemeColors);
+            mMaterialFooterView.setProgressStokeWidth(PROGRESS_STOKE_WIDTH);
+            mMaterialFooterView.setTextType(textType);
+            mMaterialFooterView.setProgressValue(progressValue);
+            mMaterialFooterView.setProgressValueMax(progressMax);
+            mMaterialFooterView.setIsProgressBg(showProgressBg);
+            mMaterialFooterView.setProgressBg(progressBg);
+            mMaterialFooterView.setVisibility(View.GONE);
+            setFooderView(mMaterialFooterView);
     }
 
 
@@ -409,13 +412,16 @@ public class MaterialRefreshLayout extends FrameLayout {
     public void setIsOverLay(boolean isOverLay) {
         this.isOverlay = isOverLay;
     }
+    public void setIsProgressShow(boolean isShowProgress){
+        this.isShowProgress = isShowProgress;
+    }
 
 //    public void setProgressValue(int progressValue) {
 //        this.progressValue = progressValue;
 //        mMaterialHeaderView.setProgressValue(progressValue);
 //    }
 
-    public void createAnimatorTranslationY(final View v, final float h, final FrameLayout fl) {
+    public void createAnimatorTranslationY(final View v, final float h, final ViewGroup fl) {
         ViewPropertyAnimatorCompat viewPropertyAnimatorCompat = ViewCompat.animate(v);
         viewPropertyAnimatorCompat.setDuration(250);
         viewPropertyAnimatorCompat.setInterpolator(new DecelerateInterpolator());
