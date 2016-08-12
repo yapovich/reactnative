@@ -4,4 +4,6 @@
     <color name="material_green">#ff4CAF50</color>
     <color name="material_blue">#ff03A9F4</color>
     <color name="material_yellow">#ffFFEB3B</color>
+    <color name="black">#000000ff</color>
+    <color name="gray">#ccccccff</color>
 </resources>

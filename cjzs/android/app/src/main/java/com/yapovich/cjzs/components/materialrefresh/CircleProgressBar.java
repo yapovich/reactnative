@@ -35,6 +35,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.yapovich.cjzs.R;
+
 public class CircleProgressBar extends ImageView implements MaterialHeadListener {
 
     private static final int KEY_SHADOW_COLOR = 0x1E000000;

@@ -48,8 +48,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name=".components.qrcode.zxing.activity.CaptureResultActivity"
-            android:label="@string/title_activity_capture_result" >
+            android:name=".components.qrcode.zxing.activity.CaptureResultActivity">
         </activity>
     </application>
 

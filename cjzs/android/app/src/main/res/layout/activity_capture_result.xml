@@ -1,11 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.yapovich.cjzs.components.qrcode.zxing.activity.CaptureResultActivity">
-
-    <WebView
-        android:id="@+id/capture_webview"
+<com.yapovich.cjzs.components.materialrefresh.MaterialRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        >
+            <WebView
+                android:id="@+id/capture_webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></WebView>
+</com.yapovich.cjzs.components.materialrefresh.MaterialRefreshLayout>

@@ -17,6 +17,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 
+import com.yapovich.cjzs.R;
+
 public class MaterialRefreshLayout extends FrameLayout {
 
     public static final String Tag = MaterialRefreshLayout.class.getSimpleName();
@@ -527,6 +529,8 @@ public class MaterialRefreshLayout extends FrameLayout {
 
     private void setHeaderView(final View headerView) {
         addView(headerView);
+        if(mChildView!=null)
+          mChildView.bringToFront();
     }
 
     public void setHeader(final View headerView) {
