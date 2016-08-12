@@ -43,7 +43,7 @@ public class CaptureActivityHandler extends Handler {
 
     public CaptureActivityHandler(CaptureActivity activity, CameraManager cameraManager, int decodeMode) {
         this.activity = activity;
-        decodeThread = new DecodeThread(null, decodeMode);
+        decodeThread = new DecodeThread(activity, decodeMode);
         decodeThread.start();
         state = State.SUCCESS;
 
@@ -61,7 +61,6 @@ public class CaptureActivityHandler extends Handler {
         } else if (message.what == R.id.decode_succeeded) {
             state = State.SUCCESS;
             Bundle bundle = message.getData();
-
             activity.handleDecode((Result) message.obj, bundle);
 
         } else if (message.what == R.id.decode_failed) {// We're decoding as fast as possible, so when one

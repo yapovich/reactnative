@@ -23,6 +23,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -40,9 +41,11 @@ import com.yapovich.cjzs.components.qrcode.zxing.decode.DecodeThread;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.BeepManager;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.CaptureActivityHandler;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.InactivityTimer;
+import com.yapovich.cjzs.util.MessageProxy;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * This activity opens the camera and does the actual scanning on a background
@@ -57,6 +60,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
+    public static ArrayBlockingQueue myBlockingQueue = new ArrayBlockingQueue(1);
+
     private CameraManager cameraManager;
     private CaptureActivityHandler handler;
     private InactivityTimer inactivityTimer;
@@ -69,6 +74,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     private Rect mCropRect = null;
     private boolean isHasSurface = false;
+
+    private Intent resultIntent=new Intent();
 
     public Handler getHandler() {
         return handler;
@@ -83,15 +90,13 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         super.onCreate(icicle);
 
         Window window = getWindow();
-        //window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             window.setFlags(
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            setContentView(R.layout.activity_capture);
-        }else {
-            setContentView(R.layout.activity_capture);
         }
+        setContentView(R.layout.activity_capture);
 
         scanPreview = (SurfaceView) findViewById(R.id.capture_preview);
         scanContainer = (RelativeLayout) findViewById(R.id.capture_container);
@@ -104,7 +109,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         TranslateAnimation animation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0.0f, Animation
                 .RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT,
                 0.9f);
-        animation.setDuration(4500);
+        animation.setDuration(2500);
         animation.setRepeatCount(-1);
         animation.setRepeatMode(Animation.RESTART);
         scanLine.startAnimation(animation);
@@ -157,6 +162,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     @Override
     protected void onDestroy() {
         inactivityTimer.shutdown();
+        //CaptureActivity.myBlockingQueue.add(resultIntent);
         super.onDestroy();
     }
 
@@ -191,13 +197,13 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     public void handleDecode(Result rawResult, Bundle bundle) {
         inactivityTimer.onActivity();
         beepManager.playBeepSoundAndVibrate();
-        Intent resultIntent = new Intent();
+
         bundle.putInt("width", mCropRect.width());
         bundle.putInt("height", mCropRect.height());
         bundle.putString("result", rawResult.getText());
+        Intent resultIntent=new Intent(this, CaptureResultActivity.class);
         resultIntent.putExtras(bundle);
-        this.setResult(RESULT_OK, resultIntent);
-        //CaptureActivity.this.finish();
+        this.startActivity(resultIntent);
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {

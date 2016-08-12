@@ -28,6 +28,7 @@ import android.util.Log;
 
 
 import com.yapovich.cjzs.R;
+import com.yapovich.cjzs.components.qrcode.zxing.activity.CaptureActivity;
 
 import java.io.Closeable;
 import java.io.IOException;

@@ -11,14 +11,7 @@ import {
 var components={
     //二维码模块------------------------------------------------------------
     get QRCode(){
-        return {
-            createQRCode(width,height,cb){
-                NativeModules.RCTQRCodeAndroid.createQRCode(width,height,cb)
-            },
-            scanQRCode(cb){
-                NativeModules.RCTQRCodeAndroid.scanQRCode(cb)
-            }
-        }
+        return NativeModules.QRCodeAndroid;
     },
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},

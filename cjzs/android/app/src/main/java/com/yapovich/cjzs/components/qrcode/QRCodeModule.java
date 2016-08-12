@@ -3,11 +3,15 @@ package com.yapovich.cjzs.components.qrcode;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -15,6 +19,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.yapovich.cjzs.R;
 import com.yapovich.cjzs.components.qrcode.zxing.activity.CaptureActivity;
+import com.yapovich.cjzs.util.MessageProxy;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,7 +33,7 @@ public class QRCodeModule extends ReactContextBaseJavaModule{
     }
     @Override
     public String getName() {
-        return "RCTQRCodeAndroid";
+        return "QRCodeAndroid";
     }
     /*
      * 生成二维码
@@ -70,17 +75,12 @@ public class QRCodeModule extends ReactContextBaseJavaModule{
     public void scanQRCode(final Callback successCallback){
         try {
             Activity activity = this.getCurrentActivity();
-            PreferenceManager.OnActivityResultListener listener=new PreferenceManager.OnActivityResultListener() {
-                @Override
-                public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-                    String result = data.getExtras().getString("result");
-                    if (successCallback != null) successCallback.invoke(result);
-                    return false;
-                }
-            };
-            activity.startActivityForResult(new Intent(activity, CaptureActivity.class), 0);
+            activity.startActivity(new Intent(activity, CaptureActivity.class));
+            //Intent result = (Intent)CaptureActivity.myBlockingQueue.take();
+            //String strResult = result.getStringExtra("result");
+            //if (successCallback != null) successCallback.invoke(strResult);
         }catch(Exception ex){
-            if (successCallback != null) successCallback.invoke("failture");
+            if (successCallback != null) successCallback.invoke(false);
         }
     }
 

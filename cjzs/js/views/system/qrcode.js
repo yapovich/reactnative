@@ -21,10 +21,20 @@ module.exports=React.createClass({
             info:""
         };
     },
+    jump(name,info){
+        if(this.props.navigator){
+            this.props.navigator.push({name:name,info:info});
+        }
+    },
     render() {
         return (
-            <View style={{padding:50}}>
-                <Text>{this.state.info}</Text>
+            <View style={{flex:1}}>
+                <Components.MD.Toolbar
+                    style={{elevation:1}}
+                    icon="arrow-back"
+                    theme="dark"
+                    title={"二维码开发测试"}
+                />
                 <Components.MD.Button
                     raised={true}
                     text="生成二维码"
@@ -39,7 +49,9 @@ module.exports=React.createClass({
                     text="扫描二维码"
                     onPress={()=>{
                         Components.QRCode.scanQRCode((isOk)=>{
-                            this.setState({info:isOk})
+                            //this.setState({info:"this is:"+isOk})
+                            //if(isOk)
+                              //this.jump('qrcodeResult',isOk);
                         })
                     }}
                 />

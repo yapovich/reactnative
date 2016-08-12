@@ -22,11 +22,6 @@ import java.util.Hashtable;
 public class QRCodeHelper {
     //private static final int IMAGE_HALFWIDTH = 40;//宽度值，影响中间图片大小
     /*
-    扫描二维码
-     */
-    public static void scanQRCode(Activity activity){
-    }
-    /*
     创建二维码(带LOGO)
     */
     public static Bitmap createQRCode(String content,int width,int height,Bitmap bitmap){

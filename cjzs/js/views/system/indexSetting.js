@@ -54,7 +54,7 @@ module.exports=React.createClass({
             <ScrollView style={{flex:1}}>
                         <Components.ListNavigator
                         icons={[
-                            {text:<Text>&#xf004;</Text>,label:'首选项'},
+                            {text:<Text>&#xf004;</Text>,label:'扫一扫',action:()=>this.jump("qrcode")},
                             [
                                 {
                                     text:<Text>&#xf019;</Text>,
