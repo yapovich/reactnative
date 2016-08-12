@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
+import com.cunoraz.gifview.library.GifView;
+import com.yapovich.cjzs.R;
+
 /**
  * Created by cjj on 2016/2/22.
  */
@@ -25,6 +28,7 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
     private static final int DEFAULT_MOUTH_WIDTH = 3;
     private static final int DEFAULT_LINE_COLOR = Color.RED;
 
+    protected GifView mGifView;
     protected SunFaceView mSunView;
     protected SunLineView mLineView;
     private int mSunRadius;
@@ -63,6 +67,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
         mMouthStro = DEFAULT_MOUTH_WIDTH;
 
         Context context = getContext();
+
+        /*
         mSunView = new SunFaceView(context);
         mSunView.setSunRadius(mSunRadius);
         mSunView.setSunColor(mSunColor);
@@ -79,6 +85,11 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
         addView(mLineView);
 
         startSunLineAnim(mLineView);
+        */
+        mGifView=new GifView(context);
+        addView(mGifView);
+        mGifView.setGifResource(R.drawable.loading);
+        mGifView.play();
     }
 
     /**
@@ -88,8 +99,10 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setSunRadius(int sunRadius) {
         mSunRadius = sunRadius;
-        mSunView.setSunRadius(mSunRadius);
-        mLineView.setSunRadius(mSunRadius);
+        if(mSunView!=null&&mLineView!=null) {
+            mSunView.setSunRadius(mSunRadius);
+            mLineView.setSunRadius(mSunRadius);
+        }
     }
 
     /**
@@ -99,7 +112,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setSunColor(int sunColor) {
         mSunColor = sunColor;
-        mSunView.setSunColor(mSunColor);
+        if(mSunView!=null)
+          mSunView.setSunColor(mSunColor);
     }
 
     /**
@@ -109,7 +123,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setEyesSize(int eyesSize) {
         mEyesSize = eyesSize;
-        mSunView.setEyesSize(mEyesSize);
+        if(mSunView!=null)
+          mSunView.setEyesSize(mEyesSize);
     }
 
     /**
@@ -119,7 +134,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setLineLevel(int level) {
         mLineLevel = level;
-        mLineView.setLineLevel(mLineLevel);
+        if(mLineView!=null)
+          mLineView.setLineLevel(mLineLevel);
     }
 
     /**
@@ -129,7 +145,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setLineColor(int lineColor) {
         mLineColor = lineColor;
-        mLineView.setLineColor(mLineColor);
+        if(mLineView!=null)
+          mLineView.setLineColor(mLineColor);
     }
 
     /**
@@ -139,7 +156,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setLineWidth(int lineWidth) {
         mLineWidth = lineWidth;
-        mLineView.setLineWidth(mLineWidth);
+        if(mLineView!=null)
+          mLineView.setLineWidth(mLineWidth);
     }
 
     /**
@@ -149,7 +167,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setLineHeight(int lineHeight) {
         mLineHeight = lineHeight;
-        mLineView.setLineHeight(mLineHeight);
+        if(mLineView!=null)
+          mLineView.setLineHeight(mLineHeight);
     }
 
     /**
@@ -159,7 +178,8 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
      */
     public void setMouthStro(int mouthStro) {
         mMouthStro = mouthStro;
-        mSunView.setMouthStro(mMouthStro);
+        if(mSunView!=null)
+          mSunView.setMouthStro(mMouthStro);
     }
 
 
@@ -204,16 +224,18 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
 
     @Override
     public void onPull(MaterialRefreshLayout materialRefreshLayout, float fraction) {
-        float a = Util.limitValue(1, fraction);
-        if (a >= 0.7) {
-            mLineView.setVisibility(View.VISIBLE);
-        } else {
-            mLineView.setVisibility(View.GONE);
+        if(mLineView!=null&&mSunView!=null) {
+            float a = Util.limitValue(1, fraction);
+            if (a >= 0.7) {
+                mLineView.setVisibility(View.VISIBLE);
+            } else {
+                mLineView.setVisibility(View.GONE);
+            }
+            mSunView.setPerView(mSunRadius, a);
+            ViewCompat.setScaleX(this, a);
+            ViewCompat.setScaleY(this, a);
+            ViewCompat.setAlpha(this, a);
         }
-        mSunView.setPerView(mSunRadius, a);
-        ViewCompat.setScaleX(this, a);
-        ViewCompat.setScaleY(this, a);
-        ViewCompat.setAlpha(this, a);
     }
 
     @Override
@@ -223,6 +245,7 @@ public class SunLayout extends FrameLayout implements MaterialHeadListener {
 
     @Override
     public void onRefreshing(MaterialRefreshLayout materialRefreshLayout) {
-        startSunLineAnim(mLineView);
+        if(mLineView!=null)
+          startSunLineAnim(mLineView);
     }
 }

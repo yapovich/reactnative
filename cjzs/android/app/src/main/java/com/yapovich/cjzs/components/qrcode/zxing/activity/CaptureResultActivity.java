@@ -21,20 +21,21 @@ public class CaptureResultActivity extends Activity implements SwipeRefreshLayou
         refreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(final MaterialRefreshLayout materialRefreshLayout) {
-                //ÏÂÀ­Ë¢ÐÂ...
-                refreshLayout.finishRefresh();
+                //ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½...
+                //refreshLayout.finishRefresh();
             }
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
-                //ÉÏÀ­Ë¢ÐÂ...
-                refreshLayout.finishRefreshLoadMore();
+                //ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½...
+                //refreshLayout.finishRefreshLoadMore();
             }
         });
         refreshLayout.setIsOverLay(false);
         refreshLayout.setWaveShow(false);
         refreshLayout.setLoadMore(false);
         //refreshLayout.setBackgroundColor(0x333333);
+        refreshLayout.setSunStyle(true);
         refreshLayout.setHeader(getLayoutInflater().inflate(R.layout.refresh_webview, null));
         String url = getIntent().getExtras().getString("result");
         WebView webView = (WebView) findViewById(R.id.capture_webview);
