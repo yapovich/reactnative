@@ -18,6 +18,7 @@ import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.tencent.smtt.sdk.WebView;
 import com.yapovich.cjzs.R;
 
 public class MaterialRefreshLayout extends FrameLayout {
@@ -235,7 +236,6 @@ public class MaterialRefreshLayout extends FrameLayout {
         if (isRefreshing) {
             return super.onTouchEvent(e);
         }
-
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 mCurrentY = e.getY();
@@ -313,9 +313,7 @@ public class MaterialRefreshLayout extends FrameLayout {
                 return true;
         }
 
-        return super.
-
-                onTouchEvent(e);
+        return super.onTouchEvent(e);
 
     }
 
@@ -451,11 +449,16 @@ public class MaterialRefreshLayout extends FrameLayout {
                 return absListView.getChildCount() > 0
                         && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
                         .getTop() < absListView.getPaddingTop());
-            } else {
+            }else if(mChildView instanceof WebView) {
+                return ViewCompat.canScrollVertically(((WebView)mChildView).getView(), 1) || ((WebView)mChildView).getView().getScrollY() > 0;
+            }else {
                 return ViewCompat.canScrollVertically(mChildView, -1) || mChildView.getScrollY() > 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mChildView, -1);
+            if(mChildView instanceof WebView)
+              return ViewCompat.canScrollVertically(((WebView)mChildView).getView(), -1);
+            else
+              return ViewCompat.canScrollVertically(mChildView, -1);
         }
     }
 
@@ -473,11 +476,16 @@ public class MaterialRefreshLayout extends FrameLayout {
                     return false;
                 }
 
+            } else if(mChildView instanceof WebView) {
+                return ViewCompat.canScrollVertically(((WebView)mChildView).getView(), 1) || ((WebView)mChildView).getView().getScrollY() > 0;
             } else {
                 return ViewCompat.canScrollVertically(mChildView, 1) || mChildView.getScrollY() > 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mChildView, 1);
+            if(mChildView instanceof WebView)
+                return ViewCompat.canScrollVertically(((WebView)mChildView).getView(), 1);
+            else
+                return ViewCompat.canScrollVertically(mChildView, 1);
         }
     }
 
