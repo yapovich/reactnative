@@ -52,6 +52,8 @@ public class CaptureResultActivity extends Activity implements SwipeRefreshLayou
         WebView webView = (WebView) findViewById(R.id.capture_webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setPluginsEnabled(true);
+        webSettings.setSupportZoom(true);  //支持缩放
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -70,8 +72,9 @@ public class CaptureResultActivity extends Activity implements SwipeRefreshLayou
                 }
             }
         });
-        if(url!=null&&!url.isEmpty())
+        if(url!=null&&!url.isEmpty()) {
             webView.loadUrl(url);
+        }
     }
 
     @Override
