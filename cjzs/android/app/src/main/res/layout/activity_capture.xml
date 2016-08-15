@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="将二维码放入框内，即可自动扫描"
+            android:text="将二维码/条码放入框内，即可自动扫描"
             android:layout_below="@+id/capture_crop_view"
             android:layout_centerHorizontal="true"
             android:gravity="center"
