@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tencent.smtt.sdk.WebChromeClient;
@@ -20,13 +25,15 @@ import com.yapovich.cjzs.components.materialrefresh.MaterialRefreshListener;
 
 import java.net.URLEncoder;
 
-public class CaptureResultActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener {
+public class CaptureResultActivity extends Activity{
     private MaterialRefreshLayout refreshLayout;
+    private ProgressBar myProgressBar;
+    private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_result);
-
+        myProgressBar=(ProgressBar)findViewById(R.id.myProgressBar);
         refreshLayout = (MaterialRefreshLayout) findViewById(R.id.refresh);
         refreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
@@ -49,7 +56,7 @@ public class CaptureResultActivity extends Activity implements SwipeRefreshLayou
         refreshLayout.setHeader(getLayoutInflater().inflate(R.layout.refresh_webview, null));
         final TextView urlFromTxtView=(TextView)findViewById(R.id.urlFromTxt);
         String url = getIntent().getExtras().getString("result");
-        WebView webView = (WebView) findViewById(R.id.capture_webview);
+        webView = (WebView) findViewById(R.id.capture_webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setPluginsEnabled(true);
@@ -72,14 +79,36 @@ public class CaptureResultActivity extends Activity implements SwipeRefreshLayou
                 }
             }
         });
+        webView.setWebChromeClient(new WebChromeClient() {
+            //进度处理
+            @Override
+            public void onProgressChanged(WebView webView, int i) {
+                if (i == 100) {
+                    myProgressBar.setProgress(i);
+                    ViewPropertyAnimatorCompat viewPropertyAnimatorCompat = ViewCompat.animate(myProgressBar);
+                    viewPropertyAnimatorCompat.setDuration(200);
+                    viewPropertyAnimatorCompat.alpha(0);
+                    viewPropertyAnimatorCompat.setInterpolator(new DecelerateInterpolator());
+                    viewPropertyAnimatorCompat.start();
+                } else {
+                    myProgressBar.setAlpha(1);
+                    myProgressBar.setVisibility(View.VISIBLE);
+                    myProgressBar.setProgress(i);
+                }
+            }
+        });
         if(url!=null&&!url.isEmpty()) {
             webView.loadUrl(url);
         }
     }
 
     @Override
-    public void onRefresh() {
-
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private String GetUrlRelativePath(String urlString) {

@@ -1,4 +1,4 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -16,4 +16,13 @@
                 android:layout_height="match_parent">
             </com.tencent.smtt.sdk.WebView>
   </com.yapovich.cjzs.components.materialrefresh.MaterialRefreshLayout>
-</LinearLayout>
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:padding="0dp"
+        android:visibility="invisible"
+        android:id="@+id/myProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:progressDrawable="@drawable/progress_horizontal_widgt"
+        />
+</FrameLayout>
