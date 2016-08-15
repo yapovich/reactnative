@@ -58,6 +58,9 @@ public class Contacts extends ReactContextBaseJavaModule {
                 cursor.close();
                 cursor = null;
             }
+            /*导出到EXCEL--------------------------begin*/
+
+            /*--------------------------end*/
             if (successCallback != null)
                 successCallback.invoke(Converter.jsonToReact(array));
         }catch(Exception ex){
