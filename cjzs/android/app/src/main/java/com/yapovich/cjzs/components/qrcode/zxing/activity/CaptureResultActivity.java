@@ -30,7 +30,8 @@ public class CaptureResultActivity extends Activity{
     private MaterialRefreshLayout refreshLayout;
     private ProgressBar myProgressBar;
     private WebView webView;
-    private String ISBNPreUrl="https://api.douban.com/v2/book/isbn/:";
+    private String ISBNPreUrl="http://book.douban.com/isbn/";
+    private String BarcodeUrl="http://www.baidu.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +105,8 @@ public class CaptureResultActivity extends Activity{
 
             if(FormatChecker.checkISBN(url)){ //如果是ISBN条形码，获取ISBN详细信息
                 webView.loadUrl(ISBNPreUrl+url);
+            }else if(FormatChecker.checkBarcode(url)){//如果是网址，直接访问
+                webView.loadUrl(BarcodeUrl+url);
             }else if(url.indexOf("http")>-1){//如果是网址，直接访问
                webView.loadUrl(url);
             }else{//其他情况直接显示扫描结果

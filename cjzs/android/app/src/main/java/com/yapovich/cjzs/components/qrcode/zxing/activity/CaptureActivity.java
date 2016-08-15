@@ -41,6 +41,7 @@ import com.yapovich.cjzs.components.qrcode.zxing.decode.DecodeThread;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.BeepManager;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.CaptureActivityHandler;
 import com.yapovich.cjzs.components.qrcode.zxing.utils.InactivityTimer;
+import com.yapovich.cjzs.util.FormatChecker;
 import com.yapovich.cjzs.util.MessageProxy;
 
 import java.io.IOException;
@@ -192,7 +193,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     public void handleDecode(Result rawResult, Bundle bundle) {
         inactivityTimer.onActivity();
         beepManager.playBeepSoundAndVibrate();
-
         bundle.putInt("width", mCropRect.width());
         bundle.putInt("height", mCropRect.height());
         bundle.putString("result", rawResult.getText());

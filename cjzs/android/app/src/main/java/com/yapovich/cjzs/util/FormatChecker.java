@@ -17,7 +17,6 @@ public class FormatChecker {
         int checkBitInt = 0;
         // 将ISBN数据全取大写字母
         //isbn = isbn.toUpperCase();
-
         char[] cs = isbn.toCharArray();
         switch (isbn.length()) {
             case 10:
@@ -106,5 +105,13 @@ public class FormatChecker {
                 // ISBN为非10位或13位时抛出异常
                 return false;
         }
+    }
+    public static boolean checkBarcode(String barcode) {
+         if(barcode.matches("^\\d+$")){
+             if(barcode.length()==13){
+                  return true;
+             }
+         }
+         return false;
     }
 }
