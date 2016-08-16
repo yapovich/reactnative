@@ -16,9 +16,9 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 
-/** 
- * µ¼³öSQLiteÊı¾İ¿â£¬Éú³ÉexcelÎÄ¼ş
- * 
+/**
+ * å¯¼å‡ºSQLiteæ•°æ®åº“ï¼Œç”Ÿæˆexcelæ–‡ä»¶
+ *
  * Created by liyu on 2015-9-8
  */
 public class SqliteToExcel{
@@ -28,15 +28,15 @@ public class SqliteToExcel{
 	private String mDbName;
 	private ExportListener mListener;
 	private String mExportPath;
-	
+
 	private final static int MESSAGE_START = 0;
 	private final static int MESSAGE_COMPLETE = 1;
 	private final static int MESSAGE_ERROR = 2;
-	
+
 	/**
-	 * ¹¹Ôìº¯Êı
-	 * @param context ÉÏÏÂÎÄ
-	 * @param dbName Êı¾İ¿âÃû³Æ
+	 * æ„é€ å‡½æ•°
+	 * @param context ä¸Šä¸‹æ–‡
+	 * @param dbName æ•°æ®åº“åç§°
 	 */
 	public SqliteToExcel(Context context,String dbName){
 		mContext = context;
@@ -47,14 +47,14 @@ public class SqliteToExcel{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
-	 * 
-	 * @param context ÉÏÏÂÎÄ
-	 * @param dbName Êı¾İ¿âÃû³Æ
-	 * @param exportPath µ¼³öÎÄ¼şµÄÂ·¾¶£¨²»°üÀ¨ÎÄ¼şÃû£©
+	 *
+	 * @param context ä¸Šä¸‹æ–‡
+	 * @param dbName æ•°æ®åº“åç§°
+	 * @param exportPath å¯¼å‡ºæ–‡ä»¶çš„è·¯å¾„ï¼ˆä¸åŒ…æ‹¬æ–‡ä»¶åï¼‰
 	 */
 	public SqliteToExcel(Context context,String dbName,String exportPath){
 		mContext = context;
@@ -66,40 +66,40 @@ public class SqliteToExcel{
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * »ñÈ¡Êı¾İ¿âÖĞËùÓĞ±íÃû
+	 * è·å–æ•°æ®åº“ä¸­æ‰€æœ‰è¡¨å
 	 * @return
 	 */
 	private ArrayList<String> getAllTables(){
 		ArrayList<String> tables=new ArrayList<String>();
-		Cursor cursor = database.rawQuery("select name from sqlite_master where type='table' order by name", null); 
-		while(cursor.moveToNext()){  
+		Cursor cursor = database.rawQuery("select name from sqlite_master where type='table' order by name", null);
+		while(cursor.moveToNext()){
 			tables.add(cursor.getString(0));
-	    }
+		}
 		cursor.close();
 		return tables;
 	}
-	
+
 	/**
-	 * »ñÈ¡Ò»¸ö±íµÄËùÓĞÁĞÃû
+	 * è·å–ä¸€ä¸ªè¡¨çš„æ‰€æœ‰åˆ—å
 	 * @param table
 	 * @return
 	 */
 	private ArrayList<String> getColumns(String table){
 		ArrayList<String> columns=new ArrayList<String>();
 		Cursor cursor = database.rawQuery("PRAGMA table_info("+table+")", null);
-		while(cursor.moveToNext()){  
+		while(cursor.moveToNext()){
 			columns.add(cursor.getString(1));
-	    }
+		}
 		cursor.close();
 		return columns;
 	}
-	
+
 	/**
-	 * µ¼³öÊı¾İ¿âÖĞµ¥¸ö±íµ½excelÎÄ¼ş
-	 * @param table ±íÃû
-	 * @param fileName Éú³ÉµÄexcelÎÄ¼şÃû
+	 * å¯¼å‡ºæ•°æ®åº“ä¸­å•ä¸ªè¡¨åˆ°excelæ–‡ä»¶
+	 * @param table è¡¨å
+	 * @param fileName ç”Ÿæˆçš„excelæ–‡ä»¶å
 	 */
 	private void exportItems(String table,String fileName){
 		mHandler.sendEmptyMessage(MESSAGE_START);
@@ -115,19 +115,19 @@ public class SqliteToExcel{
 			e.printStackTrace();
 			mHandler.sendEmptyMessage(MESSAGE_ERROR);
 		}finally{
-			if (fos != null) 
-            {
-                try 
-                {
-                    fos.flush();
-                    fos.close();
-                }
-                catch (IOException e) 
-                {
-                    e.printStackTrace();
-                    mHandler.sendEmptyMessage(MESSAGE_ERROR);
-                }
-            }
+			if (fos != null)
+			{
+				try
+				{
+					fos.flush();
+					fos.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+					mHandler.sendEmptyMessage(MESSAGE_ERROR);
+				}
+			}
 		}
 		try {
 			workbook.close();
@@ -137,10 +137,10 @@ public class SqliteToExcel{
 			mHandler.sendEmptyMessage(MESSAGE_ERROR);
 		}
 	}
-	
+
 	/**
-	 * µ¼³öÊı¾İ¿âÖĞËùÓĞ±íµ½excelÎÄ¼ş
-	 * @param fileName Éú³ÉµÄexcelÎÄ¼şÃû
+	 * å¯¼å‡ºæ•°æ®åº“ä¸­æ‰€æœ‰è¡¨åˆ°excelæ–‡ä»¶
+	 * @param fileName ç”Ÿæˆçš„excelæ–‡ä»¶å
 	 */
 	private void exportAllItems(String fileName){
 		mHandler.sendEmptyMessage(MESSAGE_START);
@@ -159,19 +159,19 @@ public class SqliteToExcel{
 			e.printStackTrace();
 			mHandler.sendEmptyMessage(MESSAGE_ERROR);
 		}finally{
-			if (fos != null) 
-            {
-                try 
-                {
-                    fos.flush();
-                    fos.close();
-                }
-                catch (IOException e) 
-                {
-                    e.printStackTrace();
-                    mHandler.sendEmptyMessage(MESSAGE_ERROR);
-                }
-            }
+			if (fos != null)
+			{
+				try
+				{
+					fos.flush();
+					fos.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+					mHandler.sendEmptyMessage(MESSAGE_ERROR);
+				}
+			}
 		}
 		try {
 			workbook.close();
@@ -181,44 +181,44 @@ public class SqliteToExcel{
 			mHandler.sendEmptyMessage(MESSAGE_ERROR);
 		}
 	}
-	
+
 	/**
-	 * ¿ªÊ¼µ¼³öµ¥¸ö±íµÄÈÎÎñ
-	 * @param table ±íÃû
-	 * @param fileName Éú³ÉµÄexcelÎÄ¼şÃû
-	 * @param listener ÈÎÎñ¼àÌıÆ÷
+	 * å¼€å§‹å¯¼å‡ºå•ä¸ªè¡¨çš„ä»»åŠ¡
+	 * @param table è¡¨å
+	 * @param fileName ç”Ÿæˆçš„excelæ–‡ä»¶å
+	 * @param listener ä»»åŠ¡ç›‘å¬å™¨
 	 */
 	public void startExportSingleTable(final String table,final String fileName,ExportListener listener){
 		mListener = listener;
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				exportItems(table, fileName);
 			}
 		}).start();
 	}
-	
+
 	/**
-	 * ¿ªÊ¼µ¼³öËùÓĞ±íµÄµÄÈÎÎñ
-	 * @param fileName Éú³ÉµÄexcelÎÄ¼şÃû
-	 * @param listener ÈÎÎñ¼àÌıÆ÷
+	 * å¼€å§‹å¯¼å‡ºæ‰€æœ‰è¡¨çš„çš„ä»»åŠ¡
+	 * @param fileName ç”Ÿæˆçš„excelæ–‡ä»¶å
+	 * @param listener ä»»åŠ¡ç›‘å¬å™¨
 	 */
 	public void startExportAllTables(final String fileName,ExportListener listener){
 		mListener = listener;
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				exportAllItems(fileName);
 			}
 		}).start();
 	}
-	
+
 	/**
-	 * ´´½¨excelµÄsheet
-	 * @param table Êı¾İ¿â±íÃû
-	 * @param sheet ¹¤×÷±¡ÖĞµÄsheet
+	 * åˆ›å»ºexcelçš„sheet
+	 * @param table æ•°æ®åº“è¡¨å
+	 * @param sheet å·¥ä½œè–„ä¸­çš„sheet
 	 */
 	private void createSheet(String table,HSSFSheet sheet){
 		HSSFRow rowA = sheet.createRow(0);
@@ -229,12 +229,12 @@ public class SqliteToExcel{
 		}
 		insertItemToSheet(table, sheet, columns);
 	}
-	
+
 	/**
-	 * ²åÈëÊı¾İµ½¹¤×÷±¡ÖĞµÄsheet
-	 * @param table Êı¾İ¿â±íÃû
-	 * @param sheet ¹¤×÷±¡ÖĞµÄsheet
-	 * @param columns ËùÓĞÁĞ
+	 * æ’å…¥æ•°æ®åˆ°å·¥ä½œè–„ä¸­çš„sheet
+	 * @param table æ•°æ®åº“è¡¨å
+	 * @param sheet å·¥ä½œè–„ä¸­çš„sheet
+	 * @param columns æ‰€æœ‰åˆ—
 	 */
 	private void insertItemToSheet(String table,HSSFSheet sheet,ArrayList<String> columns){
 		Cursor cursor = database.rawQuery("select * from "+table, null);
@@ -244,17 +244,17 @@ public class SqliteToExcel{
 		{
 			HSSFRow rowA = sheet.createRow(n);
 			for(int j=0;j<columns.size();j++){
-			    HSSFCell cellA = rowA.createCell(j);
-			    cellA.setCellValue(new HSSFRichTextString(cursor.getString(j)));
+				HSSFCell cellA = rowA.createCell(j);
+				cellA.setCellValue(new HSSFRichTextString(cursor.getString(j)));
 			}
 			n++;
 			cursor.moveToNext();
 		}
 		cursor.close();
 	}
-	
+
 	/**
-	 * ÈÎÎñ¼àÌıÆ÷½Ó¿Ú
+	 * ä»»åŠ¡ç›‘å¬å™¨æ¥å£
 	 * @author yu.li
 	 *
 	 */
@@ -264,22 +264,22 @@ public class SqliteToExcel{
 		void onError();
 	}
 
-	private Handler mHandler = new Handler() {  
-        @Override  
-        public void handleMessage(Message msg) {  
-            super.handleMessage(msg);  
-            int msgId = msg.what;  
-            switch (msgId) {  
-                case MESSAGE_START:
-                	mListener.onStart();
-                    break;    
-                case MESSAGE_COMPLETE:
-                	mListener.onComplete();
-                	break;
-                case MESSAGE_ERROR:
-                	mListener.onError();
-                	break;
-            }  
-        }  
-    };
+	private Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			int msgId = msg.what;
+			switch (msgId) {
+				case MESSAGE_START:
+					mListener.onStart();
+					break;
+				case MESSAGE_COMPLETE:
+					mListener.onComplete();
+					break;
+				case MESSAGE_ERROR:
+					mListener.onError();
+					break;
+			}
+		}
+	};
 }
