@@ -13,6 +13,10 @@ var components={
     get QRCode(){
         return NativeModules.QRCodeAndroid;
     },
+    //SQLite模块
+    get SQLite(){
+        return require('./libs/sqlite');
+    },
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},
     //数据存储组件------------------------------------------------------------

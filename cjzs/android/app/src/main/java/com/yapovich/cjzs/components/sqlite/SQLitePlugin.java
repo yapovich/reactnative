@@ -93,6 +93,53 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void startExportSingleTable(ReadableMap args, final Callback success, final Callback error){
+        String dbName=args.getString("dbName");
+        String tablename=args.getString("tableName");
+        String excelPath=args.getString("excelPath");
+        final SQLiteToExcel ste=new SQLiteToExcel(getReactApplicationContext(),getDatabase(dbName));
+        ste.startExportSingleTable(tablename, excelPath, new SQLiteToExcel.ExportListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onComplete() {
+                ste.close();
+                if(success!=null)success.invoke();
+            }
+            @Override
+            public void onError() {
+                ste.close();
+                if(error!=null)error.invoke();
+            }
+        });
+    }
+    @ReactMethod
+    public  void startExportAllTables(ReadableMap args,final Callback success, final Callback error){
+        String dbName=args.getString("dbName");
+        String excelPath=args.getString("excelPath");
+        final SQLiteToExcel ste=new SQLiteToExcel(getReactApplicationContext(),getDatabase(dbName));
+        ste.startExportAllTables(excelPath, new SQLiteToExcel.ExportListener() {
+            @Override
+            public void onStart() {
+
+            }
+            @Override
+            public void onComplete() {
+                ste.close();
+                if(success!=null)success.invoke();
+            }
+
+            @Override
+            public void onError() {
+                ste.close();
+                if(error!=null)error.invoke();
+            }
+        });
+    }
+    @ReactMethod
     public void open(ReadableMap args, Callback success, Callback error) {
         String actionAsString = "open";
         try {
@@ -358,16 +405,18 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             if (database != null && database.isOpen()) {
                 //this only happens when DBRunner is cycling the db for the locking work around.
                 // otherwise, this should not happen - should be blocked at the execute("open") level
-                if (cbc != null) cbc.error("database already open");
-                throw new Exception("database already open");
+                //if (cbc != null) cbc.error("database already open");
+                //throw new Exception("database already open");
+                if (cbc != null) cbc.success("database open");
             }
 
             if (assetFilePath != null && assetFilePath.length() > 0) {
-                if (assetFilePath.compareTo("1") == 0) {
-                    assetFilePath = "www/" + dbname;
+                /*if (assetFilePath.compareTo("1") == 0) {
+                    assetFilePath = "database/" + dbname;
                     in = this.getContext().getAssets().open(assetFilePath);
-                    Log.v("info", "Located pre-populated DB asset in app bundle www subdirectory: " + assetFilePath);
-                } else if (assetFilePath.charAt(0) == '~') {
+                    Log.v("info", "Located pre-populated DB asset in app bundle database subdirectory: " + assetFilePath);
+                } else */
+                if (assetFilePath.charAt(0) == '~') {
                     assetFilePath = assetFilePath.startsWith("~/") ? assetFilePath.substring(2) : assetFilePath.substring(1);
                     in = this.getContext().getAssets().open(assetFilePath);
                     Log.v("info", "Located pre-populated DB asset in app bundle subdirectory: " + assetFilePath);

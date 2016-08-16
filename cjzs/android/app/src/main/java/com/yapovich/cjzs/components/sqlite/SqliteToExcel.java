@@ -1,8 +1,10 @@
 package com.yapovich.cjzs.components.sqlite;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
@@ -15,13 +17,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 /**
  * 导出SQLite数据库，生成excel文件
  *
  * Created by liyu on 2015-9-8
  */
-public class SqliteToExcel{
+public class SQLiteToExcel {
 
 	private Context mContext;
 	private SQLiteDatabase database;
@@ -32,13 +35,24 @@ public class SqliteToExcel{
 	private final static int MESSAGE_START = 0;
 	private final static int MESSAGE_COMPLETE = 1;
 	private final static int MESSAGE_ERROR = 2;
-
+	/**
+	 * 构造函数
+	 */
+	public SQLiteToExcel( Context context,SQLiteDatabase database){
+		mContext = context;
+		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+			mExportPath = Environment.getExternalStorageDirectory().toString()+File.separator;
+		}else{
+			mExportPath =File.separator;
+		}
+		this.database=database;
+	}
 	/**
 	 * 构造函数
 	 * @param context 上下文
 	 * @param dbName 数据库名称
 	 */
-	public SqliteToExcel(Context context,String dbName){
+	public SQLiteToExcel(Context context, String dbName){
 		mContext = context;
 		mDbName = dbName;
 		mExportPath = Environment.getExternalStorageDirectory().toString()+File.separator;
@@ -47,7 +61,6 @@ public class SqliteToExcel{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -56,7 +69,7 @@ public class SqliteToExcel{
 	 * @param dbName 数据库名称
 	 * @param exportPath 导出文件的路径（不包括文件名）
 	 */
-	public SqliteToExcel(Context context,String dbName,String exportPath){
+	public SQLiteToExcel(Context context, String dbName, String exportPath){
 		mContext = context;
 		mDbName = dbName;
 		mExportPath = exportPath;
@@ -66,7 +79,6 @@ public class SqliteToExcel{
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * 获取数据库中所有表名
 	 * @return
@@ -237,7 +249,7 @@ public class SqliteToExcel{
 	 * @param columns 所有列
 	 */
 	private void insertItemToSheet(String table,HSSFSheet sheet,ArrayList<String> columns){
-		Cursor cursor = database.rawQuery("select * from "+table, null);
+		Cursor cursor = database.rawQuery("select * from " + table, null);
 		cursor.moveToFirst();
 		int n=1;
 		while(!cursor.isAfterLast())
@@ -251,6 +263,10 @@ public class SqliteToExcel{
 			cursor.moveToNext();
 		}
 		cursor.close();
+	}
+	public void close(){
+		if(database!=null)
+			database.close();
 	}
 
 	/**

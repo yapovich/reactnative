@@ -7,7 +7,10 @@ export default class BaseDao{
         this.db=null;
     }
     opendb(){
-        this.db = SQLite.openDatabase({name : "mytest.db", createFromLocation : 1},()=>{
+        this.db = SQLite.openDatabase({
+            name : "mytest",
+            createFromLocation:"~/database/mytest.db"
+        },()=>{
             console.log("连接成功！");
         },()=>{
             console.log("连接失败！");

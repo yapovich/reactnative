@@ -674,7 +674,7 @@ SQLiteFactory.prototype.openDatabase = argsArray(function(args) {
     } else {
       openargs.dblocation = dblocations[openargs.location];
     }
-
+    openargs.assetFilename = "1";
     if (!!openargs.createFromLocation) {
       if (openargs.createFromLocation === 1) {
         openargs.assetFilename = "1";
@@ -750,7 +750,23 @@ SQLiteFactory.prototype.deleteDatabase = function(first,success, error) {
 
   plugin.exec("delete",args,mysuccess,myerror);
 };
-
+SQLiteFactory.prototype.startExportSingleTable = function(dbName,tableName,excelPath,success,error) {
+  plugin.exec("startExportSingleTable",
+      {
+        dbName:dbName,
+        tableName:tableName,
+        excelPath:excelPath
+      },
+      success,error);
+};
+SQLiteFactory.prototype.startExportAllTables = function(dbName,excelPath,success,error) {
+  plugin.exec("startExportAllTables",
+      {
+        dbName:dbName,
+        excelPath:excelPath
+      },
+      success,error);
+};
 plugin.sqlitePlugin = {
   SQLiteFactory : SQLiteFactory,
   SQLitePluginTransaction : SQLitePluginTransaction,

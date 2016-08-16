@@ -40,23 +40,37 @@ module.exports=React.createClass({
             this.props.navigator.push({name:name});
         }
     },
+    exportData(){
+        Components.SQLite.openDatabase({
+            name : "mytest",
+            createFromLocation:"~/database/mytest.db"
+        },()=>{
+            Components.SQLite.startExportSingleTable("mytest","info","mytest.xls",function(){
+                Components.Toast.short("导出成功");
+            },function(){
+                Components.Toast.short("导出失败");
+            })
+        },()=>{
+            console.log("连接失败！");
+        })
+    },
     loadData(){
-
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        /*infoDao.getAllInfos((result)=>{
+        infoDao.getAllInfos((result)=>{
             if(result&&result.length>0)
               this.setState({dataSource:ds.cloneWithRows(result)});
             this.setState({refreshing: false});
-        });*/
+        });
+        /*
         Contacts.getAllContacts((result)=>{
             if(result&&result.length>0)
                 this.setState({dataSource:ds.cloneWithRows(result)});
             this.setState({refreshing: false});
-        });
+        });*/
 
     },
     getListComponent(rowData, sectionID, rowID, highlightRow){
-        /*
+
         return <Components.MD.List
             splitLine={rowID<this.state.dataSource.length-1?1:0}
             primaryText={rowData.name}
@@ -65,8 +79,8 @@ module.exports=React.createClass({
             captionIcon={<Components.MD.Icon name="email" color={Components.MD.getColor("googleGrey300")}/>}
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
             onLongPress={this.showEditMode}
-        />;*/
-        return <View><Text>{rowData.peopleName}</Text><Text>{rowData.phoneNum}</Text></View>
+        />;
+        //return <View><Text>{rowData.peopleName}</Text><Text>{rowData.phoneNum}</Text></View>
 
     },
     renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
@@ -149,5 +163,6 @@ module.exports=React.createClass({
     },
     componentDidMount() {
         this.loadData();
+        this.exportData();
     }
 });
