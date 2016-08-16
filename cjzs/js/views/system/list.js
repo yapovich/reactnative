@@ -162,7 +162,7 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-        this.loadData();
+        //this.loadData();
         this.exportData();
     }
 });
