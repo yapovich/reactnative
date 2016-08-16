@@ -397,7 +397,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
      * @return instance of SQLite database
      * @throws Exception
      */
-    private SQLiteDatabase openDatabase(String dbname, String assetFilePath, int openFlags, CallbackContext cbc) throws Exception {
+    private SQLiteDatabase openDatabase(String dbname, String assetFilePath, int openFlags, CallbackContext cbc){
         InputStream in = null;
         File dbfile = null;
         try {
@@ -455,10 +455,10 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
                 cbc.success("database open");
 
             return mydb;
-        } catch (SQLiteException ex) {
+        } catch (Exception ex) {
             if (cbc != null) // needed for Android locking/closing workaround
                 cbc.error("can't open database " + ex);
-            throw ex;
+            //throw ex;
         } finally {
             if (in != null) {
                 try {
@@ -467,6 +467,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
                 }
             }
         }
+        return null;
     }
 
     /**
