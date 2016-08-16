@@ -37,6 +37,8 @@ public class SQLiteToExcel {
 	private final static int MESSAGE_ERROR = 2;
 	/**
 	 * 构造函数
+	 * @param context 上下文
+	 * @param database 数据库对象
 	 */
 	public SQLiteToExcel( Context context,SQLiteDatabase database){
 		mContext = context;
