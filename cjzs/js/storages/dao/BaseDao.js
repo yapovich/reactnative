@@ -29,10 +29,10 @@ export default class BaseDao{
                 if(error)error()
             });
         },()=>{
-            this.closedb();
+            //this.closedb();
             if(error)error()
         },()=>{
-            this.closedb();
+            //this.closedb();
         });
     }
 

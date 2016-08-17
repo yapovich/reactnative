@@ -105,13 +105,11 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             }
 
             @Override
-            public void onComplete() {
-                ste.close();
+            public void onComplete(){
                 if(success!=null)success.invoke();
             }
             @Override
             public void onError() {
-                ste.close();
                 if(error!=null)error.invoke();
             }
         });
@@ -128,13 +126,11 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             }
             @Override
             public void onComplete() {
-                ste.close();
                 if(success!=null)success.invoke();
             }
 
             @Override
             public void onError() {
-                ste.close();
                 if(error!=null)error.invoke();
             }
         });
