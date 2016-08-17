@@ -97,9 +97,9 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
         String dbName=args.getString("dbName");
         String tablename=args.getString("tableName");
         String excelPath=args.getString("excelPath");
-        final SQLiteToExcel ste=new SQLiteToExcel(getReactApplicationContext(),getDatabase(dbName));
+        final SQLiteExportToExcel ste=new SQLiteExportToExcel(getReactApplicationContext(),getDatabase(dbName));
 
-        ste.startExportSingleTable(tablename, excelPath, new SQLiteToExcel.ExportListener() {
+        ste.startExportSingleTable(tablename, excelPath, new SQLiteExportToExcel.ExportListener() {
             @Override
             public void onStart() {
 
@@ -118,8 +118,8 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
     public  void startExportAllTables(ReadableMap args,final Callback success, final Callback error){
         String dbName=args.getString("dbName");
         String excelPath=args.getString("excelPath");
-        final SQLiteToExcel ste=new SQLiteToExcel(getReactApplicationContext(),getDatabase(dbName));
-        ste.startExportAllTables(excelPath, new SQLiteToExcel.ExportListener() {
+        final SQLiteExportToExcel ste=new SQLiteExportToExcel(getReactApplicationContext(),getDatabase(dbName));
+        ste.startExportAllTables(excelPath, new SQLiteExportToExcel.ExportListener() {
             @Override
             public void onStart() {
 
@@ -394,7 +394,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
      * @throws Exception
      */
     private SQLiteDatabase openDatabase(String dbname, String assetFilePath, int openFlags, CallbackContext cbc){
-        //¼ÓÍ¬²½Ëø£¬Ê¹Ïß³Ì°²È«£¬·ÀÖ¹¶à´Î´ò¿ªÊý¾Ý¿â
+        //ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ß³Ì°ï¿½È«ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
         synchronized(this) {
             InputStream in = null;
             File dbfile = null;
@@ -1101,7 +1101,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             } catch (Exception e) {
                 Log.e(SQLitePlugin.class.getSimpleName(), "unexpected error", e);
             }
-            //Ö´ÐÐÍê£¬²»Òª¹Ø±Õ»òÕßÉ¾³ý
+            //Ö´ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½Òªï¿½Ø±Õ»ï¿½ï¿½ï¿½É¾ï¿½ï¿½
             /*
             if (dbq != null && dbq.close) {
                 try {

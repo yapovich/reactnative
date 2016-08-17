@@ -24,7 +24,7 @@ import android.util.Log;
  *
  * Created by liyu on 2015-9-8
  */
-public class SQLiteToExcel {
+public class SQLiteExportToExcel {
 
 	private Context mContext;
 	private SQLiteDatabase database;
@@ -40,7 +40,7 @@ public class SQLiteToExcel {
 	 * @param context 上下文
 	 * @param database 数据库对象
 	 */
-	public SQLiteToExcel( Context context,SQLiteDatabase database){
+	public SQLiteExportToExcel(Context context, SQLiteDatabase database){
 		mContext = context;
 		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 			mExportPath = Environment.getExternalStorageDirectory().toString()+File.separator;
@@ -54,7 +54,7 @@ public class SQLiteToExcel {
 	 * @param context 上下文
 	 * @param dbName 数据库名称
 	 */
-	public SQLiteToExcel(Context context, String dbName){
+	public SQLiteExportToExcel(Context context, String dbName){
 		mContext = context;
 		mDbName = dbName;
 		mExportPath = Environment.getExternalStorageDirectory().toString()+File.separator;
@@ -71,7 +71,7 @@ public class SQLiteToExcel {
 	 * @param dbName 数据库名称
 	 * @param exportPath 导出文件的路径（不包括文件名）
 	 */
-	public SQLiteToExcel(Context context, String dbName, String exportPath){
+	public SQLiteExportToExcel(Context context, String dbName, String exportPath){
 		mContext = context;
 		mDbName = dbName;
 		mExportPath = exportPath;
