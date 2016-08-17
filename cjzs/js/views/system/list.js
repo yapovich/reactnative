@@ -53,7 +53,7 @@ module.exports=React.createClass({
             if(result&&result.length>0)
               this.setState({dataSource:ds.cloneWithRows(result)});
             this.setState({refreshing: false});
-            //this.exportData();
+            this.exportData();
         });
         /*
         Contacts.getAllContacts((result)=>{
@@ -67,9 +67,9 @@ module.exports=React.createClass({
 
         return <Components.MD.List
             splitLine={rowID<this.state.dataSource.length-1?1:0}
-            primaryText={rowData.name}
-            secondaryText={rowData.yph}
-            captionText={rowData.id}
+            primaryText={rowData["名称"]}
+            secondaryText={rowData["样品名"]}
+            captionText={rowData["ID"]}
             captionIcon={<Components.MD.Icon name="email" color={Components.MD.getColor("googleGrey300")}/>}
             leftIcon={<Image source={{uri:'icon1'}} style={{width:56,height:56}}/>}
             onLongPress={this.showEditMode}
@@ -157,6 +157,6 @@ module.exports=React.createClass({
     },
     componentDidMount() {
         this.loadData();
-        this.exportData();
+        //this.exportData();
     }
 });
