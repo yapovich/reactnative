@@ -15,7 +15,19 @@ var components={
     },
     //SQLite模块
     get SQLite(){
-        return require('./libs/sqlite');
+        var SQLite=require('./libs/sqlite');
+        return {
+            startExportSingleTable(dbName,tableName,excelPath,success,error){
+                SQLite.openDatabase({
+                    name: dbName,
+                    createFromLocation: "~/database/"+dbName+".db"
+                }, ()=> {
+                    SQLite.startExportSingleTable(dbName,tableName, excelPath, success,error)
+                }, ()=> {
+                    if(error)error();
+                })
+            }
+        }
     },
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},

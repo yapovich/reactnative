@@ -6,14 +6,14 @@ export default class BaseDao{
     constructor(){
         this.db=null;
     }
-    opendb(){
+    opendb(success,error){
         this.db = SQLite.openDatabase({
             name : "mytest",
             createFromLocation:"~/database/mytest.db"
         },()=>{
-            console.log("连接成功！");
+            if(success)success()
         },()=>{
-            console.log("连接失败！");
+            if(error)error()
         });
     }
     closedb(){
@@ -21,19 +21,18 @@ export default class BaseDao{
              this.db.close();
     }
     execute(sql,params,success,error){
-        this.opendb();
-        this.db.transaction((tx) => {
-            tx.executeSql(sql,params,(tx,result)=>{
-                if(success)success(result)
-            },()=>{
-                if(error)error()
+        this.opendb(
+            ()=>{
+                this.db.transaction((tx) => {
+                    tx.executeSql(sql,params,(tx,result)=>{
+                        if(success)success(result)
+                    },()=>{
+                        if(error)error()
+                    });
+                },()=>{
+                    if(error)error()
+                });
             });
-        },()=>{
-            //this.closedb();
-            if(error)error()
-        },()=>{
-            //this.closedb();
-        });
     }
 
 }

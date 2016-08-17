@@ -62,4 +62,9 @@ public class ToastCustom extends ReactContextBaseJavaModule {
         if(toast!=null)
             toast.cancel();
     }
+
+    @Override
+    public boolean canOverrideExistingModule() {
+        return true;
+    }
 }

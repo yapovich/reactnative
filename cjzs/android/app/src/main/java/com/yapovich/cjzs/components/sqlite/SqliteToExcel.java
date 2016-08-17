@@ -45,7 +45,7 @@ public class SQLiteToExcel {
 		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 			mExportPath = Environment.getExternalStorageDirectory().toString()+File.separator;
 		}else{
-			mExportPath =File.separator;
+			mExportPath =context.getFilesDir().getAbsolutePath()+File.separator;
 		}
 		this.database=database;
 	}

@@ -41,17 +41,10 @@ module.exports=React.createClass({
         }
     },
     exportData(){
-        Components.SQLite.openDatabase({
-            name : "mytest",
-            createFromLocation:"~/database/mytest.db"
-        },()=>{
-            Components.SQLite.startExportSingleTable("mytest","info","mytest.xls",function(){
-                Components.Toast.short("导出成功");
-            },function(){
-                Components.Toast.short("导出失败");
-            })
-        },()=>{
-            console.log("连接失败！");
+        Components.SQLite.startExportSingleTable("mytest", "info", "mytest.xls", ()=> {
+            Components.Toast.short("导出成功了！");
+        }, ()=> {
+            Components.Toast.short("导出失败了！");
         })
     },
     loadData(){
@@ -60,6 +53,7 @@ module.exports=React.createClass({
             if(result&&result.length>0)
               this.setState({dataSource:ds.cloneWithRows(result)});
             this.setState({refreshing: false});
+            //this.exportData();
         });
         /*
         Contacts.getAllContacts((result)=>{
@@ -162,7 +156,7 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-        //this.loadData();
+        this.loadData();
         this.exportData();
     }
 });
