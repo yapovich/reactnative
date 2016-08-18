@@ -17,12 +17,12 @@ var components={
     get SQLite(){
         var SQLite=require('./libs/sqlite');
         return {
-            startExportSingleTable(dbName,tableName,excelPath,success,error){
+            startExportSingleTable(tableName,excelPath,success,error){
                 SQLite.openDatabase({
-                    name: dbName,
-                    createFromLocation: "~/database/"+dbName+".db"
+                    name: "mytest",
+                    createFromLocation: "~/database/mytest.db"
                 }, ()=> {
-                    SQLite.startExportSingleTable(dbName,tableName, excelPath, success,error)
+                    SQLite.startExportSingleTable("mytest",tableName, excelPath, success,error)
                 }, ()=> {
                     if(error)error();
                 })
@@ -32,7 +32,7 @@ var components={
     //Material Design风格组件------------------------------------------------------------
     get MD(){return require('./components/MaterialDesign/index')},
     //数据存储组件------------------------------------------------------------
-    get DAO(){return require('./storages/dao/index')},
+    get DAO(){return require('./storages/dao/_index')},
     //模块组件------------------------------------------------------------
     get Toast(){
         return {

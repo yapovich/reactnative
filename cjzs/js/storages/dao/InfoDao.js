@@ -44,4 +44,7 @@ export default class InfoDao extends BaseDao {
             if(success)success(false);
         }
     }
+    exportToExcel(success,error) {
+        this.doExportToExcel("info", success, error);
+    }
 }

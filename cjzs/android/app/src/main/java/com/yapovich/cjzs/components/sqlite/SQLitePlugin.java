@@ -106,6 +106,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             }
             @Override
             public void onComplete(){
+                //SQLitePlugin.this;
                 if(success!=null)success.invoke();
             }
             @Override
@@ -394,18 +395,20 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
      * @throws Exception
      */
     private SQLiteDatabase openDatabase(String dbname, String assetFilePath, int openFlags, CallbackContext cbc){
-        //��ͬ������ʹ�̰߳�ȫ����ֹ��δ����ݿ�
+        //��ͬ������ʹ�̰߳�ȫ����ֹ��δ����ݿ�?
         synchronized(this) {
             InputStream in = null;
             File dbfile = null;
             try {
                 SQLiteDatabase database = this.getDatabase(dbname);
+                //�����ݿ��Ѿ����ڣ������Ǵ򿪵ģ�ֱ�ӷ��أ������κβ���
                 if (database != null && database.isOpen()) {
                     //this only happens when DBRunner is cycling the db for the locking work around.
                     // otherwise, this should not happen - should be blocked at the execute("open") level
                     //if (cbc != null) cbc.error("database already open");
                     //throw new Exception("database already open");
                     if (cbc != null) cbc.success("database open");
+                    return null;
                 }
 
                 if (assetFilePath != null && assetFilePath.length() > 0) {
@@ -1101,7 +1104,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             } catch (Exception e) {
                 Log.e(SQLitePlugin.class.getSimpleName(), "unexpected error", e);
             }
-            //ִ���꣬��Ҫ�رջ���ɾ��
+            //ִ不要关闭数据库连接
             /*
             if (dbq != null && dbq.close) {
                 try {

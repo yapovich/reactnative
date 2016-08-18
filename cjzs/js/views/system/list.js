@@ -41,7 +41,7 @@ module.exports=React.createClass({
         }
     },
     exportData(){
-        Components.SQLite.startExportSingleTable("mytest", "info", "mytest.xls", ()=> {
+        infoDao.exportToExcel(()=> {
             Components.Toast.short("导出成功了！");
         }, ()=> {
             Components.Toast.short("导出失败了！");
@@ -156,7 +156,7 @@ module.exports=React.createClass({
         );
     },
     componentDidMount() {
-        this.loadData();
-        //this.exportData();
+        //this.loadData();
+        this.exportData();
     }
 });

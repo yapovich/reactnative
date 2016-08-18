@@ -123,6 +123,8 @@ public class SQLiteExportToExcel {
 		FileOutputStream fos = null;
 		try {
 			File file = new File(mExportPath, fileName);
+			if(!file.exists())
+				file.getParentFile().mkdirs();
 			fos = new FileOutputStream(file);
 			workbook.write(fos);
 		} catch (Exception e) {
@@ -167,6 +169,8 @@ public class SQLiteExportToExcel {
 		FileOutputStream fos = null;
 		try {
 			File file = new File(mExportPath, fileName);
+			if(!file.exists())
+				file.getParentFile().mkdirs();
 			fos = new FileOutputStream(file);
 			workbook.write(fos);
 		} catch (Exception e) {
