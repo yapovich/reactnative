@@ -27,7 +27,9 @@ module.exports=React.createClass({
             showMenu:false,
             refreshing:false,
             editMode:false,
-            dataSource: ds.cloneWithRows([])
+            dataSource: ds.cloneWithRows([]),
+            initialPosition: 'unknown',
+            lastPosition: 'unknown'
         };
     },
     pop(){
@@ -41,11 +43,40 @@ module.exports=React.createClass({
         }
     },
     exportData(){
+        /*
         infoDao.exportToExcel(()=> {
             Components.Toast.short("导出成功了！");
         }, ()=> {
             Components.Toast.short("导出失败了！");
-        })
+        })*/
+        /*
+        infoDao.updateInfo("892826",{
+              "名称":"波波维奇",
+              "样品号":"我的样品号"
+        },(result)=> {
+            Components.Toast.short("更新成功了！"+result.insertId);
+        }, ()=> {
+            Components.Toast.short("更新失败了！");
+        })*/
+        /*
+        infoDao.removeInfoByIds(["892824","892825","892827","892829"],(result)=> {
+            Components.Toast.short("删除成功了！"+result.insertId);
+        }, ()=> {
+            Components.Toast.short("删除失败了！");
+        })*/
+        /*
+        infoDao.getInfoById("832017",(result)=> {
+            Components.Toast.short(JSON.stringify(result));
+        }, ()=> {
+            Components.Toast.short("查询失败了！");
+        })*/
+        /*
+        fetch("https://raw.githubusercontent.com/yapovich/reactnative/master/cjzs/android/app/package/update.json")
+            .then((response)=>{
+                response.text().then((text)=>{
+                    Components.Toast.long(text);
+                })
+            })*/
     },
     loadData(){
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -126,6 +157,10 @@ module.exports=React.createClass({
                         {icon:'add',onPress:()=>this.jump("create")}
                     ]}
                 />
+                <Text>
+                    <Text>Current position: </Text>
+                    {this.state.lastPosition}
+                </Text>
                 <ListView
                         enableEmptySections={true}
                         style={{flex:1,backgroundColor:'#fff'}}
@@ -158,5 +193,18 @@ module.exports=React.createClass({
     componentDidMount() {
         //this.loadData();
         this.exportData();
+        /*
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                var initialPosition = JSON.stringify(position);
+                this.setState({initialPosition});
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );*/
+        this.watchID = navigator.geolocation.watchPosition((position) => {
+            var lastPosition = JSON.stringify(position);
+            this.setState({lastPosition});
+        });
     }
 });
